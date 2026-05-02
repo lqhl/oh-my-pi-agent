@@ -1,0 +1,12 @@
+{
+  "lastChangelogVersion": "0.72.0",
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek-v4-pro",
+  "defaultThinkingLevel": "medium",
+  "enabledModels": [
+    "openai-codex/gpt-5.4-mini",
+    "openai-codex/gpt-5.5",
+    "deepseek/deepseek-v4-flash",
+    "deepseek/deepseek-v4-pro"
+  ]
+}

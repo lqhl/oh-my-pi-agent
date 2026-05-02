@@ -1,0 +1,19 @@
+{
+  "name": "pi-web-tools",
+  "version": "0.1.0",
+  "description": "Web search and fetch tools for pi coding agent",
+  "type": "module",
+  "main": "index.ts",
+  "keywords": [
+    "pi",
+    "extension",
+    "web",
+    "search"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "http-proxy-agent": "^8.0.0",
+    "https-proxy-agent": "^8.0.0"
+  }
+}
