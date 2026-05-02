@@ -1,2 +1,4 @@
 auth.json
 sessions/
+node_modules/
+.DS_Store
