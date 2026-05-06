@@ -113,17 +113,14 @@ Full coverage of the Lark/Feishu platform:
 
 ```json
 {
+  "lastChangelogVersion": "0.73.0",
   "defaultProvider": "deepseek",
   "defaultModel": "deepseek-v4-pro",
-  "defaultThinkingLevel": "medium",
-  "enabledModels": [
-    "openai-codex/gpt-5.4-mini",
-    "openai-codex/gpt-5.5",
-    "deepseek/deepseek-v4-flash",
-    "deepseek/deepseek-v4-pro"
-  ]
+  "defaultThinkingLevel": "xhigh"
 }
 ```
+
+Models are resolved dynamically from the provider — no static allowlist needed.
 
 ## Keybindings
 
@@ -145,6 +142,8 @@ Both `Ctrl+J` and `Shift+Enter` insert a newline in the TUI input (instead of se
 ├── sessions/          # Session history (gitignored)
 ├── skills/            # Installed skill modules
 ├── .gitignore         # Excludes auth.json, sessions, node_modules
+├── .npmrc             # Unified npm registry config
+├── package.json       # Monorepo root (npm workspaces)
 ├── settings.json      # Provider & model configuration
 ├── keybindings.json   # Custom key shortcut overrides
 └── README.md
