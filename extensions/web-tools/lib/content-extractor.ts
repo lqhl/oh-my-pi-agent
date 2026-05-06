@@ -1,3 +1,14 @@
+import { ProxyAgent, request } from "undici";
+
+function getDispatcher() {
+  const proxyUrl = process.env.https_proxy || process.env.HTTPS_PROXY ||
+                   process.env.http_proxy || process.env.HTTP_PROXY;
+  if (proxyUrl) {
+    return new ProxyAgent(proxyUrl);
+  }
+  return undefined;
+}
+
 export async function fetchContent(
   url: string,
   format: "markdown" | "text" | "html",
@@ -29,12 +40,30 @@ export async function fetchContent(
 }
 
 async function fetchHtml(url: string, signal?: AbortSignal): Promise<string> {
+  const headers = {
+    "User-Agent": "Mozilla/5.0 (compatible; pi-web-tools/1.0)",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+  };
+
+  const dispatcher = getDispatcher();
+  if (dispatcher) {
+    const resp = await request(url, {
+      method: "GET",
+      headers,
+      signal,
+      dispatcher,
+      redirect: "follow",
+    });
+    if (resp.statusCode < 200 || resp.statusCode >= 400) {
+      throw new Error(`HTTP ${resp.statusCode}`);
+    }
+    return resp.body.text();
+  }
+
+  // No proxy - use global fetch
   const response = await fetch(url, {
-    headers: {
-      "User-Agent": "Mozilla/5.0 (compatible; pi-web-tools/1.0)",
-      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-      "Accept-Language": "en-US,en;q=0.9",
-    },
+    headers,
     redirect: "follow",
     signal,
   });

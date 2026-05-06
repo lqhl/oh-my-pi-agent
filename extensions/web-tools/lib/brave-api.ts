@@ -1,4 +1,4 @@
-import { ProxyAgent } from "undici";
+import { ProxyAgent, request } from "undici";
 
 export interface SearchResult {
   title: string;
@@ -7,7 +7,6 @@ export interface SearchResult {
   content?: string;
 }
 
-// 获取代理 dispatcher
 function getDispatcher() {
   const proxyUrl = process.env.https_proxy || process.env.HTTPS_PROXY ||
                    process.env.http_proxy || process.env.HTTP_PROXY;
@@ -15,6 +14,34 @@ function getDispatcher() {
     return new ProxyAgent(proxyUrl);
   }
   return undefined;
+}
+
+// Fetch wrapper that uses undici.request() when a proxy dispatcher is needed,
+// because Node.js global fetch() is incompatible with external dispatchers.
+async function proxyFetch(url: string, options: {
+  headers?: Record<string, string>;
+  signal?: AbortSignal;
+} = {}): Promise<{ status: number; json(): Promise<any>; text(): Promise<string> }> {
+  const dispatcher = getDispatcher();
+  if (dispatcher) {
+    const resp = await request(url, {
+      method: "GET",
+      headers: options.headers,
+      signal: options.signal,
+      dispatcher,
+    });
+    return {
+      status: resp.statusCode,
+      json: () => resp.body.json(),
+      text: () => resp.body.text(),
+    };
+  }
+  // No proxy - use global fetch
+  return fetch(url, {
+    method: "GET",
+    headers: options.headers,
+    signal: options.signal,
+  });
 }
 
 export async function searchBrave(
@@ -29,19 +56,16 @@ export async function searchBrave(
   });
 
   const url = `https://api.search.brave.com/res/v1/web/search?${params}`;
-  const dispatcher = getDispatcher();
-  
-  const response = await fetch(url, {
-    method: "GET",
+
+  const response = await proxyFetch(url, {
     headers: {
       "X-Subscription-Token": apiKey,
       "Accept": "application/json",
     },
     signal,
-    ...(dispatcher ? { dispatcher } : {}),
-  } as any);
+  });
 
-  if (!response.ok) {
+  if (response.status < 200 || response.status >= 300) {
     const text = await response.text();
     throw new Error(`HTTP ${response.status}: ${text.substring(0, 200)}`);
   }
