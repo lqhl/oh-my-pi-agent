@@ -1,0 +1,12 @@
+{
+  "name": "oh-my-pi-agent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal pi coding agent dotfile configuration",
+  "scripts": {
+    "postinstall": "for d in extensions/*/ skills/*/; do [ -f \"$d/package.json\" ] && (cd \"$d\" && npm install); done"
+  },
+  "author": "",
+  "license": "MIT"
+}

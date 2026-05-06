@@ -17,6 +17,7 @@ My personal [pi coding agent](https://github.com/badlogic/pi-mono/tree/main/pack
 
 ```bash
 git clone git@github.com:lqhl/oh-my-pi-agent.git ~/.pi/agent
+cd ~/.pi/agent && npm install
 ```
 
 Run `pi` and you're ready to go.
