@@ -19,7 +19,7 @@ import { Key } from "@mariozechner/pi-tui";
 import { extractTodoItems, isSafeCommand, markCompletedSteps, type TodoItem } from "./utils.js";
 
 // Tools
-const PLAN_MODE_TOOLS = ["read", "bash", "grep", "find", "ls", "questionnaire", "rg", "web_search", "web_fetch"];
+const PLAN_MODE_TOOLS = ["read", "bash", "grep", "find", "ls", "questionnaire"];
 const NORMAL_MODE_TOOLS = ["read", "bash", "edit", "write"];
 
 // Type guard for assistant messages
@@ -101,7 +101,7 @@ export default function planModeExtension(pi: ExtensionAPI): void {
 		handler: async (_args, ctx) => togglePlanMode(ctx),
 	});
 
-	pi.registerCommand("plantodos", {
+	pi.registerCommand("todos", {
 		description: "Show current plan todo list",
 		handler: async (_args, ctx) => {
 			if (todoItems.length === 0) {
@@ -165,7 +165,7 @@ export default function planModeExtension(pi: ExtensionAPI): void {
 You are in plan mode - a read-only exploration mode for safe code analysis.
 
 Restrictions:
-- You can only use: read, bash, grep, find, ls, questionnaire, rg, web_search, web_fetch
+- You can only use: read, bash, grep, find, ls, questionnaire
 - You CANNOT use: edit, write (file modifications are disabled)
 - Bash is restricted to an allowlist of read-only commands
 

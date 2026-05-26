@@ -1,5 +1,5 @@
 import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-agent";
-import { Type } from "@sinclair/typebox";
+import { Type } from "typebox";
 import { Text } from "@mariozechner/pi-tui";
 import { searchBrave } from "./lib/brave-api";
 import { fetchContent } from "./lib/content-extractor";
@@ -10,13 +10,7 @@ function hasApiKey(): boolean {
   return !!BRAVE_API_KEY && BRAVE_API_KEY.length > 0;
 }
 
-// Log extension load
-console.log("[web-tools] Extension loading...");
-console.log("[web-tools] BRAVE_API_KEY present:", hasApiKey());
-console.log("[web-tools] https_proxy:", process.env.https_proxy);
-
 export default function (pi: ExtensionAPI) {
-  console.log("[web-tools] Extension factory called");
   // 注册 web_search 工具
   pi.registerTool({
     name: "web_search",
@@ -28,10 +22,7 @@ export default function (pi: ExtensionAPI) {
       include_content: Type.Optional(Type.Boolean({ default: false, description: "Include page content snippets" })),
     }),
 
-    async execute(toolCallId, params, signal, onUpdate, ctx) {
-      console.log("[web_search] Starting search for:", params.query);
-      console.log("[web_search] Proxy:", process.env.https_proxy || "none");
-      
+    async execute(_toolCallId, params, signal, onUpdate, _ctx) {
       if (!hasApiKey()) {
         return {
           content: [{ type: "text", text: "Error: BRAVE_API_KEY not configured. Get one at https://brave.com/search/api/ or run /web-config" }],
@@ -57,7 +48,6 @@ export default function (pi: ExtensionAPI) {
         };
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
-        console.log("[web_search] Error:", message);
         return {
           content: [{ type: "text", text: `Search failed: ${message}` }],
           isError: true,
@@ -65,12 +55,12 @@ export default function (pi: ExtensionAPI) {
       }
     },
 
-    renderCall(args, theme) {
+    renderCall(args, theme, _context) {
       const text = theme.fg("toolTitle", "web_search") + " " + theme.fg("dim", `"${args.query}"`);
       return new Text(text, 0, 0);
     },
 
-    renderResult(result, options, theme) {
+    renderResult(result, _options, theme, _context) {
       if (result.isError) {
         return new Text(theme.fg("error", result.content[0].text), 0, 0);
       }
@@ -90,7 +80,7 @@ export default function (pi: ExtensionAPI) {
       max_length: Type.Optional(Type.Number({ default: 50000, description: "Maximum characters to return" })),
     }),
 
-    async execute(toolCallId, params, signal, onUpdate, ctx) {
+    async execute(_toolCallId, params, signal, onUpdate, _ctx) {
       onUpdate?.({ content: [{ type: "text", text: `Fetching: ${params.url}` }] });
 
       try {
@@ -115,12 +105,12 @@ export default function (pi: ExtensionAPI) {
       }
     },
 
-    renderCall(args, theme) {
+    renderCall(args, theme, _context) {
       const text = theme.fg("toolTitle", "web_fetch") + " " + theme.fg("dim", args.url);
       return new Text(text, 0, 0);
     },
 
-    renderResult(result, options, theme) {
+    renderResult(result, _options, theme, _context) {
       if (result.isError) {
         return new Text(theme.fg("error", result.content[0].text), 0, 0);
       }
@@ -133,7 +123,7 @@ export default function (pi: ExtensionAPI) {
   // 注册配置命令
   pi.registerCommand("web-config", {
     description: "Configure web tools (Brave API key)",
-    handler: async (args, ctx) => {
+    handler: async (_args, ctx) => {
       if (!ctx.hasUI) {
         console.log("Web Tools Configuration");
         console.log("======================");
@@ -166,34 +156,34 @@ export default function (pi: ExtensionAPI) {
       ctx.ui.setStatus("web-tools", "● web");
     }
   });
+}
 
-  // 格式化搜索结果
-  function formatSearchResults(results: SearchResult[], includeContent: boolean): string {
-    if (results.length === 0) {
-      return "No results found.";
-    }
-
-    const lines: string[] = [];
-    for (const result of results) {
-      lines.push(`## ${result.title}`);
-      lines.push(`URL: ${result.url}`);
-      if (result.description) {
-        lines.push(result.description);
-      }
-      if (includeContent && result.content) {
-        lines.push("");
-        lines.push("Content:");
-        lines.push(result.content.substring(0, 500));
-        if (result.content.length > 500) {
-          lines.push("...");
-        }
-      }
-      lines.push("");
-      lines.push("---");
-      lines.push("");
-    }
-    return lines.join("\n");
+// 格式化搜索结果
+function formatSearchResults(results: SearchResult[], includeContent: boolean): string {
+  if (results.length === 0) {
+    return "No results found.";
   }
+
+  const lines: string[] = [];
+  for (const result of results) {
+    lines.push(`## ${result.title}`);
+    lines.push(`URL: ${result.url}`);
+    if (result.description) {
+      lines.push(result.description);
+    }
+    if (includeContent && result.content) {
+      lines.push("");
+      lines.push("Content:");
+      lines.push(result.content.substring(0, 500));
+      if (result.content.length > 500) {
+        lines.push("...");
+      }
+    }
+    lines.push("");
+    lines.push("---");
+    lines.push("");
+  }
+  return lines.join("\n");
 }
 
 interface SearchResult {
