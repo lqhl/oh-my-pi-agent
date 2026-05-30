@@ -276,6 +276,15 @@ export default function (pi: ExtensionAPI) {
 
 				case "clear":
 					return new Text(theme.fg("success", "✓ ") + theme.fg("muted", "Cleared all todos"), 0, 0);
+
+				default: {
+					const text = result.content[0];
+					return new Text(
+						text?.type === "text" ? text.text : "",
+						0,
+						0,
+					);
+				}
 			}
 		},
 	});
