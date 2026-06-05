@@ -1,66 +1,21 @@
-# Agent Guidelines
+# AGENTS.md
 
-## 0. Personal Rules
+Personal rules:
 
-- Read `~/.secrets.yaml` for tokens and passwords for services.
+- Read `~/.secrets.yaml` for my API keys and passwords.
 
-## 1. Think Before Coding
+You should design and implement systems following the worst-is-better style:
 
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
+- Simplicity: The design must be simple, both in implementation and interface. It is more important for the implementation to be simple than the interface. Simplicity is the most important consideration in a design.
+- Correctness: The design should be correct in all observable aspects. It is slightly better to be simple than correct.
+- Consistency: The design must not be overly inconsistent. Consistency can be sacrificed for simplicity in some cases, but it is better to drop those parts of the design that deal with less common circumstances than to introduce either complexity or inconsistency in the implementation.
+- Completeness: The design must cover as many important situations as is practical. All reasonably expected cases should be covered. Completeness can be sacrificed in favor of any other quality. In fact, completeness must be sacrificed whenever implementation simplicity is jeopardized. Consistency can be sacrificed to achieve completeness if simplicity is retained; especially worthless is consistency of interface.
 
-Before implementing:
+Other important rules:
 
-- State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop. Name what's confusing. Ask.
-
-## 2. Simplicity First
-
-**Minimum code that solves the problem. Nothing speculative.**
-
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No "flexibility" or "configurability" that wasn't requested.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
-
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
-
-## 3. Surgical Changes
-
-**Touch only what you must. Clean up only your own mess.**
-
-When editing existing code:
-
-- Don't "improve" adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
-- Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
-
-When your changes create orphans:
-
-- Remove imports/variables/functions that YOUR changes made unused.
-- Don't remove pre-existing dead code unless asked.
-
-The test: Every changed line should trace directly to the user's request.
-
-## 4. Goal-Driven Execution
-
-**Define success criteria. Loop until verified.**
-
-Transform tasks into verifiable goals:
-
-- "Add validation" → "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" → "Write a test that reproduces it, then make it pass"
-- "Refactor X" → "Ensure tests pass before and after"
-
-For multi-step tasks, state a brief plan:
-
-```
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-3. [Step] → verify: [check]
-```
-
-Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+- Understand the user’s desired outcome before choosing an implementation; don’t blindly execute the proposed approach.
+- When requirements are ambiguous, state assumptions and ask for clarification before making broad changes.
+- Write or update tests before changing behavior, then make the tests pass.
+- Keep changes scoped to the task. Do not rewrite, remove, or "clean up" unrelated code or comments.
+- Surface tradeoffs, inconsistencies, and risks instead of silently choosing for the user.
+- After each meaningful change, review your own diff for conceptual errors, hidden assumptions, and unintended side effects.
