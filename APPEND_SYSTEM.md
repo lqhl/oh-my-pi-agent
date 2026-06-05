@@ -1,9 +1,5 @@
 # AGENTS.md
 
-Personal rules:
-
-- Read `~/.secrets.yaml` for my API keys and passwords.
-
 You should design and implement systems following the worst-is-better style:
 
 - Simplicity: The design must be simple, both in implementation and interface. It is more important for the implementation to be simple than the interface. Simplicity is the most important consideration in a design.
