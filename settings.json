@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.78.1",
+  "lastChangelogVersion": "0.80.6",
   "defaultProvider": "deepseek",
   "defaultModel": "deepseek-v4-pro",
   "defaultThinkingLevel": "xhigh",
@@ -7,5 +7,6 @@
     "npm:pi-intercom",
     "npm:pi-subagents",
     "npm:pi-web-access"
-  ]
+  ],
+  "theme": "dark"
 }
