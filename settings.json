@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.80.6",
+  "lastChangelogVersion": "0.83.0",
   "defaultProvider": "deepseek",
-  "defaultModel": "deepseek-v4-pro",
-  "defaultThinkingLevel": "xhigh",
+  "defaultModel": "deepseek-v4-flash",
+  "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-intercom",
     "npm:pi-subagents",
