@@ -8,3 +8,4 @@ bin/
 run-history.jsonl
 models-store.json
 trust.json
+.pi-subagents/
