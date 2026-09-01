@@ -1,3 +1,6 @@
 [submodule "skills/guizang-ppt-skill"]
 	path = skills/guizang-ppt-skill
 	url = https://github.com/op7418/guizang-ppt-skill.git
+[submodule "skills/simplify-codebase"]
+	path = skills/simplify-codebase
+	url = https://github.com/tt-a1i/simplify-codebase.git
