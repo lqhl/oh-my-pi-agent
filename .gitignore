@@ -1,5 +1,6 @@
 auth.json
 sessions/
+missions/
 node_modules/
 .DS_Store
 intercom/
