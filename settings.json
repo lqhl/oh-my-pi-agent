@@ -3,11 +3,24 @@
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.6-sol",
   "defaultThinkingLevel": "medium",
+  "skills": [
+    "./vendor/mattpocock-skills/skills/engineering/setup-matt-pocock-skills",
+    "./vendor/mattpocock-skills/skills/engineering/grill-with-docs",
+    "./vendor/mattpocock-skills/skills/engineering/implement",
+    "./vendor/mattpocock-skills/skills/engineering/code-review",
+    "./vendor/mattpocock-skills/skills/engineering/tdd",
+    "./vendor/mattpocock-skills/skills/engineering/research",
+    "./vendor/mattpocock-skills/skills/engineering/wayfinder",
+    "./vendor/mattpocock-skills/skills/engineering/to-spec",
+    "./vendor/mattpocock-skills/skills/engineering/to-tickets",
+    "./vendor/mattpocock-skills/skills/productivity/handoff"
+  ],
   "packages": [
     "npm:pi-intercom",
     "npm:pi-subagents",
     "npm:pi-web-access",
-    "npm:@sting8k/pi-vcc"
+    "npm:@sting8k/pi-vcc",
+    "npm:pi-goal"
   ],
   "theme": "dark"
 }

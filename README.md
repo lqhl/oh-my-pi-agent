@@ -30,7 +30,8 @@ pi
 | 路径 | 用途 |
 | --- | --- |
 | `extensions/` | 本地 TypeScript 扩展 |
-| `skills/` | 可按需加载的 Agent Skills |
+| `skills/` | 本地及直接挂载的 Agent Skills |
+| `vendor/` | 由 `settings.json` 白名单加载的外部 Skill 仓库 |
 | `prompts/` | 可复用的工作流提示词 |
 | `settings.json` | Pi、模型和 npm package 配置 |
 | `keybindings.json` | TUI 快捷键 |
@@ -66,13 +67,18 @@ skills/<skill-name>/SKILL.md
 | --- | --- | --- |
 | `guizang-ppt-skill` | [op7418/guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill) | 生成单文件、横向翻页的网页 PPT |
 | `simplify-codebase` | [tt-a1i/simplify-codebase](https://github.com/tt-a1i/simplify-codebase) | 基于证据审计并减少代码库中的偶然复杂度 |
+| Matt Pocock 核心工作流 | [mattpocock/skills](https://github.com/mattpocock/skills) | 通过 `settings.json` 白名单启用规划、规格、实现、TDD、审查和交接等 Skill |
 
-两个外部 Skill 都以 Git submodule 管理。更新它们时，请明确记录并检查上游版本：
+外部 Skill 使用 Git submodule 管理。`guizang-ppt-skill` 和 `simplify-codebase` 直接位于 `skills/`，由 Pi 自动发现；Matt Pocock 的仓库位于 `vendor/`，避免递归加载其中的 `in-progress`、`deprecated` 和未审核 Skill，仅加载 `settings.json` 中明确列出的目录。
+
+更新前先检查上游变更：
 
 ```bash
-git submodule update --remote --merge
+./scripts/check-mattpocock-skills-update.sh
 git diff --submodule
 ```
+
+确认完整 Skill diff 后，再把 `vendor/mattpocock-skills` 切换到脚本输出的 commit 并提交 submodule 指针。不要直接修改 submodule 内的上游文件；需要定制时，在本仓库中建立独立 Skill。
 
 Skill 可以包含 `references/`、`scripts/` 和 `assets/` 等目录。`SKILL.md` 应保持简洁，把详细资料放入引用文件，并在 frontmatter 中提供准确、具体的 `name` 和 `description`。
 
@@ -122,10 +128,11 @@ Skill 可以包含 `references/`、`scripts/` 和 `assets/` 等目录。`SKILL.m
 
 1. 新增 Skill 时，为它建立独立目录并提供完整 frontmatter。
 2. 外部 Skill 使用 submodule；不要把带有嵌套 `.git` 的 clone 直接放入仓库。
-3. 更新 submodule 后检查 `git diff --submodule`，确认变更来自预期上游。
-4. 修改扩展或 package 配置后，重启 Pi 或使用 `/reload-runtime` 验证加载结果。
-5. README 中的列表应与实际目录和配置保持一致。
-6. 不提交凭据、会话历史、缓存和运行时生成文件。
+3. `vendor/` 中的 Skill 必须通过 `settings.json` 白名单加载，不要直接扫描整个上游仓库。
+4. 更新 submodule 后检查 `git diff --submodule` 和 Skill 内容，确认变更来自预期上游。
+5. 修改扩展、Skill 或 package 配置后，重启 Pi 或使用 `/reload-runtime` 验证加载结果。
+6. README 中的列表应与实际目录和配置保持一致。
+7. 不提交凭据、会话历史、缓存和运行时生成文件。
 
 检查当前仓库状态：
 
