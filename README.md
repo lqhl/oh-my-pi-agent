@@ -68,8 +68,9 @@ skills/<skill-name>/SKILL.md
 | `guizang-ppt-skill` | [op7418/guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill) | 生成单文件、横向翻页的网页 PPT |
 | `simplify-codebase` | [tt-a1i/simplify-codebase](https://github.com/tt-a1i/simplify-codebase) | 基于证据审计并减少代码库中的偶然复杂度 |
 | Matt Pocock 核心工作流 | [mattpocock/skills](https://github.com/mattpocock/skills) | 通过 `settings.json` 白名单启用规划、规格、实现、TDD、审查和交接等 Skill |
+| Ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | 仅加载精简实现、复杂度审查、全库审计和债务清单 Skill；不加载 extension |
 
-外部 Skill 使用 Git submodule 管理。`guizang-ppt-skill` 和 `simplify-codebase` 直接位于 `skills/`，由 Pi 自动发现；Matt Pocock 的仓库位于 `vendor/`，避免递归加载其中的 `in-progress`、`deprecated` 和未审核 Skill，仅加载 `settings.json` 中明确列出的目录。
+外部 Skill 使用 Git submodule 管理。`guizang-ppt-skill` 和 `simplify-codebase` 直接位于 `skills/`，由 Pi 自动发现；Matt Pocock 和 Ponytail 的仓库位于 `vendor/`，避免递归加载其中未审核的内容，仅加载 `settings.json` 中明确列出的目录。Ponytail 目前只作为 Skill 使用，不加载它的 Pi extension。
 
 更新前先检查上游变更：
 

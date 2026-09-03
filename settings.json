@@ -13,7 +13,13 @@
     "./vendor/mattpocock-skills/skills/engineering/wayfinder",
     "./vendor/mattpocock-skills/skills/engineering/to-spec",
     "./vendor/mattpocock-skills/skills/engineering/to-tickets",
-    "./vendor/mattpocock-skills/skills/productivity/handoff"
+    "./vendor/mattpocock-skills/skills/productivity/handoff",
+    "./vendor/ponytail/skills/ponytail",
+    "./vendor/ponytail/skills/ponytail-review",
+    "./vendor/ponytail/skills/ponytail-audit",
+    "./vendor/ponytail/skills/ponytail-debt",
+    "./vendor/ponytail/skills/ponytail-gain",
+    "./vendor/ponytail/skills/ponytail-help"
   ],
   "packages": [
     "npm:pi-intercom",
