@@ -45,12 +45,11 @@ pi
 - `inline-bash`：在对话中显示 Bash 命令输出
 - `interactive-shell`：在 TUI 中运行交互式命令
 - `notify`：任务完成或等待输入时发送桌面通知
-- `qna`、`question`、`questionnaire`：向用户提问的交互组件
+- `qna`、`questionnaire`：向用户提问的交互组件
 - `reload-runtime`：热重载扩展、Skill、提示词和主题
 - `status-line`：显示持久化状态栏
 - `summarize`：对较长工具输出生成摘要
 - `todo`：管理持久化待办事项
-- `truncated-tool`：构建输出截断工具的辅助模块
 - `working-indicator`：显示 Agent 工作状态
 
 ## Skills
