@@ -10,3 +10,9 @@
 [submodule "vendor/ponytail"]
 	path = vendor/ponytail
 	url = https://github.com/DietrichGebert/ponytail.git
+[submodule "vendor/bro"]
+	path = vendor/bro
+	url = https://github.com/backnotprop/bro.git
+[submodule "vendor/pstack"]
+	path = vendor/pstack
+	url = https://github.com/backnotprop/pstack.git

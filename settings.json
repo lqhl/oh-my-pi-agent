@@ -1,8 +1,7 @@
 {
   "lastChangelogVersion": "0.84.4",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-sol",
-  "defaultThinkingLevel": "medium",
+  "defaultModel": "deepseek-flash",
+  "defaultThinkingLevel": "max",
   "skills": [
     "./vendor/mattpocock-skills/skills/engineering/setup-matt-pocock-skills",
     "./vendor/mattpocock-skills/skills/engineering/grill-with-docs",
@@ -19,14 +18,44 @@
     "./vendor/ponytail/skills/ponytail-audit",
     "./vendor/ponytail/skills/ponytail-debt",
     "./vendor/ponytail/skills/ponytail-gain",
-    "./vendor/ponytail/skills/ponytail-help"
+    "./vendor/ponytail/skills/ponytail-help",
+    "./vendor/bro/skills/bro",
+    "./vendor/bro/skills/readback",
+    "./vendor/bro/skills/facts",
+    "./vendor/bro/skills/recap",
+    "./vendor/bro/skills/status",
+    "./vendor/bro/skills/clean-room",
+    "./vendor/pstack/skills/unslop",
+    "./vendor/pstack/skills/technical-writing",
+    "./vendor/pstack/skills/principle-laziness-protocol",
+    "./vendor/pstack/skills/principle-foundational-thinking",
+    "./vendor/pstack/skills/principle-redesign-from-first-principles",
+    "./vendor/pstack/skills/principle-subtract-before-you-add",
+    "./vendor/pstack/skills/principle-minimize-reader-load",
+    "./vendor/pstack/skills/principle-outcome-oriented-execution",
+    "./vendor/pstack/skills/principle-experience-first",
+    "./vendor/pstack/skills/principle-exhaust-the-design-space",
+    "./vendor/pstack/skills/principle-build-the-lever",
+    "./vendor/pstack/skills/principle-model-the-domain",
+    "./vendor/pstack/skills/principle-boundary-discipline",
+    "./vendor/pstack/skills/principle-type-system-discipline",
+    "./vendor/pstack/skills/principle-make-operations-idempotent",
+    "./vendor/pstack/skills/principle-migrate-callers-then-delete-legacy-apis",
+    "./vendor/pstack/skills/principle-separate-before-serializing-shared-state",
+    "./vendor/pstack/skills/principle-prove-it-works",
+    "./vendor/pstack/skills/principle-fix-root-causes",
+    "./vendor/pstack/skills/principle-sequence-verifiable-units",
+    "./vendor/pstack/skills/principle-guard-the-context-window",
+    "./vendor/pstack/skills/principle-never-block-on-the-human",
+    "./vendor/pstack/skills/principle-encode-lessons-in-structure"
   ],
   "packages": [
     "npm:pi-intercom",
     "npm:pi-subagents",
     "npm:pi-web-access",
     "npm:@sting8k/pi-vcc",
-    "npm:pi-goal"
+    "npm:pi-goal",
+    "npm:pi-cliproxyapi-provider"
   ],
   "theme": "dark"
 }
