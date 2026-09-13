@@ -39,10 +39,7 @@ expected = [
     "./vendor/bro/skills/recap",
     "./vendor/bro/skills/status",
     "./vendor/bro/skills/clean-room",
-    "./vendor/pstack/skills/unslop",
-    "./vendor/pstack/skills/technical-writing",
 ]
-expected += sorted("./" + str(p).rstrip("/") for p in Path("vendor/pstack/skills").glob("principle-*/"))
 configured = {p.rstrip("/") for p in paths}
 missing_expected = [p for p in expected if p not in configured]
 if missing_expected:
@@ -51,5 +48,5 @@ if missing_expected:
     raise SystemExit(1)
 
 print(f"enabled skills: {len(paths)}")
-print("selected bro/pstack skills: OK")
+print("selected bro skills: OK")
 PY

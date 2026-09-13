@@ -67,11 +67,9 @@ skills/<skill-name>/SKILL.md
 | `guizang-ppt-skill` | [op7418/guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill) | 生成单文件、横向翻页的网页 PPT |
 | `simplify-codebase` | [tt-a1i/simplify-codebase](https://github.com/tt-a1i/simplify-codebase) | 基于证据审计并减少代码库中的偶然复杂度 |
 | Matt Pocock 核心工作流 | [mattpocock/skills](https://github.com/mattpocock/skills) | 通过 `settings.json` 白名单启用规划、规格、实现、TDD、审查和交接等 Skill |
-| Ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | 仅加载精简实现、复杂度审查、全库审计和债务清单 Skill；不加载 extension |
 | bro | [backnotprop/bro](https://github.com/backnotprop/bro) | 加载 6 个对齐、回顾、状态和独立判断 Skill |
-| pstack selected skills | [backnotprop/pstack](https://github.com/backnotprop/pstack) | 加载 `unslop`、`technical-writing` 和 21 个工程原则 |
 
-外部 Skill 使用 Git submodule 管理。`guizang-ppt-skill` 和 `simplify-codebase` 直接位于 `skills/`，由 Pi 自动发现；Matt Pocock 和 Ponytail 的仓库位于 `vendor/`，避免递归加载其中未审核的内容，仅加载 `settings.json` 中明确列出的目录。Ponytail 目前只作为 Skill 使用，不加载它的 Pi extension。
+外部 Skill 使用 Git submodule 管理。`guizang-ppt-skill` 和 `simplify-codebase` 直接位于 `skills/`，由 Pi 自动发现；Matt Pocock 的仓库位于 `vendor/`，避免递归加载其中未审核的内容，仅加载 `settings.json` 中明确列出的目录。
 
 外部 Skill 使用 Git submodule 固定版本。更新前先检查上游变更：
 
@@ -84,7 +82,7 @@ git diff --submodule
 `check-vendor-updates.sh` 默认检查 `.gitmodules` 中的所有 submodule，也可以指定一个或多个路径：
 
 ```bash
-./scripts/check-vendor-updates.sh vendor/bro vendor/pstack
+./scripts/check-vendor-updates.sh vendor/mattpocock-skills vendor/bro
 ```
 
 脚本只 fetch、比较并显示审查命令，不会自动切换 submodule。确认完整 Skill diff 后，再手动切换到目标 commit 并提交 submodule 指针。不要直接修改 submodule 内的上游文件；需要定制时，在本仓库中建立独立 Skill。
