@@ -26,7 +26,7 @@
     "npm:pi-web-access",
     "npm:@sting8k/pi-vcc",
     "npm:pi-goal",
-    "npm:pi-cliproxyapi-provider"
+    "./extensions/pi-cliproxyapi-provider"
   ],
   "theme": "dark",
   "defaultProvider": "cpa"
