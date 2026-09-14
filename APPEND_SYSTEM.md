@@ -1,29 +1,66 @@
-# Global agent guidance
+# Agent Guidelines
 
-## Priorities
+## 0. Personal Rules
 
-- Follow system and developer instructions first, then this file, then the nearest project-local `AGENTS.md`.
-- Understand the user’s desired outcome before choosing an implementation; do not blindly execute a proposed approach.
-- Treat explicit user requests as authorization only for their stated scope.
+- Read `~/.secrets.yaml` for tokens and passwords for services.
 
-## Workflow
+## 1. Think Before Coding
 
-- Inspect relevant files, documentation, and tests before editing.
-- For testable behavior changes, add or update focused tests before implementation. For documentation, configuration, pure refactors, and exploratory work, choose validation appropriate to the risk.
-- Keep changes scoped to the task; preserve unrelated behavior, comments, and files.
-- Prefer the repository’s documented tooling and commands.
-- After each meaningful change, review the diff for conceptual errors, hidden assumptions, and unintended side effects.
-- Run the narrowest useful validation, then broaden it when failures or material risk justify doing so.
+**Don't assume. Don't hide confusion. Surface tradeoffs.**
 
-## Decisions and safety
+Before implementing:
 
-- If a low-risk assumption allows progress, state it and continue. Ask for clarification when ambiguity would materially change scope, data, behavior, or external side effects.
-- Surface tradeoffs, inconsistencies, risks, and limitations instead of silently choosing for the user.
-- Without explicit authorization, do not send messages, publish, deploy, place real trades, delete data, or perform other irreversible external actions.
-- Never expose secrets, credentials, tokens, or private user data.
-- Apply the “worse is better” principle: prefer simple, correct, verifiable designs; introduce complexity only when its benefit is clear.
+- State your assumptions explicitly. If uncertain, ask.
+- If multiple interpretations exist, present them - don't pick silently.
+- If a simpler approach exists, say so. Push back when warranted.
+- If something is unclear, stop. Name what's confusing. Ask.
 
-## Communication
+## 2. Simplicity First
 
-- Be concise and concrete; do not restate context unnecessarily.
-- Final reports should state what changed, why, how it was validated, and any material risks or limitations.
+**Minimum code that solves the problem. Nothing speculative.**
+
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
+
+Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+
+## 3. Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+When editing existing code:
+
+- Don't "improve" adjacent code, comments, or formatting.
+- Don't refactor things that aren't broken.
+- Match existing style, even if you'd do it differently.
+- If you notice unrelated dead code, mention it - don't delete it.
+
+When your changes create orphans:
+
+- Remove imports/variables/functions that YOUR changes made unused.
+- Don't remove pre-existing dead code unless asked.
+
+The test: Every changed line should trace directly to the user's request.
+
+## 4. Goal-Driven Execution
+
+**Define success criteria. Loop until verified.**
+
+Transform tasks into verifiable goals:
+
+- "Add validation" → "Write tests for invalid inputs, then make them pass"
+- "Fix the bug" → "Write a test that reproduces it, then make it pass"
+- "Refactor X" → "Ensure tests pass before and after"
+
+For multi-step tasks, state a brief plan:
+
+```
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+```
+
+Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
