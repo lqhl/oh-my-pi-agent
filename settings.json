@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.85.1",
-  "defaultModel": "gpt-6-astra",
-  "defaultThinkingLevel": "medium",
+  "defaultModel": "deepseek-flash",
+  "defaultThinkingLevel": "high",
   "skills": [
     "./vendor/mattpocock-skills/skills/engineering/setup-matt-pocock-skills",
     "./vendor/mattpocock-skills/skills/engineering/grill-with-docs",
@@ -25,9 +25,8 @@
     "npm:pi-subagents",
     "npm:pi-web-access",
     "npm:@sting8k/pi-vcc",
-    "npm:pi-goal",
-    "./extensions/pi-cliproxyapi-provider"
+    "npm:pi-goal"
   ],
   "theme": "dark",
-  "defaultProvider": "cpa"
+  "defaultProvider": "deepseek"
 }
