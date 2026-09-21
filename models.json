@@ -1,0 +1,199 @@
+{
+  "providers": {
+    "deepseek": {
+      "modelOverrides": {
+        "deepseek-flash": {
+          "samplingParams": {
+            "temperature": 1.0,
+            "top_p": 0.95
+          }
+        }
+      }
+    },
+    "cpa": {
+      "name": "CLIProxyAPI",
+      "baseUrl": "https://llm-api.lqhl.me/v1",
+      "api": "openai-responses",
+      "compat": {
+        "supportsStrictMode": false
+      },
+      "models": [
+        {
+          "id": "gpt-5.6-sol",
+          "name": "GPT-5.6 Sol",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 5,
+            "output": 30,
+            "cacheRead": 0.5,
+            "cacheWrite": 6.25,
+            "tiers": [
+              {
+                "inputTokensAbove": 272000,
+                "input": 10,
+                "output": 45,
+                "cacheRead": 1,
+                "cacheWrite": 12.5
+              }
+            ]
+          },
+          "contextWindow": 272000,
+          "maxTokens": 128000,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          }
+        },
+        {
+          "id": "gpt-5.6-luna",
+          "name": "GPT-5.6 Luna",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0.2,
+            "output": 1.2,
+            "cacheRead": 0.02,
+            "cacheWrite": 0.25,
+            "tiers": [
+              {
+                "inputTokensAbove": 272000,
+                "input": 0.4,
+                "output": 1.8,
+                "cacheRead": 0.04,
+                "cacheWrite": 0.5
+              }
+            ]
+          },
+          "contextWindow": 272000,
+          "maxTokens": 128000,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          }
+        },
+        {
+          "id": "gpt-5.6-terra",
+          "name": "GPT-5.6 Terra",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 2,
+            "output": 12,
+            "cacheRead": 0.2,
+            "cacheWrite": 2.5,
+            "tiers": [
+              {
+                "inputTokensAbove": 272000,
+                "input": 4,
+                "output": 18,
+                "cacheRead": 0.4,
+                "cacheWrite": 5
+              }
+            ]
+          },
+          "contextWindow": 272000,
+          "maxTokens": 128000,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          }
+        },
+        {
+          "id": "gpt-5.5",
+          "name": "GPT-5.5",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 5,
+            "output": 30,
+            "cacheRead": 0.5,
+            "cacheWrite": 0,
+            "tiers": [
+              {
+                "inputTokensAbove": 272000,
+                "input": 10,
+                "output": 45,
+                "cacheRead": 1,
+                "cacheWrite": 0
+              }
+            ]
+          },
+          "contextWindow": 272000,
+          "maxTokens": 128000,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": null
+          }
+        },
+        {
+          "id": "gpt-6-astra",
+          "name": "GPT-6 Astra",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1050000,
+          "maxTokens": 128000,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          },
+          "cost": {
+            "input": 10,
+            "output": 50,
+            "cacheRead": 1,
+            "cacheWrite": 12.5,
+            "tiers": [
+              {
+                "inputTokensAbove": 272000,
+                "input": 20,
+                "output": 75,
+                "cacheRead": 2,
+                "cacheWrite": 25
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
