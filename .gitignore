@@ -11,3 +11,4 @@ models-store.json
 trust.json
 .pi-subagents/
 /pi-cliproxyapi-provider/
+web-search-cache/
