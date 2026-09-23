@@ -1,6 +1,6 @@
 {
   "lastChangelogVersion": "0.85.1",
-  "defaultModel": "deepseek-flash",
+  "defaultModel": "gpt-5.6-luna",
   "defaultThinkingLevel": "max",
   "skills": [
     "./vendor/mattpocock-skills/skills/engineering/setup-matt-pocock-skills",
@@ -28,5 +28,5 @@
     "npm:pi-goal"
   ],
   "theme": "dark",
-  "defaultProvider": "deepseek"
+  "defaultProvider": "cpa"
 }
