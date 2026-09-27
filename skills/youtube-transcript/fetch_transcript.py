@@ -14,12 +14,29 @@ import tempfile
 import json
 
 
+COOKIE_FILE = os.path.expanduser("~/yt-cookies.txt")
+
+
+def yt_dlp_base_args():
+    """Flags that YouTube extraction currently needs, plus cookies if available."""
+    args = []
+    if shutil.which("node"):
+        # JS challenge solver; without it extraction fails with
+        # "The page needs to be reloaded."
+        args += ["--js-runtimes", "node", "--remote-components", "ejs:github"]
+    if os.path.exists(COOKIE_FILE):
+        # Avoids "Sign in to confirm you're not a bot".
+        args += ["--cookies", COOKIE_FILE]
+    return args
+
+
 def get_metadata(url):
     cmd = [
         "yt-dlp",
         "--dump-json",
         "--no-warnings",
         "--skip-download",
+        *yt_dlp_base_args(),
         url,
     ]
     try:
@@ -69,6 +86,7 @@ def download_subtitle(url, lang, is_auto, outdir):
         "--sub-langs", lang,
         "--write-auto-subs" if is_auto else "--write-subs",
         "-o", os.path.join(outdir, "%(id)s.%(ext)s"),
+        *yt_dlp_base_args(),
         url,
     ]
     try:
