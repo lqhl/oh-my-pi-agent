@@ -1,6 +1,6 @@
 {
-  "lastChangelogVersion": "0.85.1",
-  "defaultModel": "gpt-5.6-luna",
+  "lastChangelogVersion": "1.0.4",
+  "defaultModel": "deepseek/deepseek-flash",
   "defaultThinkingLevel": "max",
   "skills": [
     "./vendor/mattpocock-skills/skills/engineering/setup-matt-pocock-skills",
@@ -25,8 +25,9 @@
     "npm:pi-subagents",
     "npm:pi-web-access",
     "npm:@sting8k/pi-vcc",
-    "npm:pi-goal"
+    "npm:pi-goal",
+    "git:github.com/JimLiu/baoyu-skills"
   ],
   "theme": "dark",
-  "defaultProvider": "cpa"
+  "defaultProvider": "magpie"
 }
