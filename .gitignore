@@ -6,6 +6,7 @@ node_modules/
 intercom/
 npm/
 bin/
+git/
 run-history.jsonl
 models-store.json
 trust.json
