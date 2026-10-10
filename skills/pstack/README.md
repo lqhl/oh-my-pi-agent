@@ -59,7 +59,7 @@
 
 ```bash
 ./scripts/check-enabled-skills.sh
-node --test tests/pstack-mode.test.mjs
+node --test tests/*.test.mjs
 ```
 
 检查脚本覆盖显式白名单、本地自动发现目录、重复名称、pstack 名称/目录匹配及相对 Markdown 链接。Pi 的实际资源加载还应检查 YAML 解析和运行时 diagnostics。模式测试使用安装在本机的 Pi SDK，检查事件行为、会话分支和资源加载，不调用模型 API。修改扩展后还要在实际会话中验证命令。

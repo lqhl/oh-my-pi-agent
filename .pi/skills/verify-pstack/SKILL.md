@@ -16,7 +16,7 @@ Run `git status --short`, `node --version`, and `pi --version`. Confirm this che
 ## Drive
 
 1. Run `./scripts/check-enabled-skills.sh`. It must report no missing skills, invalid pstack names, duplicate names, or broken relative links.
-2. Run `node --test tests/pstack-mode.test.mjs`. All eight tests must pass, including actual Pi loading, branch restoration, compaction, reload, and removal of the mode section from model context.
+2. Run `node --test tests/*.test.mjs`. All 12 tests must pass. They cover actual Pi loading, branch restoration, compaction, mode removal, and delayed runtime reload. A reload requested during an agent run must keep its tools usable until the run settles, apply once, and provide fresh tool handles afterward.
 3. In a real interactive Pi session, after reloading resources, run `/pstack status`, `/pstack on`, `/pstack status`, `/pstack off`. Check the notifications and `pstack` footer status. The sequence must not start an agent task or change active tools.
 4. Inspect native `subagent` capabilities and model resolution when agent definitions or overrides changed. Real cross-model review or parallel write probes require the requested delegation scope and existing authentication; run those in isolated test worktrees and record actual native results separately from the offline checks.
 

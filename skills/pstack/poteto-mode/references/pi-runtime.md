@@ -24,7 +24,7 @@ The bundled playbooks cover investigation, bug fixes, features, refactoring, per
 | Real CLI or UI verification | local `control-cli`, `control-ui`, or a project's verification skill |
 | GitHub history and PRs | `git` and `gh`, using existing authentication |
 
-Call the native `subagent` tool directly; it may not be exposed as `tools.subagent` inside codemode. Do not introduce a custom scheduler, remote workers, or another CLI agent runner. Preserve the caller's work and stay inside the authorized scope. A workflow step does not grant permission to publish, merge, deploy, force-push, delete data, or message other people. Prepare a reviewable result before any approval that the actual action requires.
+Call the native `subagent` tool directly; it may not be exposed as `tools.subagent` inside codemode. The `reload_runtime` tool schedules resource reload after the current agent run settles. Its receipt does not mean new resources are loaded yet. After reload, use freshly registered tools in the next run; an old tool or context handle remains invalid. Do not introduce a custom scheduler, remote workers, or another CLI agent runner. Preserve the caller's work and stay inside the authorized scope. A workflow step does not grant permission to publish, merge, deploy, force-push, delete data, or message other people. Prepare a reviewable result before any approval that the actual action requires.
 
 ## Delegation and roles
 
@@ -37,7 +37,7 @@ Before a delegated run:
 3. Bind output with the run's `output` argument. Pass the objective, allowed paths, constraints, commands, and evidence paths. For reviewers, supply a readable diff packet including staged, unstaged, committed, and relevant untracked changes; `main...HEAD` alone omits ongoing work.
 4. Use exactly one top-level `subagent` workflow call with `async: true` for a delegated multi-step or parallel workflow. Every child launch occurs inside that workflow. A nested skill contributes steps to the same workflow rather than launching another parent workflow.
 
-Use `runs.all([{key, label, agent, task, output, ...}, ...])` for independent children; give each step a short verb-and-behavior label and `await runs.run(key, {...})` for dependent ones. Await a launch before accessing its output. Keep stable, distinct keys. Return each result's actual `runId`, `outputReference`, `outputPathMapping`, `artifactPaths`, evidence, and unresolved risks when present.
+Use `runs.all([{key, label, agent, task, output, ...}, ...])` for independent children; give each step a short verb-and-behavior label and `await runs.run(key, {...})` for dependent ones. Await a launch before accessing its output. Keep stable, distinct keys. Return each result's actual `runId`, `outputReference`, `outputPathMapping`, `artifactPaths`, evidence, and unresolved risks when present. Records passed to `emit` or returned by a workflow must be JSON values. Omit absent optional fields instead of assigning `undefined`.
 
 Consume terminal results at dependency barriers. Check native status, errors, and evidence before advancing. A pending card, launch receipt, summary, or claimed success is not acceptance. Ordinary async runs notify the parent on completion; return control instead of sleeping or polling. Reserve `bg_wait` for work without native notification when its result is required in the current turn.
 

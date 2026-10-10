@@ -14,6 +14,8 @@ From the repository, run `node --test tests/pstack-mode.test.mjs`. The final tes
 
 In an interactive session, run status, on, status, off and retain the visible notifications. An isolated terminal probe must close the process it started and preserve its transcript.
 
+Run `node --test tests/reload-runtime.test.mjs` for the four reload checks. A model's `reload_runtime` request stays pending until `agent_settled`. Tools from that run must remain usable until it finishes. Repeated requests cause one reload. After reload, a fresh handle works and an old handle remains rejected. The idle command and idle SDK tool paths must also work.
+
 ## Gotchas
 
 A one-task `/skill:poteto-mode` does not enable the switch. A new session starts off. `session.systemPrompt` outside a run can return the base prompt; observe the active request to prove per-run instructions. Do not mistake a notification for proof of model-context injection or a launch receipt for a child result.

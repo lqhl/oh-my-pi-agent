@@ -5,10 +5,24 @@
  * tool that queues a follow-up command to trigger reload.
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
 
 export default function (pi: ExtensionAPI) {
+	let reloadPending = false;
+
+	function sendReloadCommand() {
+		reloadPending = false;
+		pi.sendUserMessage("/reload-runtime", {
+			deliverAs: "followUp",
+			expandPromptTemplates: true,
+		});
+	}
+
+	pi.on("agent_settled", async () => {
+		if (reloadPending) sendReloadCommand();
+	});
+
 	// Command entrypoint for reload.
 	// Treat reload as terminal for this handler.
 	pi.registerCommand("reload-runtime", {
@@ -19,20 +33,16 @@ export default function (pi: ExtensionAPI) {
 		},
 	});
 
-	// LLM-callable tool. Tools get ExtensionContext, so they cannot call ctx.reload() directly.
-	// Instead, queue a follow-up user command that executes the command above.
 	pi.registerTool({
 		name: "reload_runtime",
 		label: "Reload Runtime",
-		description: "Reload extensions, skills, prompts, and themes",
+		description: "Reload extensions, skills, prompts, and themes after the current agent run finishes",
 		parameters: Type.Object({}),
-		async execute() {
-			pi.sendUserMessage("/reload-runtime", {
-				deliverAs: "followUp",
-				expandPromptTemplates: true,
-			});
+		async execute(_toolCallId, _params, _signal, _onUpdate, ctx) {
+			reloadPending = true;
+			if (ctx.isIdle()) sendReloadCommand();
 			return {
-				content: [{ type: "text", text: "Queued /reload-runtime as a follow-up command." }],
+				content: [{ type: "text", text: "Runtime reload scheduled after the current agent run finishes." }],
 				details: {},
 			};
 		},
