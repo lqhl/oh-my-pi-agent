@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "1.0.4",
+  "lastChangelogVersion": "1.1.0",
   "defaultModel": "deepseek/deepseek-flash",
   "defaultThinkingLevel": "max",
   "defaultTools": [
@@ -32,5 +32,15 @@
     "git:github.com/JimLiu/baoyu-skills"
   ],
   "theme": "dark",
-  "defaultProvider": "magpie"
+  "defaultProvider": "magpie",
+  "subagents": {
+    "agentOverrides": {
+      "cursor-agent": {
+        "disabled": true
+      },
+      "cursor-agent-writer": {
+        "disabled": true
+      }
+    }
+  }
 }
