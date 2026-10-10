@@ -37,6 +37,14 @@
       },
       "cursor-agent-writer": {
         "disabled": true
+      },
+      "reviewer": {
+        "model": "magpie/group/auto-claude-opus-5-5",
+        "thinking": "high"
+      },
+      "comment-sicko": {
+        "model": "magpie/group/auto-claude-opus-5-5",
+        "thinking": "high"
       }
     }
   }
