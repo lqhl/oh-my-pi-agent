@@ -67,12 +67,10 @@ skills/<skill-name>/SKILL.md
 | `analyze-sessions` | 本仓库维护 | 分析 Pi 历史会话和使用成本 |
 | `pdf-reader` | 本仓库维护 | 结合文字提取与页面渲染阅读 PDF |
 | `guizang-ppt-skill` | [op7418/guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill) | 生成单文件、横向翻页的网页 PPT |
-| `simplify-codebase` | [tt-a1i/simplify-codebase](https://github.com/tt-a1i/simplify-codebase) | 基于证据审计并减少代码库中的偶然复杂度 |
-| Matt Pocock 核心工作流 | [mattpocock/skills](https://github.com/mattpocock/skills) | 通过 `settings.json` 白名单启用规划、规格、实现、TDD、审查和交接等 Skill |
 | bro | [backnotprop/bro](https://github.com/backnotprop/bro) | 加载 6 个对齐、回顾、状态和独立判断 Skill |
 | 宝玉公众号及素材工作流 | [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills) | 加载 8 个公众号发布、排版、配图和素材抓取 Skill |
 
-小而需要自行修改的 Skill 直接保存在 `skills/`，随本仓库维护；较大的上游仓库使用 Git submodule 固定版本。`guizang-ppt-skill` 和 `simplify-codebase` 直接位于 `skills/`，由 Pi 自动发现；Matt Pocock、bro 和宝玉的仓库位于 `vendor/`，仅加载 `settings.json` 中明确列出的 Skill 目录。
+小而需要自行修改的 Skill 直接保存在 `skills/`，随本仓库维护；较大的上游仓库使用 Git submodule 固定版本。`guizang-ppt-skill` 直接位于 `skills/`，由 Pi 自动发现；bro 和宝玉的仓库位于 `vendor/`，仅加载 `settings.json` 中明确列出的 Skill 目录。
 
 宝玉当前启用 `baoyu-post-to-wechat`、`baoyu-markdown-to-html`、`baoyu-format-markdown`、`baoyu-cover-image`、`baoyu-article-illustrator`、`baoyu-image-gen`、`baoyu-youtube-transcript` 和 `baoyu-url-to-markdown`。YouTube 字幕统一使用宝玉版本。
 
@@ -94,7 +92,7 @@ git diff --submodule
 `check-vendor-updates.sh` 默认检查 `.gitmodules` 中的所有 submodule，也可以指定一个或多个路径：
 
 ```bash
-./scripts/check-vendor-updates.sh vendor/mattpocock-skills vendor/bro vendor/baoyu-skills
+./scripts/check-vendor-updates.sh vendor/bro vendor/baoyu-skills
 ```
 
 脚本只 fetch、比较并显示审查命令，不会自动切换 submodule。确认完整 Skill diff 后，再手动切换到目标 commit 并提交 submodule 指针。不要直接修改 submodule 内的上游文件；需要定制时，在本仓库中建立独立 Skill。

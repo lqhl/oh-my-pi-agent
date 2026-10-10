@@ -39,9 +39,6 @@ expected = [
     "./vendor/bro/skills/recap",
     "./vendor/bro/skills/status",
     "./vendor/bro/skills/clean-room",
-    "./vendor/mattpocock-skills/skills/productivity/grilling",
-    "./vendor/mattpocock-skills/skills/engineering/domain-modeling",
-    "./vendor/mattpocock-skills/skills/engineering/prototype",
     "./vendor/baoyu-skills/skills/baoyu-post-to-wechat",
     "./vendor/baoyu-skills/skills/baoyu-markdown-to-html",
     "./vendor/baoyu-skills/skills/baoyu-format-markdown",
@@ -59,5 +56,5 @@ if missing_expected:
     raise SystemExit(1)
 
 print(f"explicitly enabled skills: {len(paths)}")
-print("selected bro, planning, and baoyu skills: OK")
+print("selected bro and baoyu skills: OK")
 PY
