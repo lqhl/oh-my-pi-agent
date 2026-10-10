@@ -10,3 +10,6 @@
 [submodule "vendor/bro"]
 	path = vendor/bro
 	url = https://github.com/backnotprop/bro.git
+[submodule "vendor/baoyu-skills"]
+	path = vendor/baoyu-skills
+	url = https://github.com/JimLiu/baoyu-skills.git

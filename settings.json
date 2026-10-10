@@ -8,6 +8,9 @@
   "skills": [
     "./vendor/mattpocock-skills/skills/engineering/setup-matt-pocock-skills",
     "./vendor/mattpocock-skills/skills/engineering/grill-with-docs",
+    "./vendor/mattpocock-skills/skills/productivity/grilling",
+    "./vendor/mattpocock-skills/skills/engineering/domain-modeling",
+    "./vendor/mattpocock-skills/skills/engineering/prototype",
     "./vendor/mattpocock-skills/skills/engineering/implement",
     "./vendor/mattpocock-skills/skills/engineering/code-review",
     "./vendor/mattpocock-skills/skills/engineering/tdd",
@@ -21,15 +24,22 @@
     "./vendor/bro/skills/facts",
     "./vendor/bro/skills/recap",
     "./vendor/bro/skills/status",
-    "./vendor/bro/skills/clean-room"
+    "./vendor/bro/skills/clean-room",
+    "./vendor/baoyu-skills/skills/baoyu-post-to-wechat",
+    "./vendor/baoyu-skills/skills/baoyu-markdown-to-html",
+    "./vendor/baoyu-skills/skills/baoyu-format-markdown",
+    "./vendor/baoyu-skills/skills/baoyu-cover-image",
+    "./vendor/baoyu-skills/skills/baoyu-article-illustrator",
+    "./vendor/baoyu-skills/skills/baoyu-image-gen",
+    "./vendor/baoyu-skills/skills/baoyu-youtube-transcript",
+    "./vendor/baoyu-skills/skills/baoyu-url-to-markdown"
   ],
   "packages": [
     "npm:pi-intercom",
     "npm:pi-subagents",
     "npm:pi-web-access",
     "npm:@sting8k/pi-vcc",
-    "npm:pi-goal",
-    "git:github.com/JimLiu/baoyu-skills"
+    "npm:pi-goal"
   ],
   "theme": "dark",
   "defaultProvider": "magpie",

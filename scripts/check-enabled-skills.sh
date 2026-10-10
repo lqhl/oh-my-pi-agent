@@ -39,6 +39,17 @@ expected = [
     "./vendor/bro/skills/recap",
     "./vendor/bro/skills/status",
     "./vendor/bro/skills/clean-room",
+    "./vendor/mattpocock-skills/skills/productivity/grilling",
+    "./vendor/mattpocock-skills/skills/engineering/domain-modeling",
+    "./vendor/mattpocock-skills/skills/engineering/prototype",
+    "./vendor/baoyu-skills/skills/baoyu-post-to-wechat",
+    "./vendor/baoyu-skills/skills/baoyu-markdown-to-html",
+    "./vendor/baoyu-skills/skills/baoyu-format-markdown",
+    "./vendor/baoyu-skills/skills/baoyu-cover-image",
+    "./vendor/baoyu-skills/skills/baoyu-article-illustrator",
+    "./vendor/baoyu-skills/skills/baoyu-image-gen",
+    "./vendor/baoyu-skills/skills/baoyu-youtube-transcript",
+    "./vendor/baoyu-skills/skills/baoyu-url-to-markdown",
 ]
 configured = {p.rstrip("/") for p in paths}
 missing_expected = [p for p in expected if p not in configured]
@@ -47,6 +58,6 @@ if missing_expected:
     print("\n".join(f"  {p}" for p in missing_expected))
     raise SystemExit(1)
 
-print(f"enabled skills: {len(paths)}")
-print("selected bro skills: OK")
+print(f"explicitly enabled skills: {len(paths)}")
+print("selected bro, planning, and baoyu skills: OK")
 PY
