@@ -14,4 +14,5 @@ trust.json
 /pi-cliproxyapi-provider/
 web-search-cache/
 pi-web-session-index.json
+pi-web-session-state.json
 pi-subagents/
