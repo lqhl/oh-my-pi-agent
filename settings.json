@@ -2,6 +2,9 @@
   "lastChangelogVersion": "1.0.4",
   "defaultModel": "deepseek/deepseek-flash",
   "defaultThinkingLevel": "max",
+  "defaultTools": [
+    "+codemode"
+  ],
   "skills": [
     "./vendor/mattpocock-skills/skills/engineering/setup-matt-pocock-skills",
     "./vendor/mattpocock-skills/skills/engineering/grill-with-docs",

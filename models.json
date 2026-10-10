@@ -27,6 +27,26 @@
         },
         {
           "contextWindow": 1000000,
+          "id": "group/auto-claude-sonnet-5-5",
+          "input": [
+            "text",
+            "image"
+          ],
+          "maxTokens": 128000,
+          "name": "Claude Sonnet 5.5 · routing group",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "high": "high",
+            "low": "low",
+            "max": "max",
+            "medium": "medium",
+            "minimal": null,
+            "off": null,
+            "xhigh": "xhigh"
+          }
+        },
+        {
+          "contextWindow": 1000000,
           "cost": {
             "cacheRead": 0.003,
             "cacheWrite": 0,
@@ -130,21 +150,30 @@
           }
         },
         {
-          "contextWindow": 262144,
+          "contextWindow": 1000000,
           "cost": {
-            "cacheRead": 0,
-            "cacheWrite": 0,
-            "input": 0,
-            "output": 0
+            "cacheRead": 0.085,
+            "cacheWrite": 2.125,
+            "input": 1.7,
+            "output": 8.5
           },
-          "id": "openrouter/apodex/apodex-1.1-mini:free",
+          "id": "aiberm/anthropic/claude-sonnet-5.5",
           "input": [
             "text",
             "image"
           ],
-          "maxTokens": 235929,
-          "name": "Apodex 1.1 Mini (free) · OpenRouter",
-          "reasoning": false
+          "maxTokens": 128000,
+          "name": "Claude Sonnet 5.5 · aiberm",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "high": "high",
+            "low": "low",
+            "max": "max",
+            "medium": "medium",
+            "minimal": null,
+            "off": null,
+            "xhigh": "xhigh"
+          }
         },
         {
           "api": "anthropic-messages",
@@ -166,6 +195,74 @@
           ],
           "maxTokens": 128000,
           "name": "Claude Opus 5.5 · OpenRouter",
+          "promptCache": {
+            "long": 3600,
+            "short": 300
+          },
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "high": "high",
+            "low": "low",
+            "max": "max",
+            "medium": "medium",
+            "minimal": null,
+            "xhigh": "xhigh"
+          }
+        },
+        {
+          "api": "anthropic-messages",
+          "baseUrl": "http://127.0.0.1:3425",
+          "compat": {
+            "forceAdaptiveThinking": true
+          },
+          "contextWindow": 1000000,
+          "cost": {
+            "cacheRead": 0.01,
+            "cacheWrite": 0.125,
+            "input": 0.1,
+            "output": 0.5
+          },
+          "id": "openrouter/anthropic/claude-haiku-5.5",
+          "input": [
+            "text",
+            "image"
+          ],
+          "maxTokens": 128000,
+          "name": "Claude Haiku 5.5 · OpenRouter",
+          "promptCache": {
+            "long": 3600,
+            "short": 300
+          },
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "high": "high",
+            "low": "low",
+            "max": "max",
+            "medium": "medium",
+            "minimal": null,
+            "xhigh": "xhigh"
+          }
+        },
+        {
+          "api": "anthropic-messages",
+          "baseUrl": "http://127.0.0.1:3425",
+          "compat": {
+            "forceAdaptiveThinking": true
+          },
+          "contextWindow": 1000000,
+          "cost": {
+            "cacheRead": 0.1,
+            "cacheWrite": 2.5,
+            "input": 2,
+            "output": 10
+          },
+          "id": "openrouter/anthropic/claude-sonnet-5.5",
+          "input": [
+            "text",
+            "image"
+          ],
+          "maxTokens": 128000,
+          "name": "Claude Sonnet 5.5 · OpenRouter",
           "promptCache": {
             "long": 3600,
             "short": 300
