@@ -29,12 +29,21 @@
 | 查用法、选流程 | `/skill:poteto-help` |
 | 配置原生 agent 的模型与思考等级 | `/skill:setup-pstack` |
 | 理解代码、调查历史、讲解 | `/skill:how`、`/skill:why`、`/skill:teach` |
+| 汇总本次聊天的进展和待决事项 | `/skill:ketchup` |
+| 恢复同一项目的历史工作背景 | `/skill:recall` |
 | 比较设计或候选实现 | `/skill:architect`、`/skill:arena` |
 | 两个模型独立审查 | `/skill:interrogate` |
 | 本地并行覆盖或隔离写入 | `/skill:swarm` |
 | 添加或修改 Pi skill | `/skill:create-skill` |
 | 生成或维护真实项目验证流程 | `/skill:create-verification-skill`、`/skill:maintain-verification-skill` |
 | 驱动真实本地 CLI/TUI 或浏览器 | `/skill:control-cli`、`/skill:control-ui` |
+
+`ketchup` 从你上次发言之后的当前聊天整理进展。`recall` 默认查当前工作目录最近七天更新过的 Pi 会话，跳过当前会话和子 agent 记录，再核对相关 Git、GitHub PR 和 issue。它复用 `analyze-sessions` 的解析库，通过只读选择脚本先检查会话头的项目路径，再读取匹配内容。`vcc_recall` 只查当前会话。
+
+```text
+/skill:ketchup
+/skill:recall 我上周做的 pstack 集成，现在到哪一步了？
+```
 
 其余 skill 包括 `blast-radius`、`tdd`、`benchmark-checklist`、`no-comments`、`deslop`、`typescript-best-practices`、`technical-writing`、`unslop`、`show-me-your-work`，以及 24 个 `principle-*`。完整列表由本地目录维护。
 
@@ -51,7 +60,7 @@
 - 并行写入使用从干净源树分配的独立 managed worktree。原生执行器捕获 patch 和 handoff 后可能回收临时 worktree；主会话依据真实 artifact references 审查、整合，再验证整合结果。
 - 项目验证 skill 放在 `.pi/skills/verify-<app>/`。优先使用项目已有 harness；缺少工具、服务或凭据时报告阻塞，不能用构建成功替代真实行为验证。
 
-`why` 的数据源限于 Git、GitHub PR/issue、仓库文档、注释和测试。本适配不包含团队消息、工单/异常追踪服务集成，也不包含远程 cloud worker。长期任务只在用户明确请求 goal mode 时使用现有 `pi-goal`，没有额外调度器。上游的 Autopilot、Orchestrate、Babysit、Shipping、历史采集与完整 prompt eval 未纳入这版。
+`why` 的数据源限于 Git、GitHub PR/issue、仓库文档、注释和测试。本适配不包含团队消息、工单/异常追踪服务集成，也不包含远程 cloud worker。长期任务只在用户明确请求 goal mode 时使用现有 `pi-goal`，没有额外调度器。上游的 Autopilot、Orchestrate、Babysit、Shipping、Reflect、Automate-me、Correct 与完整 prompt eval 未纳入这版。
 
 ## 维护和检查
 
@@ -68,6 +77,6 @@ node --test tests/*.test.mjs
 
 ## 来源和许可
 
-本地快照基于 [cursor/plugins 的 pstack v0.15.15](https://github.com/cursor/plugins/tree/d73344bee8cf22e53b9d5f4cf5749d38ba38c174/pstack)，commit `d73344bee8cf22e53b9d5f4cf5749d38ba38c174`。`control-cli`、`control-ui` 和 `deslop` 来自同一快照的 [cursor-team-kit](https://github.com/cursor/plugins/tree/d73344bee8cf22e53b9d5f4cf5749d38ba38c174/cursor-team-kit)。`create-skill`、Pi 执行规范和模式扩展由本仓库新增。
+本地快照基于 [cursor/plugins 的 pstack v0.15.15](https://github.com/cursor/plugins/tree/d73344bee8cf22e53b9d5f4cf5749d38ba38c174/pstack)，commit `d73344bee8cf22e53b9d5f4cf5749d38ba38c174`。`ketchup` 后续从上游 commit `978ca6e9c0e012047cd5058b8e829240336e704e` 补入并适配 Pi。`recall` 来自原始快照，历史查询改为本地 Pi 会话。`control-cli`、`control-ui` 和 `deslop` 来自同一快照的 [cursor-team-kit](https://github.com/cursor/plugins/tree/d73344bee8cf22e53b9d5f4cf5749d38ba38c174/cursor-team-kit)。`create-skill`、Pi 执行规范和模式扩展由本仓库新增。
 
 本次按实际范围修改了加载方式、角色/模型配置、委派、异步、隔离、会话恢复和验证路径，并收窄自动发布与越界清理行为。其余原则和参考资料保留上游内容。原始 MIT 许可见 [pstack LICENSE](LICENSE) 和 [cursor-team-kit LICENSE](LICENSE.cursor-team-kit)。

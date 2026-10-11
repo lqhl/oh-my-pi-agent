@@ -20,6 +20,8 @@ The bundled playbooks cover investigation, bug fixes, features, refactoring, per
 | Product or preference question | `questionnaire` when available, otherwise a direct question |
 | Local children and workflows | `subagent` from `pi-subagents` |
 | Recover this session's context | `vcc_recall` before rereading large files or declaring context lost |
+| Catch up on this chat's progress | [ketchup](../../ketchup/SKILL.md), using the active conversation branch |
+| Restore project context across earlier chats | [recall](../../recall/SKILL.md), with a stated workspace and time window |
 | Explicit long-running goal | `create_goal` from `pi-goal`, only when the user requests goal mode |
 | Real CLI or UI verification | local `control-cli`, `control-ui`, or a project's verification skill |
 | GitHub history and PRs | `git` and `gh`, using existing authentication |

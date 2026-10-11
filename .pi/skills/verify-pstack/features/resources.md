@@ -2,7 +2,7 @@
 
 ## Sub-features
 
-Local recursive skill discovery, explicit vendor selection, unique names, relative links, 48 pstack skills, and native `poteto-agent`/`comment-sicko` definitions.
+Local recursive skill discovery, explicit vendor selection, unique names, relative links, 50 pstack skills, and native `poteto-agent`/`comment-sicko` definitions.
 
 ## How to get to it (user POV)
 
@@ -10,7 +10,7 @@ Use `/skill:poteto-help` or `/skill:poteto-mode`. Configure native roles with `/
 
 ## Driving it with the checker and native registry
 
-Run `./scripts/check-enabled-skills.sh`, then `node --test tests/pstack-mode.test.mjs`. The actual Pi loader must parse all 48 pstack skills with no diagnostics and register `/pstack` from the extension.
+Run `./scripts/check-enabled-skills.sh`, then `node --test tests/*.test.mjs`. The actual Pi loader must parse all 50 pstack skills with no diagnostics and register `/pstack` from the extension. `ketchup` and `recall` must load as explicit-only skills. History-selection tests call the real Python command and check project boundaries, current and child exclusions, file update order, time windows, and unavailable stores.
 
 Use `subagent` list with capabilities and model discovery to inspect the two native profiles and actual available provider/model IDs. The comment reviewer has no edit/write/bash tools. Confirm the requested two model families differ before a dual-model launch. For parallel writes, use a clean test source and distinct managed worktrees; read returned handoff manifests and patches, then verify the integrated result.
 

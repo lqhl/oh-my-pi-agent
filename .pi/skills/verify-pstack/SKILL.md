@@ -16,9 +16,10 @@ Run `git status --short`, `node --version`, and `pi --version`. Confirm this che
 ## Drive
 
 1. Run `./scripts/check-enabled-skills.sh`. It must report no missing skills, invalid pstack names, duplicate names, or broken relative links.
-2. Run `node --test tests/*.test.mjs`. All 12 tests must pass. They cover actual Pi loading, branch restoration, compaction, mode removal, and delayed runtime reload. A reload requested during an agent run must keep its tools usable until the run settles, apply once, and provide fresh tool handles afterward.
+2. Run `node --test tests/*.test.mjs`. All 15 tests must pass. They cover actual Pi loading, branch restoration, compaction, mode removal, delayed runtime reload, and scoped history selection. A reload requested during an agent run must keep its tools usable until the run settles, apply once, and provide fresh tool handles afterward.
 3. In a real interactive Pi session, after reloading resources, run `/pstack status`, `/pstack on`, `/pstack status`, `/pstack off`. Check the notifications and `pstack` footer status. The sequence must not start an agent task or change active tools.
-4. Inspect native `subagent` capabilities and model resolution when agent definitions or overrides changed. Real cross-model review or parallel write probes require the requested delegation scope and existing authentication; run those in isolated test worktrees and record actual native results separately from the offline checks.
+4. For context skills, invoke `/skill:ketchup` in the active chat and check that it starts with the pending user-action count. Invoke `/skill:recall <topic>` in a project and check its stated workspace, window, cited session IDs, and live Git state. An empty match and an unavailable session store must be reported differently.
+5. Inspect native `subagent` capabilities and model resolution when agent definitions or overrides changed. Real cross-model review or parallel write probes require the requested delegation scope and existing authentication; run those in isolated test worktrees and record actual native results separately from the offline checks.
 
 The mapped surfaces are indexed in [features/README.md](features/README.md). Read the relevant feature when a check fails.
 

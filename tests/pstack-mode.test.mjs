@@ -130,7 +130,7 @@ test("a persisted session resumes on, and a different new session starts off", a
 	assert.deepEqual(await h.turn(), { ordinary: "keep the existing rules" });
 });
 
-test("the installed Pi loader parses all 48 skills and loads the actual extension", async (t) => {
+test("the installed Pi loader parses all 50 skills and loads the actual extension", async (t) => {
 	const dir = mkdtempSync(join(tmpdir(), "pstack-loader-test-"));
 	t.after(() => rmSync(dir, { recursive: true, force: true }));
 	const loader = new DefaultResourceLoader({
@@ -148,10 +148,15 @@ test("the installed Pi loader parses all 48 skills and loads the actual extensio
 	await loader.reload();
 	assert.deepEqual(loader.getExtensions().errors, []);
 	assert.deepEqual(loader.getSkills().diagnostics, []);
-	assert.equal(loader.getSkills().skills.length, 48);
+	assert.equal(loader.getSkills().skills.length, 50);
 	assert.equal(loader.getExtensions().extensions.length, 1);
 	assert.ok(loader.getExtensions().extensions[0].commands.has("pstack"));
 	assert.ok(loader.getSkills().skills.some((skill) => skill.name === "poteto-mode"));
+	for (const name of ["ketchup", "recall"]) {
+		const skill = loader.getSkills().skills.find((entry) => entry.name === name);
+		assert.equal(skill?.filePath, join(repo, `skills/pstack/${name}/SKILL.md`));
+		assert.equal(skill.disableModelInvocation, true);
+	}
 });
 
 test("actual SDK commands update the effective system prompt and survive resource reload", async (t) => {

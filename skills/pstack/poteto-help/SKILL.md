@@ -32,6 +32,8 @@ Task size and an enabled mode do not grant delegation. An explicitly invoked wor
 | Understand current behavior | [how](../how/SKILL.md) |
 | Investigate rationale and history | [why](../why/SKILL.md) |
 | Explain a subsystem plainly | [teach](../teach/SKILL.md) |
+| Catch up on this chat since the user's last message | [ketchup](../ketchup/SKILL.md) |
+| Rebuild recent project context across prior chats | [recall](../recall/SKILL.md) |
 | Prove what a diff could break elsewhere | [blast-radius](../blast-radius/SKILL.md) |
 | Compare type and module designs | [architect](../architect/SKILL.md) |
 | Compare candidates and synthesize a result | [arena](../arena/SKILL.md) |
@@ -53,6 +55,8 @@ Playbooks are files inside `poteto-mode`, not separate slash commands. Read its 
 
 A one-task invocation does not enable the persistent switch. Use `/pstack on` when that is wanted. After adding files, reload resources and inspect diagnostics. Resolve model IDs through native discovery; never guess a provider slug. Isolate concurrent writers in clean managed worktrees. A failed child or missing live harness leaves a concrete gap, not a pass.
 
-Read [`../poteto-mode/references/pi-runtime.md`](../poteto-mode/references/pi-runtime.md) before explaining async notification, resume, isolation, or acceptance. Use `vcc_recall` for context from this session. Explicit long-running goal mode uses the existing `pi-goal` skill and tools; the local mode does not supply another loop or scheduler.
+`ketchup` covers this chat since the user's last message. `recall` searches prior chats in a stated workspace and time window, then checks the relevant Git and GitHub record. `vcc_recall` only recovers the current session's context.
+
+Read [`../poteto-mode/references/pi-runtime.md`](../poteto-mode/references/pi-runtime.md) before explaining async notification, resume, isolation, or acceptance. Explicit long-running goal mode uses the existing `pi-goal` skill and tools; the local mode does not supply another loop or scheduler.
 
 Lead with the answer, give at most one relevant prompt example, and link the file you actually read.
