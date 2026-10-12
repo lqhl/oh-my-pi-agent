@@ -15,4 +15,5 @@ trust.json
 web-search-cache/
 pi-web-session-index.json
 pi-web-session-state.json
+/pi-agent-config.tar.gz
 pi-subagents/
