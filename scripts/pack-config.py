@@ -64,21 +64,33 @@ with tempfile.TemporaryDirectory(prefix="pi-pack-") as temp:
             shutil.copy2(src, dst)
 
     (agent / "settings.json").write_text(json.dumps(settings, ensure_ascii=False, indent=2) + "\n")
+    (bundle / "npm-packages.json").write_text(json.dumps(packages, ensure_ascii=False, indent=2) + "\n")
     (bundle / "install.sh").write_text('''#!/usr/bin/env bash
 set -euo pipefail
 bundle_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export PI_CODING_AGENT_DIR="${PI_CODING_AGENT_DIR:-$HOME/.pi/agent}"
 mkdir -p "$PI_CODING_AGENT_DIR"
-cp -a "$bundle_dir/agent/." "$PI_CODING_AGENT_DIR/"
+for path in "$bundle_dir"/agent/* "$bundle_dir"/agent/.[!.]*; do
+    [[ -e "$path" ]] || continue
+    name="$(basename "$path")"
+    if [[ -d "$path" ]]; then
+        mkdir -p "$PI_CODING_AGENT_DIR/$name"
+        cp -a "$path/." "$PI_CODING_AGENT_DIR/$name/"
+    elif [[ ! -e "$PI_CODING_AGENT_DIR/$name" && ! -L "$PI_CODING_AGENT_DIR/$name" ]]; then
+        cp -a "$path" "$PI_CODING_AGENT_DIR/$name"
+    else
+        printf '%s\\n' "保留已有配置 $name"
+    fi
+done
 export npm_config_registry="${npm_config_registry:-https://registry.npmmirror.com}"
 npm install -g @earendil-works/pi-coding-agent
-node - "$PI_CODING_AGENT_DIR/settings.json" <<'JS'
+node - "$bundle_dir/npm-packages.json" "$PI_CODING_AGENT_DIR/npm" <<'JS'
 const { spawnSync } = require('node:child_process');
 const { readFileSync } = require('node:fs');
-const settings = JSON.parse(readFileSync(process.argv[2], 'utf8'));
-for (const entry of settings.packages || []) {
-    const source = typeof entry === 'string' ? entry : entry.source;
-    const result = spawnSync('pi', ['install', source], { stdio: 'inherit' });
+const packages = JSON.parse(readFileSync(process.argv[2], 'utf8'));
+const specs = packages.map(entry => (typeof entry === 'string' ? entry : entry.source).slice(4));
+if (specs.length) {
+    const result = spawnSync('npm', ['install', '--prefix', process.argv[3], '--legacy-peer-deps', ...specs], { stdio: 'inherit' });
     if (result.error) throw result.error;
     if (result.status !== 0) process.exit(result.status || 1);
 }
@@ -87,14 +99,16 @@ printf '%s\\n' "配置已复制到 $PI_CODING_AGENT_DIR。请配置内部 models
 ''')
     (bundle / "install.sh").chmod(0o755)
     (bundle / "README.txt").write_text('''运行 bash install.sh，默认复制到 ~/.pi/agent 并通过 npmmirror 安装 Pi 和 npm 插件。
-若目标已有配置，安装会覆盖同名文件。建议先备份，或使用独立目录。
+已有的顶层配置文件保留不变，仅在缺失时复制。
+扩展、技能等目录更新包内同名文件，不删除公司额外文件。公司定制文件请使用独立名称。
 指定目录示例：PI_CODING_AGENT_DIR="$HOME/.pi/agent-corp" bash install.sh
 启动示例：PI_CODING_AGENT_DIR="$HOME/.pi/agent-corp" pi
 压缩包包含本地扩展、技能、vendor 实际文件和配置，不包含 node_modules、Git 元数据、个人凭据、会话、缓存和 models.json。
 不打包 baoyu-skills 和 guizang-ppt-skill，打包后的 settings.json 同时移除这些技能路径。
 打包时使用 Git 的忽略规则，包括子模块和嵌套目录的 .gitignore，另行排除凭据和虚拟环境。
 在目标目录创建内部 models.json，并修改 settings.json 中 defaultProvider、defaultModel 和 subagents.agentOverrides 的 model。
-npm 插件沿用 settings.json 中的包来源。脚本不额外锁定版本。
+npm 插件从 npm-packages.json 安装，不修改公司 settings.json。脚本不额外锁定版本。
+以后新增插件需要手动加入公司 settings.json 的 packages 才会启用。
 本地技能依赖的非 npm 工具需要另行安装。
 ''')
     output.parent.mkdir(parents=True, exist_ok=True)
