@@ -17,3 +17,5 @@ pi-web-session-index.json
 pi-web-session-state.json
 /pi-agent-config.tar.gz
 pi-subagents/
+models.json
+pi-web-run/
