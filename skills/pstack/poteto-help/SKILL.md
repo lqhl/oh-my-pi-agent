@@ -29,6 +29,8 @@ Task size and an enabled mode do not grant delegation. An explicitly invoked wor
 
 | Need | Local skill |
 | --- | --- |
+| Restate the goal without starting work | [in-your-own-words](../in-your-own-words/SKILL.md) |
+| Improve the approach before doing the task | [sharpen](../sharpen/SKILL.md) |
 | Understand current behavior | [how](../how/SKILL.md) |
 | Investigate rationale and history | [why](../why/SKILL.md) |
 | Explain a subsystem plainly | [teach](../teach/SKILL.md) |
@@ -46,6 +48,7 @@ Task size and an enabled mode do not grant delegation. An explicitly invoked wor
 | Apply TypeScript rules | [typescript-best-practices](../typescript-best-practices/SKILL.md) |
 | Drive a real local CLI or browser | [control-cli](../control-cli/SKILL.md), [control-ui](../control-ui/SKILL.md) |
 | Create or maintain a project verification workflow | [create-verification-skill](../create-verification-skill/SKILL.md), [maintain-verification-skill](../maintain-verification-skill/SKILL.md) |
+| Create or maintain a formal check of a named property | [create-formal-verification-skill](../create-formal-verification-skill/SKILL.md), [maintain-formal-verification-skill](../maintain-formal-verification-skill/SKILL.md) |
 | Create or modify any Pi skill | [create-skill](../create-skill/SKILL.md) |
 | Keep an auditable decision trail | [show-me-your-work](../show-me-your-work/SKILL.md) |
 

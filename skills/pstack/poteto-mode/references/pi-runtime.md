@@ -61,6 +61,14 @@ Use native agent defaults and `settings.json` → `subagents.agentOverrides`; th
 
 For overrides, copy an exact available `provider/id`. Set native `thinking` in the agent override, or use the documented model thinking suffix on an individual run. Do not translate provider IDs into invented model slugs. Use `/skill:setup-pstack` to change the native overrides. If a required model is unavailable or the two panel entries are the same family, report the gap and select another confirmed available model only within the operator's granted scope. Never claim dual-model review from two runs of the same family.
 
+## Match reasoning to the task
+
+Start from the role's configured model and thinking level. Keep its family and the operator's budget. Routine source lookups and mechanical edits can use less reasoning. Subtle concurrency, algorithms, and cross-cutting design can need more. Choose a supported level for the actual task instead of lowering every review or raising every implementation. Omit a per-run override when the configured default is sufficient.
+
+Use native `thinking` only in agent configuration. For a run, use the documented thinking suffix on the confirmed `model` ID; the dispatch `thinking` field does not set child reasoning. Respect the native thinking ceiling and model scope. A follow-up or resume keeps its stored contract unless the native tool explicitly supports a change.
+
+Standard speed is the default. Use `fast: true` only for an urgent task within the granted budget and only when the runner supports it. The installed runner restricts this option to native `openai-codex/*` children. It can cost more and does not apply to other providers or external runners. Never append Cursor's `-fast` to a Pi model ID. A rejection is a reported prerequisite failure, not permission to guess another slug.
+
 ## Isolation and integration
 
 One writer per working directory. Concurrent writers use managed `worktree: true` from a clean source checkout; read-only children can share a directory. A dirty source cannot allocate managed worktrees. Preserve it, then either commit the authorized changes or prepare a separate clean checkout of the intended tree. Do not discard or stash unrelated work automatically. Default `baseRef` is `HEAD`; use a supported named ref when another base is needed.

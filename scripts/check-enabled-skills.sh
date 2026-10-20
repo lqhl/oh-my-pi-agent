@@ -81,6 +81,42 @@ if missing_expected:
     print("\n".join(f"  {p}" for p in missing_expected))
     raise SystemExit(1)
 
+pstack_skills = {path.parent.name for path in Path("skills/pstack").glob("*/SKILL.md")}
+manifest = json.loads(Path("skills/pstack/upstream.json").read_text())
+records = manifest.get("skills", {})
+if set(records) != pstack_skills:
+    print(f"pstack source inventory mismatch: missing={sorted(pstack_skills - set(records))}, extra={sorted(set(records) - pstack_skills)}")
+    raise SystemExit(1)
+for name, record in records.items():
+    disposition = record.get("disposition")
+    local = disposition == "local"
+    valid_source = (record.get("sourcePath") is None and record.get("sourceCommit") is None) if local else (
+        isinstance(record.get("sourcePath"), str) and record["sourcePath"].endswith("/" + name)
+        and re.fullmatch(r"[0-9a-f]{40}", record.get("sourceCommit") or ""))
+    if disposition not in {"adopt", "adapt", "retain", "local"} or not valid_source or not record.get("notes"):
+        print(f"invalid pstack source record: {name}")
+        raise SystemExit(1)
+if not re.fullmatch(r"[0-9a-f]{40}", manifest.get("reviewedTarget", "")):
+    print("invalid pstack reviewed target")
+    raise SystemExit(1)
+
+documented_counts = [
+    (Path("README.md"), r"\| pstack \|[^\n]*\| (\d+) 个工程"),
+    (Path("skills/pstack/README.md"), r"本目录包含 (\d+) 个技能"),
+    (Path(".pi/skills/verify-pstack/features/resources.md"), r"(\d+) pstack skills"),
+]
+for file, pattern in documented_counts:
+    counts = re.findall(pattern, file.read_text())
+    if not counts or any(int(count) != len(pstack_skills) for count in counts):
+        print(f"pstack skill count mismatch: {file}, actual={len(pstack_skills)}")
+        raise SystemExit(1)
+for file in [Path("README.md"), Path("skills/pstack/README.md"), Path("skills/pstack/poteto-help/SKILL.md")]:
+    for name in re.findall(r"/skill:([a-z0-9]+(?:-[a-z0-9]+)*)", file.read_text()):
+        if name not in names:
+            print(f"unknown published skill command: {file}: {name}")
+            raise SystemExit(1)
+
+print(f"pstack source records and documented skills: {len(pstack_skills)}")
 print(f"explicitly enabled skills: {len(paths)}")
 print(f"auto-discovered local skills: {len(local_files)}")
 print(f"unique enabled skill names: {len(names)}")

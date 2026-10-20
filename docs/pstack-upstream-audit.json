@@ -1,0 +1,1326 @@
+{
+  "upstream_repo": "https://github.com/cursor/plugins",
+  "base": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+  "supplemental_ketchup_base": "978ca6e9c0e012047cd5058b8e829240336e704e",
+  "target": "d457567332aa6989e753ea289f30ea2bfbc80bc0",
+  "local_head": "bb47f881642971804b2bcc36dce1c5add5ec915c",
+  "counts": {
+    "local_skills": 50,
+    "local_skills_with_upstream_changes": 35,
+    "local_entries_matching_target": 11,
+    "upstream_skills_at_base": 51,
+    "upstream_skills_at_target": 56,
+    "new_upstream_skills": 5,
+    "commits_touching_sources": 45,
+    "changed_files": 110
+  },
+  "skills": {
+    "architect": {
+      "source": "pstack/skills/architect",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "7ead6d62737e45a0d31caee7def6dfd2ba72c232",
+      "baseline_blob": "c9c0726f57556f4c26bd7e7df5314ba15b3f1ac9",
+      "target_blob": "88e23ca105b89e67f4085d0e676c40d4b170a623",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/architect/SKILL.md"
+      ]
+    },
+    "arena": {
+      "source": "pstack/skills/arena",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "306c8e45644b57b0d11c17ad3ec43188bfa8700b",
+      "baseline_blob": "bd260a064d6e07a06073df6841e3d180d643372a",
+      "target_blob": "b198b9e425c6b3e6ff01ca789b97ca5b4abb7ce2",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/arena/SKILL.md"
+      ]
+    },
+    "benchmark-checklist": {
+      "source": "pstack/skills/benchmark-checklist",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "c02adb78929d0c1218fba554a31c423d65deb24d",
+      "baseline_blob": "c02adb78929d0c1218fba554a31c423d65deb24d",
+      "target_blob": "e901d1fdbc9ffce53e94d6514be7d9a22e771a1a",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/benchmark-checklist/SKILL.md"
+      ]
+    },
+    "blast-radius": {
+      "source": "pstack/skills/blast-radius",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "b296cce0d746260a53c16e3671cb05bacfe82daf",
+      "baseline_blob": "b296cce0d746260a53c16e3671cb05bacfe82daf",
+      "target_blob": "b296cce0d746260a53c16e3671cb05bacfe82daf",
+      "local_matches_baseline": true,
+      "local_matches_target": true,
+      "upstream_changed_files": []
+    },
+    "control-cli": {
+      "source": "cursor-team-kit/skills/control-cli",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "2b683e58b9f9cca9ec190ea3cffcba23f781c9dd",
+      "baseline_blob": "69289ac517e8a28380c8eca5c6692e8a601fa62c",
+      "target_blob": "69289ac517e8a28380c8eca5c6692e8a601fa62c",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": []
+    },
+    "control-ui": {
+      "source": "cursor-team-kit/skills/control-ui",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "485f7ead4dceb051affbe98ac9926ffc278101cc",
+      "baseline_blob": "68484fd5418cc893a6bf40e0db45b3001dcf5947",
+      "target_blob": "68484fd5418cc893a6bf40e0db45b3001dcf5947",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": []
+    },
+    "create-skill": {
+      "source": null,
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "763205755779146fd1d060c01c5639477be0d68d",
+      "baseline_blob": null,
+      "target_blob": null,
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": []
+    },
+    "create-verification-skill": {
+      "source": "pstack/skills/create-verification-skill",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "e65528496a8f339a28f994e1806aeddf8a700168",
+      "baseline_blob": "f869e26122991252373d5b8f6357e5b9ff195a00",
+      "target_blob": "140d033a001e8d27acd14b06004506c43053b199",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/create-verification-skill/SKILL.md"
+      ]
+    },
+    "deslop": {
+      "source": "cursor-team-kit/skills/deslop",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "1b3827c7f991182149a7abda696af43ff8f17a12",
+      "baseline_blob": "1b3827c7f991182149a7abda696af43ff8f17a12",
+      "target_blob": "1b3827c7f991182149a7abda696af43ff8f17a12",
+      "local_matches_baseline": true,
+      "local_matches_target": true,
+      "upstream_changed_files": []
+    },
+    "how": {
+      "source": "pstack/skills/how",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "fcabf9c33e5b6f18ea9ebb1b765010b15bb42903",
+      "baseline_blob": "139cac5e4dce5d5889daaf77faa8d5f81dd87318",
+      "target_blob": "67edc340d4d8a9c7ab0b9e08c663e0e63b8d9125",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/how/SKILL.md",
+        "pstack/skills/how/references/explorer-prompt.md"
+      ]
+    },
+    "interrogate": {
+      "source": "pstack/skills/interrogate",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "e5fb5160c4421113878d47ecf6645c61a1c36133",
+      "baseline_blob": "bac0049e40b624343537d12fb8e13a974a5f376a",
+      "target_blob": "94946d22d8bf896bfcc2c54d363df5af3d17b4ca",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/interrogate/SKILL.md",
+        "pstack/skills/interrogate/references/lead-judgment.md",
+        "pstack/skills/interrogate/references/reviewer-prompt.md",
+        "pstack/skills/interrogate/references/rubric.md"
+      ]
+    },
+    "ketchup": {
+      "source": "pstack/skills/ketchup",
+      "baseline": "978ca6e9c0e012047cd5058b8e829240336e704e",
+      "local_blob": "263c56b40b3577b793f6c961c1eb6da9c41209bc",
+      "baseline_blob": "f00fccbc8274da12c34186f863019014f0cd4d6d",
+      "target_blob": "9eef27f92f8029137a7bfa7378305b075df9dc4f",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/ketchup/SKILL.md"
+      ]
+    },
+    "maintain-verification-skill": {
+      "source": "pstack/skills/maintain-verification-skill",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "13b2cead1d027fd5c33299d0f1cb86d601e0dd09",
+      "baseline_blob": "a2680b91fead45a0b4963d8c367a854956bea59d",
+      "target_blob": "a2680b91fead45a0b4963d8c367a854956bea59d",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": []
+    },
+    "no-comments": {
+      "source": "pstack/skills/no-comments",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "6faeff7c27185c6875e651acd3e7ef8b85992885",
+      "baseline_blob": "3b3e76295a7ad66806dcc683e4de92fb25690f8b",
+      "target_blob": "a07ce9dfc657bdf1b2bdf3f7619225e7faac091b",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/no-comments/SKILL.md"
+      ]
+    },
+    "poteto-help": {
+      "source": "pstack/skills/poteto-help",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "5460bd35b0a9c9221940ec5c16b981b801332b77",
+      "baseline_blob": "a97ecddf8953b92bda7d8a8cc070faf1d68abc79",
+      "target_blob": "5ce3a74d89e71a4672f5b0ad27a4d47a74177989",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/poteto-help/SKILL.md",
+        "pstack/skills/poteto-help/references/recipes.md"
+      ]
+    },
+    "poteto-mode": {
+      "source": "pstack/skills/poteto-mode",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "6bf2f086135750d39092dadb121dde40070b2e7a",
+      "baseline_blob": "de51c56164ff3da8f958437e207d14cec7d7fe99",
+      "target_blob": "21993f546032ca37671d5f1caf39c9a82ab4fa9d",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/poteto-mode/SKILL.md",
+        "pstack/skills/poteto-mode/playbooks/autonomous-run.md",
+        "pstack/skills/poteto-mode/playbooks/autopilot-full.md",
+        "pstack/skills/poteto-mode/playbooks/autopilot-stack.md",
+        "pstack/skills/poteto-mode/playbooks/babysit.md",
+        "pstack/skills/poteto-mode/playbooks/bug-fix.md",
+        "pstack/skills/poteto-mode/playbooks/eval.md",
+        "pstack/skills/poteto-mode/playbooks/feature.md",
+        "pstack/skills/poteto-mode/playbooks/hillclimb.md",
+        "pstack/skills/poteto-mode/playbooks/multi-phase-plan.md",
+        "pstack/skills/poteto-mode/playbooks/opening-a-pr.md",
+        "pstack/skills/poteto-mode/playbooks/orchestrate.md",
+        "pstack/skills/poteto-mode/playbooks/perf-issue.md",
+        "pstack/skills/poteto-mode/playbooks/refactoring.md",
+        "pstack/skills/poteto-mode/playbooks/runtime-forensics.md",
+        "pstack/skills/poteto-mode/playbooks/session-pickup.md",
+        "pstack/skills/poteto-mode/playbooks/shipping.md",
+        "pstack/skills/poteto-mode/playbooks/trace-forensics.md",
+        "pstack/skills/poteto-mode/playbooks/worktree-cleanup.md",
+        "pstack/skills/poteto-mode/scripts/check-plan.mjs",
+        "pstack/skills/poteto-mode/scripts/check-plan.test.ts",
+        "pstack/skills/poteto-mode/scripts/orch/orch.test.ts",
+        "pstack/skills/poteto-mode/scripts/orch/orch.ts",
+        "pstack/skills/poteto-mode/scripts/orch/store.ts",
+        "pstack/skills/poteto-mode/scripts/package.json",
+        "pstack/skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts",
+        "pstack/skills/poteto-mode/scripts/watch-pr/github.test.ts",
+        "pstack/skills/poteto-mode/scripts/watch-pr/github.ts",
+        "pstack/skills/poteto-mode/scripts/watch-pr/policy.test.ts",
+        "pstack/skills/poteto-mode/scripts/watch-pr/policy.ts",
+        "pstack/skills/poteto-mode/scripts/watch-pr/types.ts",
+        "pstack/skills/poteto-mode/scripts/worktree-audit.sh"
+      ]
+    },
+    "principle-attack-the-premise": {
+      "source": "pstack/skills/principle-attack-the-premise",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "f9785ff9fdcf37d1c689e4468da7d611f3b76d4b",
+      "baseline_blob": "f9785ff9fdcf37d1c689e4468da7d611f3b76d4b",
+      "target_blob": "e9a6d499606992edd9963b80f8f8f57feaccb221",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-attack-the-premise/SKILL.md"
+      ]
+    },
+    "principle-boundary-discipline": {
+      "source": "pstack/skills/principle-boundary-discipline",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "dfe9a6fb0e5acd6ae43a41437ee0951adfe839cb",
+      "baseline_blob": "dfe9a6fb0e5acd6ae43a41437ee0951adfe839cb",
+      "target_blob": "dfe9a6fb0e5acd6ae43a41437ee0951adfe839cb",
+      "local_matches_baseline": true,
+      "local_matches_target": true,
+      "upstream_changed_files": []
+    },
+    "principle-build-the-lever": {
+      "source": "pstack/skills/principle-build-the-lever",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "277189a10b00fddc7cbb63fcf2323c7341abb0df",
+      "baseline_blob": "277189a10b00fddc7cbb63fcf2323c7341abb0df",
+      "target_blob": "cbf003850489d95fea78e64198fd972c35b1aad3",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-build-the-lever/SKILL.md"
+      ]
+    },
+    "principle-encode-lessons-in-structure": {
+      "source": "pstack/skills/principle-encode-lessons-in-structure",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "df9cd5ff2fb3c18267349cc6aecd8121848ef834",
+      "baseline_blob": "df9cd5ff2fb3c18267349cc6aecd8121848ef834",
+      "target_blob": "4a96f77fe70e36cb030f9c5efa142f66877bf58a",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-encode-lessons-in-structure/SKILL.md"
+      ]
+    },
+    "principle-exhaust-the-design-space": {
+      "source": "pstack/skills/principle-exhaust-the-design-space",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "85dd16f1312f3427e2dddcfc8e7deb89e2555bb3",
+      "baseline_blob": "85dd16f1312f3427e2dddcfc8e7deb89e2555bb3",
+      "target_blob": "395a0839126bb231430a9c9da02ebab5422557d5",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-exhaust-the-design-space/SKILL.md"
+      ]
+    },
+    "principle-experience-first": {
+      "source": "pstack/skills/principle-experience-first",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "5ea51741302cf3af4cc0b90ec70815bd3208dbf2",
+      "baseline_blob": "5ea51741302cf3af4cc0b90ec70815bd3208dbf2",
+      "target_blob": "5ea51741302cf3af4cc0b90ec70815bd3208dbf2",
+      "local_matches_baseline": true,
+      "local_matches_target": true,
+      "upstream_changed_files": []
+    },
+    "principle-explain-the-number": {
+      "source": "pstack/skills/principle-explain-the-number",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "9c22351d1fbe1ffcf277e61aef9fdb7816306fa7",
+      "baseline_blob": "9c22351d1fbe1ffcf277e61aef9fdb7816306fa7",
+      "target_blob": "1e180c14aefe49a3b2a515320398e08c3ebeb57d",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-explain-the-number/SKILL.md"
+      ]
+    },
+    "principle-fix-root-causes": {
+      "source": "pstack/skills/principle-fix-root-causes",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "7e5a419aeec97b4076fa517865013677428a9fa3",
+      "baseline_blob": "7e5a419aeec97b4076fa517865013677428a9fa3",
+      "target_blob": "14fc189fa1ec3fb1614b0a3c75557f92943d8f13",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-fix-root-causes/SKILL.md"
+      ]
+    },
+    "principle-foundational-thinking": {
+      "source": "pstack/skills/principle-foundational-thinking",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "19cc6c0eaa6fcbc2863fb73d1d25ca196c6a46e0",
+      "baseline_blob": "19cc6c0eaa6fcbc2863fb73d1d25ca196c6a46e0",
+      "target_blob": "19cc6c0eaa6fcbc2863fb73d1d25ca196c6a46e0",
+      "local_matches_baseline": true,
+      "local_matches_target": true,
+      "upstream_changed_files": []
+    },
+    "principle-guard-the-context-window": {
+      "source": "pstack/skills/principle-guard-the-context-window",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "1e91fbdd1a0c4de248dcd3d411b1012f9e2d489e",
+      "baseline_blob": "c4db544909b26981c45eed9caa6591d32885f841",
+      "target_blob": "0a1d3cfcf4539fe048887174000fecbf2fa40e81",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-guard-the-context-window/SKILL.md"
+      ]
+    },
+    "principle-laziness-protocol": {
+      "source": "pstack/skills/principle-laziness-protocol",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "e5bc77e62aa96ae13e482a84df61b3c711c5d828",
+      "baseline_blob": "e5bc77e62aa96ae13e482a84df61b3c711c5d828",
+      "target_blob": "016c3c7c8dfffd995c1a02135a62248e6625879b",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-laziness-protocol/SKILL.md"
+      ]
+    },
+    "principle-make-operations-idempotent": {
+      "source": "pstack/skills/principle-make-operations-idempotent",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "a0834247ca99b09c11441747717a8034d4c22d7c",
+      "baseline_blob": "a0834247ca99b09c11441747717a8034d4c22d7c",
+      "target_blob": "c93f323d694a4d310515ea27165a093d399bc55e",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-make-operations-idempotent/SKILL.md"
+      ]
+    },
+    "principle-migrate-callers-then-delete-legacy-apis": {
+      "source": "pstack/skills/principle-migrate-callers-then-delete-legacy-apis",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "06c7cfd87becc62d614d0af075b792f8ec6eb21d",
+      "baseline_blob": "06c7cfd87becc62d614d0af075b792f8ec6eb21d",
+      "target_blob": "57ddd7b27d06ba4ee9e2d3811880476a18b88df6",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-migrate-callers-then-delete-legacy-apis/SKILL.md"
+      ]
+    },
+    "principle-minimize-reader-load": {
+      "source": "pstack/skills/principle-minimize-reader-load",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "64541d963123e344078d82fd3977e857e76129df",
+      "baseline_blob": "64541d963123e344078d82fd3977e857e76129df",
+      "target_blob": "628999088c5d05c1c546b3a3ca89da553cd3f3b2",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-minimize-reader-load/SKILL.md"
+      ]
+    },
+    "principle-model-the-domain": {
+      "source": "pstack/skills/principle-model-the-domain",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "e1d664a19243c90a84e5e7a816e9e05146c88720",
+      "baseline_blob": "e1d664a19243c90a84e5e7a816e9e05146c88720",
+      "target_blob": "09b7c739955facf03f08f66e1e329745d2f8880e",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-model-the-domain/SKILL.md"
+      ]
+    },
+    "principle-never-block-on-the-human": {
+      "source": "pstack/skills/principle-never-block-on-the-human",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "11f08b6ef1fd93a3b3e47c57eb84716dc9acbff9",
+      "baseline_blob": "11f08b6ef1fd93a3b3e47c57eb84716dc9acbff9",
+      "target_blob": "4f59bdc69f79d536b30b0014a563ed3be05b8b62",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-never-block-on-the-human/SKILL.md"
+      ]
+    },
+    "principle-outcome-oriented-execution": {
+      "source": "pstack/skills/principle-outcome-oriented-execution",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "c49be0bc74783f0dee013101365ae09b2abb48a2",
+      "baseline_blob": "c49be0bc74783f0dee013101365ae09b2abb48a2",
+      "target_blob": "c49be0bc74783f0dee013101365ae09b2abb48a2",
+      "local_matches_baseline": true,
+      "local_matches_target": true,
+      "upstream_changed_files": []
+    },
+    "principle-prove-it-works": {
+      "source": "pstack/skills/principle-prove-it-works",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "5dc14a3b06f9d579e5c17cd8a7242f432ddb3125",
+      "baseline_blob": "5dc14a3b06f9d579e5c17cd8a7242f432ddb3125",
+      "target_blob": "5dc14a3b06f9d579e5c17cd8a7242f432ddb3125",
+      "local_matches_baseline": true,
+      "local_matches_target": true,
+      "upstream_changed_files": []
+    },
+    "principle-redesign-from-first-principles": {
+      "source": "pstack/skills/principle-redesign-from-first-principles",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "090a4325f43a96080cce3895f0e932b62c39146a",
+      "baseline_blob": "090a4325f43a96080cce3895f0e932b62c39146a",
+      "target_blob": "5ca5246cbb0fa08884ce17b0d22c117ae1ad67b8",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-redesign-from-first-principles/SKILL.md"
+      ]
+    },
+    "principle-separate-before-serializing-shared-state": {
+      "source": "pstack/skills/principle-separate-before-serializing-shared-state",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "ff93b4a2032c08e2232992a9a24f2891ee14e58f",
+      "baseline_blob": "ff93b4a2032c08e2232992a9a24f2891ee14e58f",
+      "target_blob": "ff93b4a2032c08e2232992a9a24f2891ee14e58f",
+      "local_matches_baseline": true,
+      "local_matches_target": true,
+      "upstream_changed_files": []
+    },
+    "principle-sequence-verifiable-units": {
+      "source": "pstack/skills/principle-sequence-verifiable-units",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "986371260ebccd9a5a6818c9561e88c1d270d0ee",
+      "baseline_blob": "986371260ebccd9a5a6818c9561e88c1d270d0ee",
+      "target_blob": "986371260ebccd9a5a6818c9561e88c1d270d0ee",
+      "local_matches_baseline": true,
+      "local_matches_target": true,
+      "upstream_changed_files": []
+    },
+    "principle-subtract-before-you-add": {
+      "source": "pstack/skills/principle-subtract-before-you-add",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "d28770cf47a5798d0250a25ad494aedfecad154e",
+      "baseline_blob": "d28770cf47a5798d0250a25ad494aedfecad154e",
+      "target_blob": "b8740ba6f06922d8e7ef3b23f9fb16e0fc4a876f",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-subtract-before-you-add/SKILL.md"
+      ]
+    },
+    "principle-test-behavior-not-implementation": {
+      "source": "pstack/skills/principle-test-behavior-not-implementation",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "42de6f8f7cab01b9f67aa28bd59b128f7574fbab",
+      "baseline_blob": "42de6f8f7cab01b9f67aa28bd59b128f7574fbab",
+      "target_blob": "78c9389bfe707d6d56485ade32c59150958228f9",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-test-behavior-not-implementation/SKILL.md"
+      ]
+    },
+    "principle-type-system-discipline": {
+      "source": "pstack/skills/principle-type-system-discipline",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "6030f171bee0d1902cf7ca91f06225e09f0f5433",
+      "baseline_blob": "6030f171bee0d1902cf7ca91f06225e09f0f5433",
+      "target_blob": "9fa08b0b17d536ce751fffa90134be8fb03699c7",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/principle-type-system-discipline/SKILL.md"
+      ]
+    },
+    "recall": {
+      "source": "pstack/skills/recall",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "85c0235d8975063403169ea9aea1ab903a3339db",
+      "baseline_blob": "a70062a3f89a8d68b3391bc71fc4c6cc2dfcf6a4",
+      "target_blob": "cd8cc20790d90579e632626fe6db2b1fff593eea",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/recall/SKILL.md"
+      ]
+    },
+    "setup-pstack": {
+      "source": "pstack/skills/setup-pstack",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "ecbbecd013a39f96ccc53ea802947d35acc304cc",
+      "baseline_blob": "90a9e575397fb59f4d9a47e6157c2106f4b4a5e2",
+      "target_blob": "cb61b8d3ee5d2a1b8fa403d8b99ed8d2e18f77df",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/setup-pstack/SKILL.md"
+      ]
+    },
+    "show-me-your-work": {
+      "source": "pstack/skills/show-me-your-work",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "3171acce50b887515c0f4d6e6f858f5805231ec1",
+      "baseline_blob": "d350a150c36ca16382b4aa6d4196b39e67454ad1",
+      "target_blob": "ada1bba1e51356de0e0d4da1d13ba5a56ba9c7cb",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/show-me-your-work/SKILL.md"
+      ]
+    },
+    "swarm": {
+      "source": "pstack/skills/swarm",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "716077a030eba3193f4ac00b4f27f34393f1a570",
+      "baseline_blob": "db22b8787966abc61216052d9f3142018404cab8",
+      "target_blob": "b0b1eb83363853843ccf1524917b83d0c16d2cd8",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/swarm/SKILL.md"
+      ]
+    },
+    "tdd": {
+      "source": "pstack/skills/tdd",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "ca6f24c963001d9d518db2936dfe3d12f29b4e94",
+      "baseline_blob": "ca6f24c963001d9d518db2936dfe3d12f29b4e94",
+      "target_blob": "ca6f24c963001d9d518db2936dfe3d12f29b4e94",
+      "local_matches_baseline": true,
+      "local_matches_target": true,
+      "upstream_changed_files": []
+    },
+    "teach": {
+      "source": "pstack/skills/teach",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "25369f3f554ed6b5826340ae3eee688fac0bda80",
+      "baseline_blob": "25369f3f554ed6b5826340ae3eee688fac0bda80",
+      "target_blob": "25369f3f554ed6b5826340ae3eee688fac0bda80",
+      "local_matches_baseline": true,
+      "local_matches_target": true,
+      "upstream_changed_files": []
+    },
+    "technical-writing": {
+      "source": "pstack/skills/technical-writing",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "fe1ce024c46d5137845df02d8b52025926a6577f",
+      "baseline_blob": "5eef4fc494a059eb740cb621dadb4a7a81af23e4",
+      "target_blob": "3e6d26109376cd66439c87ed48b4033df8d78a3a",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/technical-writing/SKILL.md"
+      ]
+    },
+    "typescript-best-practices": {
+      "source": "pstack/skills/typescript-best-practices",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "2c0279d9a5f800192605e47b55cae4e75a17ec27",
+      "baseline_blob": "2c0279d9a5f800192605e47b55cae4e75a17ec27",
+      "target_blob": "e1e5aa7c97ed39c425d60d933a96424a3f14539e",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/typescript-best-practices/SKILL.md",
+        "pstack/skills/typescript-best-practices/references/patterns.md"
+      ]
+    },
+    "unslop": {
+      "source": "pstack/skills/unslop",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "229a090708710c36caa0017f8d33e90880dc6846",
+      "baseline_blob": "229a090708710c36caa0017f8d33e90880dc6846",
+      "target_blob": "97f5b6412148fa5b2a2fe478836fe8923ffa5cbb",
+      "local_matches_baseline": true,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/unslop/SKILL.md"
+      ]
+    },
+    "why": {
+      "source": "pstack/skills/why",
+      "baseline": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "local_blob": "a93ad1bf75514248f98a0376e28ed8f226f17e8c",
+      "baseline_blob": "a78076f9d492dbdb8b87136cf9d657a1b97659f7",
+      "target_blob": "b5fe93f8b78f58b06e0bf245a6b5b8faae4300e8",
+      "local_matches_baseline": false,
+      "local_matches_target": false,
+      "upstream_changed_files": [
+        "pstack/skills/why/SKILL.md",
+        "pstack/skills/why/references/epistemics.md",
+        "pstack/skills/why/references/investigator-prompt.md",
+        "pstack/skills/why/references/sources/code-archaeology.md",
+        "pstack/skills/why/references/sources/datadog.md",
+        "pstack/skills/why/references/sources/incident-postmortem.md",
+        "pstack/skills/why/references/sources/sentry.md",
+        "pstack/skills/why/references/sources/slack.md",
+        "pstack/skills/why/references/synthesizer-prompt.md"
+      ]
+    }
+  },
+  "new_upstream_skills": [
+    "create-formal-verification-skill",
+    "in-your-own-words",
+    "ketchup",
+    "maintain-formal-verification-skill",
+    "sharpen"
+  ],
+  "upstream_skills_not_installed": [
+    "automate-me",
+    "bro",
+    "correct",
+    "create-formal-verification-skill",
+    "figure-it-out",
+    "in-your-own-words",
+    "maintain-formal-verification-skill",
+    "make-bot-ui",
+    "reflect",
+    "sharpen"
+  ],
+  "changed_file_status_counts": {
+    "M": 102,
+    "A": 8
+  },
+  "changed_files": [
+    [
+      "M",
+      "pstack/.cursor-plugin/plugin.json"
+    ],
+    [
+      "M",
+      "pstack/README.md"
+    ],
+    [
+      "M",
+      "pstack/agents/comment-sicko.md"
+    ],
+    [
+      "M",
+      "pstack/agents/poteto-agent.md"
+    ],
+    [
+      "M",
+      "pstack/docs/guide/01-setup.md"
+    ],
+    [
+      "M",
+      "pstack/docs/guide/02-poteto-mode.md"
+    ],
+    [
+      "M",
+      "pstack/docs/guide/03-understand.md"
+    ],
+    [
+      "M",
+      "pstack/docs/guide/04-design.md"
+    ],
+    [
+      "M",
+      "pstack/docs/guide/05-build-and-clean.md"
+    ],
+    [
+      "M",
+      "pstack/docs/guide/06-verify-and-ship.md"
+    ],
+    [
+      "M",
+      "pstack/docs/guide/07-overnight.md"
+    ],
+    [
+      "M",
+      "pstack/docs/guide/08-principles.md"
+    ],
+    [
+      "M",
+      "pstack/docs/guide/09-make-it-yours.md"
+    ],
+    [
+      "M",
+      "pstack/docs/guide/10-recipes-and-pitfalls.md"
+    ],
+    [
+      "M",
+      "pstack/docs/guide/README.md"
+    ],
+    [
+      "A",
+      "pstack/docs/harness/claude-code.md"
+    ],
+    [
+      "A",
+      "pstack/plugin.json"
+    ],
+    [
+      "M",
+      "pstack/skills/architect/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/arena/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/automate-me/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/benchmark-checklist/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/correct/SKILL.md"
+    ],
+    [
+      "A",
+      "pstack/skills/create-formal-verification-skill/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/create-verification-skill/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/figure-it-out/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/how/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/how/references/explorer-prompt.md"
+    ],
+    [
+      "A",
+      "pstack/skills/in-your-own-words/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/interrogate/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/interrogate/references/lead-judgment.md"
+    ],
+    [
+      "M",
+      "pstack/skills/interrogate/references/reviewer-prompt.md"
+    ],
+    [
+      "M",
+      "pstack/skills/interrogate/references/rubric.md"
+    ],
+    [
+      "A",
+      "pstack/skills/ketchup/SKILL.md"
+    ],
+    [
+      "A",
+      "pstack/skills/maintain-formal-verification-skill/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/make-bot-ui/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/no-comments/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-help/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-help/references/recipes.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/autonomous-run.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/autopilot-full.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/autopilot-stack.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/babysit.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/bug-fix.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/eval.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/feature.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/hillclimb.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/multi-phase-plan.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/opening-a-pr.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/orchestrate.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/perf-issue.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/refactoring.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/runtime-forensics.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/session-pickup.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/shipping.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/trace-forensics.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/playbooks/worktree-cleanup.md"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/scripts/check-plan.mjs"
+    ],
+    [
+      "A",
+      "pstack/skills/poteto-mode/scripts/check-plan.test.ts"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/scripts/orch/orch.test.ts"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/scripts/orch/orch.ts"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/scripts/orch/store.ts"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/scripts/package.json"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/scripts/watch-pr/github.test.ts"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/scripts/watch-pr/github.ts"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/scripts/watch-pr/policy.test.ts"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/scripts/watch-pr/policy.ts"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/scripts/watch-pr/types.ts"
+    ],
+    [
+      "M",
+      "pstack/skills/poteto-mode/scripts/worktree-audit.sh"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-attack-the-premise/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-build-the-lever/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-encode-lessons-in-structure/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-exhaust-the-design-space/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-explain-the-number/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-fix-root-causes/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-guard-the-context-window/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-laziness-protocol/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-make-operations-idempotent/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-migrate-callers-then-delete-legacy-apis/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-minimize-reader-load/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-model-the-domain/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-never-block-on-the-human/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-redesign-from-first-principles/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-subtract-before-you-add/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-test-behavior-not-implementation/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/principle-type-system-discipline/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/recall/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/reflect/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/reflect/references/divergent-reviewer.md"
+    ],
+    [
+      "M",
+      "pstack/skills/reflect/references/judgment-reviewer.md"
+    ],
+    [
+      "M",
+      "pstack/skills/reflect/references/synthesizer.md"
+    ],
+    [
+      "M",
+      "pstack/skills/reflect/references/tooling-reviewer.md"
+    ],
+    [
+      "M",
+      "pstack/skills/setup-pstack/SKILL.md"
+    ],
+    [
+      "A",
+      "pstack/skills/sharpen/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/show-me-your-work/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/swarm/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/technical-writing/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/typescript-best-practices/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/typescript-best-practices/references/patterns.md"
+    ],
+    [
+      "M",
+      "pstack/skills/unslop/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/why/SKILL.md"
+    ],
+    [
+      "M",
+      "pstack/skills/why/references/epistemics.md"
+    ],
+    [
+      "M",
+      "pstack/skills/why/references/investigator-prompt.md"
+    ],
+    [
+      "M",
+      "pstack/skills/why/references/sources/code-archaeology.md"
+    ],
+    [
+      "M",
+      "pstack/skills/why/references/sources/datadog.md"
+    ],
+    [
+      "M",
+      "pstack/skills/why/references/sources/incident-postmortem.md"
+    ],
+    [
+      "M",
+      "pstack/skills/why/references/sources/sentry.md"
+    ],
+    [
+      "M",
+      "pstack/skills/why/references/sources/slack.md"
+    ],
+    [
+      "M",
+      "pstack/skills/why/references/synthesizer-prompt.md"
+    ]
+  ],
+  "commits": [
+    {
+      "sha": "d457567332aa6989e753ea289f30ea2bfbc80bc0",
+      "date": "2026-10-19",
+      "subject": "chore(pstack): bump to 0.15.28, sync guide with create-formal-verification-skill (#724)"
+    },
+    {
+      "sha": "7b353f78f6ec193bdbe48ed8059444eb09b6878e",
+      "date": "2026-10-19",
+      "subject": "pstack: add maintain-formal-verification-skill (#716)"
+    },
+    {
+      "sha": "6b78e9f4e46c75d1697d837e51f07c2692e60b24",
+      "date": "2026-10-19",
+      "subject": "fix(pstack): add TLA+ default and no-verifier fallback to create-formal-verification-skill (#721)"
+    },
+    {
+      "sha": "f9be7aa00c2b2bf4b13562143a6918445e06b99d",
+      "date": "2026-10-18",
+      "subject": "pstack: offer formal verification in setup, sync help and guide (#715)"
+    },
+    {
+      "sha": "0148b78c56c72a1b8412055913c79f767095b217",
+      "date": "2026-10-18",
+      "subject": "chore(pstack): bump to 0.15.27 (#713)"
+    },
+    {
+      "sha": "75fabace38ce507ee044546eaca64167c8c1e21b",
+      "date": "2026-10-18",
+      "subject": "pstack: drop the rewritten-prompt ban from sharpen (#712)"
+    },
+    {
+      "sha": "0b8e952052d482ee6de06deebf14d590d77b1b34",
+      "date": "2026-10-18",
+      "subject": "chore(pstack): bump to 0.15.26 (#710)"
+    },
+    {
+      "sha": "4382e687a50b8d2c5ce4d141d001186589cff8d5",
+      "date": "2026-10-17",
+      "subject": "feat(pstack): add /create-formal-verification-skill (#709)"
+    },
+    {
+      "sha": "bc1443790cc980d0ea857663260a831299884508",
+      "date": "2026-10-17",
+      "subject": "fix(pstack): say outright that ketchup never cuts items to stay under a word count (#708)"
+    },
+    {
+      "sha": "16541c6bc1ed6c8d808b2f78a33364003e82b967",
+      "date": "2026-10-17",
+      "subject": "fix(pstack): list every waiting item so each ketchup call is decidable (#692)"
+    },
+    {
+      "sha": "019a6a20592c10bf92869e5740368f578a9997fd",
+      "date": "2026-10-17",
+      "subject": "pstack: refresh the docs and add a docs-vs-tree check (#704)"
+    },
+    {
+      "sha": "1b800800583ee8ff7f2676caf7a5cb7f0804be85",
+      "date": "2026-10-17",
+      "subject": "fix(pstack): close three gaps in the Claude Code plugin (#705)"
+    },
+    {
+      "sha": "a968159326d1fc6b7d483491ec5c457986a20af2",
+      "date": "2026-10-17",
+      "subject": "fix(pstack): name every skill after its folder (#702)"
+    },
+    {
+      "sha": "0317eb8b858c991c57721358daaee19dbe8c814d",
+      "date": "2026-10-17",
+      "subject": "fix(pstack): make a brand with a type guard, not as (#700)"
+    },
+    {
+      "sha": "182f2ce414e83224915c190d2f63239c1608d0a5",
+      "date": "2026-10-16",
+      "subject": "feat(pstack): install pstack in Claude Code from a generated tree (#637)"
+    },
+    {
+      "sha": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
+      "date": "2026-10-15",
+      "subject": "refactor(pstack): cut marginal sections from four skills (#634)"
+    },
+    {
+      "sha": "e5136d82418d2db3165ea1050d17577cd618cc05",
+      "date": "2026-10-15",
+      "subject": "pstack: restate four overspecified principles as reasoning, not rules (#633)"
+    },
+    {
+      "sha": "6ce45c59b9301a638c1fe1a7b8dc2a82b650898f",
+      "date": "2026-10-14",
+      "subject": "chore(pstack): bump to 0.15.25 (#614)"
+    },
+    {
+      "sha": "afd51cf66a3100a95f878d6c4b93a01f6508e3b0",
+      "date": "2026-10-14",
+      "subject": "feat(pstack): have /ketchup explain changes with screenshots, videos, and diagrams (#628)"
+    },
+    {
+      "sha": "1e5c90a4b6f249917bd21fe361b3a2a7deb741b8",
+      "date": "2026-10-14",
+      "subject": "chore(pstack): bump to 0.15.24 (#617)"
+    },
+    {
+      "sha": "79afd75d5bd51383fbb526b72f36db03180b8301",
+      "date": "2026-10-13",
+      "subject": "feat(pstack): add /sharpen (#615)"
+    },
+    {
+      "sha": "8043881e5cbb962f8948d1a1f8f8e28089d67c9a",
+      "date": "2026-10-13",
+      "subject": "pstack: autopilot loops catch the operator up with /ketchup (#616)"
+    },
+    {
+      "sha": "ce649c03ac3b75b6ae80cbd15b7e2c536caedb5a",
+      "date": "2026-10-14",
+      "subject": "feat(pstack): match subagent effort to the job, drop Graphite from orchestrate, and cut playbooks to principles (#613)"
+    },
+    {
+      "sha": "c86f349b102feb91f1966f8a6a60882a4e601b50",
+      "date": "2026-10-13",
+      "subject": "refactor(pstack): make /ketchup read like /bro in 150 words (#609)"
+    },
+    {
+      "sha": "dbf49813a39c1a5389c5e28cb8e4c1c2379e2454",
+      "date": "2026-10-13",
+      "subject": "refactor(pstack): reword /in-your-own-words around goals and the problem (#606)"
+    },
+    {
+      "sha": "3177dab5d4057724e6a02a198596664707795444",
+      "date": "2026-10-13",
+      "subject": "chore(pstack): bump to 0.15.22 (#605)"
+    },
+    {
+      "sha": "36cecbf2b5089b275254d59cb4612d6f96f00fbd",
+      "date": "2026-10-13",
+      "subject": "feat(pstack): propose a cheap always-on signal after a deep debugging dig (#604)"
+    },
+    {
+      "sha": "d00ba6ee9b26ff3bb084b8a5051ff6436860cbdf",
+      "date": "2026-10-13",
+      "subject": "feat(pstack): shorten /ketchup replies and build them on real visuals (#595)"
+    },
+    {
+      "sha": "7d8d9091e59a1fe9600bb317a1b7f69a31daa349",
+      "date": "2026-10-13",
+      "subject": "feat(pstack): add /in-your-own-words to play back the goal before work (#602)"
+    },
+    {
+      "sha": "b93e8117880f695bc49ef7b1ef72c09bfcc7c1de",
+      "date": "2026-10-13",
+      "subject": "fix(pstack): let poteto-agent find poteto-mode, drop ignored frontmatter, document the / menu (#597)"
+    },
+    {
+      "sha": "997ffc7fe26bdaa6478a14e7f5b8d5f9ed747102",
+      "date": "2026-10-12",
+      "subject": "chore(pstack): bump to 0.15.21 (#584)"
+    },
+    {
+      "sha": "364a77eb358f16292410a7295fd8d103fb7dd40e",
+      "date": "2026-10-12",
+      "subject": "fix(pstack): tell agents where bundled leaf skills live (#577)"
+    },
+    {
+      "sha": "1b6d44ff26d4e242f4e8f68c391e6d2f7ca16def",
+      "date": "2026-10-12",
+      "subject": "chore(pstack): bump to 0.15.20 (#581)"
+    },
+    {
+      "sha": "c49b37a2c0e7bede60a71ad7322e3f12c337a3da",
+      "date": "2026-10-12",
+      "subject": "fix(pstack): create-verification-skill readiness means the app is usable (#573)"
+    },
+    {
+      "sha": "e5a02f8fb0409c2db7eb06eae9078b235a2b5009",
+      "date": "2026-10-11",
+      "subject": "feat(pstack): add Agent Plugins v1 root manifest (#576)"
+    },
+    {
+      "sha": "2bd5dd4f22ef958435082c417c027079f8f4ddb7",
+      "date": "2026-10-11",
+      "subject": "fix(pstack): make the /poteto-mode chat the runner, poteto-agent a delegate (#575)"
+    },
+    {
+      "sha": "cf9a111eaf1eda5724abb607ef4c446ced843d65",
+      "date": "2026-10-11",
+      "subject": "fix(pstack): worktree-audit checks MERGED against the default branch, not origin/main (#574)"
+    },
+    {
+      "sha": "bc697d0a5a163cec979e362b601e36f5616083fd",
+      "date": "2026-10-11",
+      "subject": "fix(pstack): drop \"Must always apply.\" from unslop description (#572)"
+    },
+    {
+      "sha": "ff8f83da30af53de945acd0e1dc10a7b21a3187f",
+      "date": "2026-10-11",
+      "subject": "fix(watch-pr): paginate review threads instead of reading only the first 100 (#484)"
+    },
+    {
+      "sha": "87c810326a9a1dc727651b7d9bbfc5a116d68582",
+      "date": "2026-10-11",
+      "subject": "fix(pstack): respect fenced code blocks in plan checks (#536)"
+    },
+    {
+      "sha": "de2dba6ffa001bc3c97acf1f58bc7ab29d5fdc7a",
+      "date": "2026-10-11",
+      "subject": "fix(pstack): rename Comment Sicko agent id so Grok can spawn it (#486)"
+    },
+    {
+      "sha": "08bd59b37834550f5e8fa0bb5e8852204a7534cf",
+      "date": "2026-10-11",
+      "subject": "refactor(pstack): cut unneeded sections from seven skills (#571)"
+    },
+    {
+      "sha": "ea32d9562a1c9f077d7cdd3be53d07383eb18866",
+      "date": "2026-10-12",
+      "subject": "feat(pstack): show /ketchup decisions as before/after visuals (#570)"
+    },
+    {
+      "sha": "978ca6e9c0e012047cd5058b8e829240336e704e",
+      "date": "2026-10-10",
+      "subject": "feat(pstack): add /ketchup skill (#539)"
+    },
+    {
+      "sha": "00b14f1df36b32a8dd1529324a3a459f6563b127",
+      "date": "2026-10-10",
+      "subject": "refactor(pstack): distill skill prompts to cut tokens (#538)"
+    }
+  ]
+}
