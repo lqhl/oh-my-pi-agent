@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "repository": "https://github.com/cursor/plugins",
-  "commit": "eb4db2b55b2b7dec3d9282754cddf0a56bf4ff10",
-  "tree": "d08bf3a76c8f3bdaeb9af65c98344c85a304fb63",
-  "version": "0.15.30",
+  "commit": "9580c23696ac8d7abed0c166f2f9918800afb819",
+  "tree": "880564357e051d7c7802da1cb5d8df1d0b008299",
+  "version": "0.15.32",
   "files": {
     ".cursor-plugin/plugin.json": {
-      "sha256": "fa7d12176796787ce8503adcbb740fb43f5476e3df3d5e829a7835b3a9c8297d",
+      "sha256": "66b10ca48989920b65f150f80954a59adb4bb787c197a13e27f91fe793b996a3",
       "executable": false
     },
     ".gitignore": {
@@ -18,7 +18,7 @@
       "executable": false
     },
     "README.md": {
-      "sha256": "095b3c4d9e4ceb11e01293d9bde7b0346a7a1262ad1f12b3394d3a0d1bef689b",
+      "sha256": "ce7d9ab68491d329ca88bd2a4b5f34b46390c196a5838fdcc1eae4633eca5fc9",
       "executable": false
     },
     "agents/comment-sicko.md": {
@@ -118,7 +118,7 @@
       "executable": false
     },
     "docs/guide/10-recipes-and-pitfalls.md": {
-      "sha256": "006d8282db567aeae57398d5de1f3a802af2e3ac1a1f564198c384183fca3f92",
+      "sha256": "0d4b71436d9646d2e656e19fcdc570624f2d8b66bc09ed73b731d55f554e3a0b",
       "executable": false
     },
     "docs/guide/README.md": {
@@ -154,7 +154,7 @@
       "executable": false
     },
     "plugin.json": {
-      "sha256": "b17556047a5df5fd2c42550af8d965ece3c2e55aa68082def5951e09f4788ae1",
+      "sha256": "2197363ebd8e7995e2a57417b1fc5fd23f40a4139f9c50634feca61effd23615",
       "executable": false
     },
     "skills/architect/SKILL.md": {
@@ -198,7 +198,7 @@
       "executable": false
     },
     "skills/create-formal-verification-skill/SKILL.md": {
-      "sha256": "6c934cd15a9583533ff9b7a9cad62775d7e80402d26d3ba7f74f79ea21a1d8eb",
+      "sha256": "5e489d938620883502c27c9c2f32143ae7aa8c0543088dad996b2c815d2acc52",
       "executable": false
     },
     "skills/create-verification-skill/SKILL.md": {
@@ -261,6 +261,10 @@
       "sha256": "f2923ffd14f6fc778f75a47aaed1f317fb5fd00b5701ca769d6446c74106dead",
       "executable": false
     },
+    "skills/ketchup-video/SKILL.md": {
+      "sha256": "74f1b9e61f8479e2be5b91a4f53136f6ad8e144fd950c9848de6aa1cdbb7645c",
+      "executable": false
+    },
     "skills/maintain-formal-verification-skill/SKILL.md": {
       "sha256": "0c96f54293542d3818b68754562b338073958781a9684454611dca37592e2d2c",
       "executable": false
@@ -278,7 +282,7 @@
       "executable": false
     },
     "skills/poteto-help/SKILL.md": {
-      "sha256": "7022e2cd0d65d5964151444c4efa82a34792a6644210a0ba60d7d6cfa69c72b8",
+      "sha256": "587793b0f9959dbea7d5d009b8a6513795380d7150dd478a6cb05e604058e315",
       "executable": false
     },
     "skills/poteto-help/references/prompting.md": {
@@ -398,15 +402,15 @@
       "executable": false
     },
     "skills/poteto-mode/scripts/check-plan.mjs": {
-      "sha256": "e58c3d871b09d477be00628d69dd23ffa6c2e3a1728f5b867a841baa8e90278b",
+      "sha256": "e3d4e9ca638c6fb4a2b52c434c17c7af30da4fdd44605ccfe9906f82fe37b555",
       "executable": true
     },
     "skills/poteto-mode/scripts/check-plan.test.ts": {
-      "sha256": "c80f3ea043b81f219b92c4c8a3af6bdd4f8d32ea596ec15b5b9e0252645f2ae8",
+      "sha256": "848d321f2b76299d1b2d7bb46c929dbaebef08ca4ba8669dbe09d1d5c86f96e2",
       "executable": false
     },
     "skills/poteto-mode/scripts/orch/orch.test.ts": {
-      "sha256": "5e80b416bdcd68e4067690ce857345852fd2e0db3dcf3e25607999cd55b963d2",
+      "sha256": "c15bbcc17700acb812722bf3330e2b2ee2838407636cdb86784cdd9bb8ee93f3",
       "executable": false
     },
     "skills/poteto-mode/scripts/orch/orch.ts": {
@@ -414,7 +418,7 @@
       "executable": true
     },
     "skills/poteto-mode/scripts/orch/store.ts": {
-      "sha256": "558cfda533e1ebe7c8d7842604f07e0be7618759cf129b4c2397a8e29516ecea",
+      "sha256": "bf0ed29c44093ee3b333aa10b138612f773c81eda73df7dc5337c59713f35a97",
       "executable": false
     },
     "skills/poteto-mode/scripts/package.json": {
@@ -434,19 +438,19 @@
       "executable": false
     },
     "skills/poteto-mode/scripts/watch-pr/github.test.ts": {
-      "sha256": "70c9f03d8738228763846f2abdd8c7de7be68dba3035041482386a69cbf5639b",
+      "sha256": "9d9f644388f3516364d47f5eb96c1f977dd6f560bd6005b660d90d3b367cf4b9",
       "executable": false
     },
     "skills/poteto-mode/scripts/watch-pr/github.ts": {
-      "sha256": "a605b8531468dbe4c07b93663c0993a9c11dc7e9179adde970f5c740396451d9",
+      "sha256": "7ba193190d488c8ce0982c85234ebea026e9a595703e99a3c3df0fcd640ddd18",
       "executable": false
     },
     "skills/poteto-mode/scripts/watch-pr/policy.test.ts": {
-      "sha256": "146acabcfee9b6fa3342358eb0a9504aa65fd081bbc15b10adf9c1c5485067d2",
+      "sha256": "7ee38c20ed605f4a255f1f78e5a4be56b3563fcd8d3d65cfeea58d44c3f58d53",
       "executable": false
     },
     "skills/poteto-mode/scripts/watch-pr/policy.ts": {
-      "sha256": "f2a3e31223d05edc05e5473cc3f8f3cb9bd20c202c30c6abe7f21f0f7aee8fbb",
+      "sha256": "2d4823aeea788acab258ec60eb52e7b9e3a23a6649850af128d6ada5c33d7778",
       "executable": false
     },
     "skills/poteto-mode/scripts/watch-pr/render.ts": {
@@ -462,7 +466,7 @@
       "executable": false
     },
     "skills/poteto-mode/scripts/watch-pr/types.ts": {
-      "sha256": "0cac435294dc85ce1ba755e8e67f6c5ab163dfa252f2722d6e3a2d68c58fec59",
+      "sha256": "daa66c56220bae084c18cc6d3b0a2c66c0e72206d298e40973b44ee085ce16d2",
       "executable": false
     },
     "skills/poteto-mode/scripts/watch-pr/watch-pr": {
@@ -470,7 +474,7 @@
       "executable": true
     },
     "skills/poteto-mode/scripts/worktree-audit.sh": {
-      "sha256": "e0a94e5e5b1ff60638916e440600e15851f7b79bc1a1d1f602fde05d465e2ec0",
+      "sha256": "06be04b38346ded24ce761d373726f98cd9b9737f20ec98214e88b5f08f521b8",
       "executable": true
     },
     "skills/principle-attack-the-premise/SKILL.md": {
@@ -574,7 +578,7 @@
       "executable": false
     },
     "skills/reflect/SKILL.md": {
-      "sha256": "1f5a8c246cdee8251f8667d85bd5d97f6c2801f505843c26ddbd6c621632519b",
+      "sha256": "9648df23cabaae99b78ed59cd93b6f35ebbf02105d228e3d0b5c3a3b3419d753",
       "executable": false
     },
     "skills/reflect/references/divergent-reviewer.md": {
@@ -614,39 +618,87 @@
       "executable": true
     },
     "skills/statechart/SKILL.md": {
-      "sha256": "ad01133b5578a6e1949edeee7ccd49f918c0a37c980e9b8adc1ca27c28fbd959",
+      "sha256": "b1c544782b1527ba09e63311e4faa4c277c86aa33b0506590f8082b7b4bea505",
+      "executable": false
+    },
+    "skills/statechart/scripts/bug-states.mjs": {
+      "sha256": "8c138f76542997f4fc8aa00ccb42f5b3510a4bcb475e04e422cf06c77ae6bbf4",
+      "executable": false
+    },
+    "skills/statechart/scripts/chart-edges.mjs": {
+      "sha256": "bb1896c1e0eb6b2bfe0f1e5ef71b194a3096c4a6db1879514bcfc3818d3d644a",
+      "executable": false
+    },
+    "skills/statechart/scripts/chart-parts.mjs": {
+      "sha256": "567b4700cba97881ec129cc9b2ed6cdbe9e1f041819ea37957dd3def5261b754",
       "executable": false
     },
     "skills/statechart/scripts/chart-to-tla.mjs": {
-      "sha256": "9f794e273d0729ae874d68a67bfa1df4ebddc12420b7ab5081fdf58dceb729e4",
+      "sha256": "e26b0decb4762ee4c05cc96f4ba1454bd87ab6ae49f0f4bde74a29a4b493117d",
       "executable": false
     },
     "skills/statechart/scripts/compare-charts.mjs": {
-      "sha256": "12f4dc4700093156978ef1785b92739c8cf1e8375b8d13201fcdc2006a20c43b",
+      "sha256": "1fa3c1aad875d38d6d1702fcbbcdb7592bc9a3dbe871cdbd4f9ddeda1bc859fc",
       "executable": false
     },
     "skills/statechart/scripts/lib.mjs": {
-      "sha256": "47731d9dba3fd831bb81b739af31f2dd80b7a25dd6fa6786ee3c0d531e1ab781",
+      "sha256": "ae8ebe18e09419a63b23465f9a53c9117e04de12a7bc945b1f75ce66a367cc5b",
       "executable": false
     },
-    "skills/statechart/scripts/model/OutputFolder.cfg": {
-      "sha256": "8b9662ab7d51de9d54f84abab02888822da9c01ce4f1b86a6453a8a513773995",
+    "skills/statechart/scripts/map-view.mjs": {
+      "sha256": "d9ca92ba29a9d5e4143c64826c24b34cc41d5cac28aeee6a25db485e5b2c7d4f",
       "executable": false
     },
-    "skills/statechart/scripts/model/OutputFolder.map.mjs": {
-      "sha256": "33f2ef1c2ba397573206640843fffbc228d066e53fe5ced779d82f99600f3fd8",
+    "skills/statechart/scripts/property-loop.mjs": {
+      "sha256": "437b66fa85d45bddc8f743fc96af3f3a358f6c3d4da5d55e23dd04c4468f00e7",
       "executable": false
     },
-    "skills/statechart/scripts/model/OutputFolder.tla": {
-      "sha256": "75bef6811d9a8e56bd702fd8d782e52101918c8dc05c6cc9dc43d02b9fe1b56f",
+    "skills/statechart/scripts/read-check.mjs": {
+      "sha256": "f4124d09512b62c056ca81fcde91d9dd1a4d07a99de950ec945df83f044772a9",
+      "executable": false
+    },
+    "skills/statechart/scripts/regions-chart.mjs": {
+      "sha256": "c234623411a2d5368737c8ef4f4012ec92f902340d8fdd527d08d015a448bde9",
+      "executable": false
+    },
+    "skills/statechart/scripts/render.mjs": {
+      "sha256": "b813236db10ce50a4d04efa68953eabbee0cdc30e3fa96c03b8a2e1f477f3e57",
+      "executable": false
+    },
+    "skills/statechart/scripts/rule-book.mjs": {
+      "sha256": "d26a8da74d105b5807ef8333172470660853e61069cc2573817ab7811755dde2",
+      "executable": false
+    },
+    "skills/statechart/scripts/second-replay.mjs": {
+      "sha256": "033325ff5440a81a11aebdd485de4e2fd2f703db9f9b84c4fe24bc274d9df285",
+      "executable": false
+    },
+    "skills/statechart/scripts/snapshot.mjs": {
+      "sha256": "9ae5040255945474f45d09a150cf4659acdff780e18d62f8a084bcb5c79543eb",
+      "executable": false
+    },
+    "skills/statechart/scripts/spec-text.mjs": {
+      "sha256": "494f56d5577a09f9e93057fb6bfe5e3e74df53644e9992f4452ed7008f6f5aab",
+      "executable": false
+    },
+    "skills/statechart/scripts/statechart-help.mjs": {
+      "sha256": "ab38345c41028ad76d2866b03b3f5aa2c8303c3223c87dc9979effbeec79e46b",
       "executable": false
     },
     "skills/statechart/scripts/statechart.mjs": {
-      "sha256": "d352ca68fb05cef8673ce1b86ea516cc619ff6c1f4faea70233de59bcdf7a9b7",
+      "sha256": "c24a83dda26aec03a3a0e5a961ece983a8283f6c4c66334fd229c2d2e8d7bb36",
+      "executable": false
+    },
+    "skills/statechart/scripts/test/band.mmd": {
+      "sha256": "9ae80a75bce87c8126095b6d9de3669cc69ae65d850acd6d4328ea9b8538d5ed",
+      "executable": false
+    },
+    "skills/statechart/scripts/test/regions.mmd": {
+      "sha256": "53d12de8df0e4269c2fbee7399285ead307952c98bb8f8e2eefeba4492e42e25",
       "executable": false
     },
     "skills/statechart/scripts/test/statechart.test.mjs": {
-      "sha256": "494119bb923d25876d4984c6831a6ffcbdfd697c5f834cd6e61121ca5530b83c",
+      "sha256": "65b090975ad970f38e7ed06ff3212802705948ce682f0ee90a616a95f874f800",
       "executable": false
     },
     "skills/statechart/scripts/test/sync.mmd": {
@@ -657,12 +709,24 @@
       "sha256": "bbc1fa70e26cbcbcc7cde5d8fb7eda26df34b6d973053bf13c40b18527ff0e76",
       "executable": false
     },
+    "skills/statechart/scripts/tlc-to-chart-args.mjs": {
+      "sha256": "6cfff1104d7024ecb079ac4c6fa539279e2b537824e01a1c8eb3c7f8e9320ffd",
+      "executable": false
+    },
     "skills/statechart/scripts/tlc-to-chart.mjs": {
-      "sha256": "ce41082fbc7aac05f135ccfd1e80705c60e5b38364187dd22fb1e27fdb017cd6",
+      "sha256": "2fc9c866ed1217cd5f107ec059eb9df2d32268c1f582929321a0a4cdbb26b15a",
+      "executable": false
+    },
+    "skills/statechart/scripts/tlc-tools.mjs": {
+      "sha256": "50fba780bb36edeb20804964f2e93f8c5fa85b6fe1e0e1e8d32e4b933eb69e84",
+      "executable": false
+    },
+    "skills/statechart/scripts/ways-in.mjs": {
+      "sha256": "4728ad85dbd12d192c6bfb5c4374ef3f63ce8d61e03aa120f159dfc607b2af06",
       "executable": false
     },
     "skills/swarm/SKILL.md": {
-      "sha256": "031657cb81e490f9aed5c75d6ff2a4fda35ccafbaf72be604e59481cc4080cdc",
+      "sha256": "fea6bfbbf21e067a4e2d2ebab034bc3af508118e9df1abc9d2ba040d58a6df3a",
       "executable": false
     },
     "skills/tdd/SKILL.md": {

@@ -68,7 +68,7 @@ skills/<skill-name>/SKILL.md
 | --- | --- | --- |
 | `analyze-sessions` | 本仓库维护 | 分析 Pi 历史会话和使用成本 |
 | `pdf-reader` | 本仓库维护 | 结合文字提取与页面渲染阅读 PDF |
-| pstack | [原样上游与 Pi 适配](adapters/pstack/pi.md) | 固定上游 v0.15.30，宿主差异集中在单一适配层 |
+| pstack | [原样上游与 Pi 适配](adapters/pstack/pi.md) | 固定上游 v0.15.32，宿主差异集中在单一适配层 |
 | `guizang-ppt-skill` | [op7418/guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill) | 生成单文件、横向翻页的网页 PPT |
 | 宝玉公众号及素材工作流 | [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills) | 加载 8 个公众号发布、排版、配图和素材抓取 Skill |
 

@@ -91,4 +91,6 @@ Keep upstream files unchanged. Put Pi-only changes here, in native profiles, or 
 
 Read the actual principle leaf when applying it. Separate static checks, intercepted SDK behavior, actual CLI/Web behavior, live delegated execution and independent judgment in the result. Both supported Pi SDKs must pass. An advisor consultation is not an independent subagent panel; keep its evidence and usage separate.
 
+Generated TLA+ verification workflows must record that the upstream `statechart` presentation step is unavailable under the current policy. Keep the actual model-checker command and results usable without the disabled skill, and report the missing visualization separately. Do not claim the upstream presentation step was verified.
+
 Do not add tests for low-impact wording. Validate frontmatter, references and actual loading. Stateful behavior and bug fixes require behavioral checks. Temporary tools and experiments stay isolated and their evidence survives cleanup.

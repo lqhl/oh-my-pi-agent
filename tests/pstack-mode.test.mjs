@@ -146,7 +146,9 @@ test("the installed Pi loader parses all enabled upstream skills and loads the a
 	await loader.reload();
 	assert.deepEqual(loader.getExtensions().errors, []);
 	assert.deepEqual(loader.getSkills().diagnostics, []);
-	assert.equal(loader.getSkills().skills.length, 57);
+	const lock = JSON.parse(readFileSync(join(repo, "adapters/pstack/upstream.lock.json"), "utf8"));
+	const expectedNames = Object.keys(lock.files).flatMap(path => path.match(/^skills\/([^/]+)\/SKILL\.md$/)?.[1] ?? []).sort();
+	assert.deepEqual(loader.getSkills().skills.map(skill => skill.name).sort(), expectedNames);
 	assert.equal(loader.getExtensions().extensions.length, 1);
 	assert.ok(loader.getExtensions().extensions[0].commands.has("pstack"));
 	assert.ok(loader.getSkills().skills.some((skill) => skill.name === "poteto-mode"));
