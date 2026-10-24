@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "supportedSdkVersions": ["1.2.0", "1.4.0"],
+  "acceptedSkills": [],
+  "disabledSkills": {
+    "automate-me": "External automation is not mounted in this Pi configuration.",
+    "correct": "Automatic correction and external delivery are not enabled.",
+    "figure-it-out": "Use a bounded parent-owned plan and native workflow instead.",
+    "make-bot-ui": "The bot UI integration is not mounted.",
+    "reflect": "Historical multi-agent reflection has not been validated in Pi.",
+    "statechart": "The required model-checker and rendering journey has not been validated."
+  },
+  "playbooks": {
+    "authoring-a-skill": "supported",
+    "autonomous-run": "explicit goal request only; use native pi-goal",
+    "autopilot-full": "unsupported; no automatic delivery program",
+    "autopilot-stack": "unsupported; no automatic delivery program",
+    "babysit": "unsupported; no implicit polling",
+    "bug-fix": "supported",
+    "eval": "unsupported; no prompt-eval harness configured",
+    "feature": "supported",
+    "hillclimb": "unsupported; needs a task-specific benchmark contract",
+    "investigation": "supported",
+    "multi-phase-plan": "supported",
+    "opening-a-pr": "explicit PR request only",
+    "orchestrate": "unsupported; native workflows own bounded orchestration",
+    "pause-safely": "mapped; save a checkpoint without automatic commits",
+    "perf-issue": "supported",
+    "prototype": "supported",
+    "refactoring": "supported",
+    "runtime-forensics": "mapped; use the local control skill and report diagnosis",
+    "session-pickup": "mapped; use scoped Pi history and native run references",
+    "shipping": "explicit delivery authority required",
+    "trace-forensics": "unsupported without an identified trace format",
+    "visual-parity": "unsupported without a real comparison surface",
+    "worktree-cleanup": "mapped; native reviewed cleanup only"
+  },
+  "localSkills": ["control-cli", "control-ui", "create-skill", "deslop"],
+  "roles": {
+    "writer": "poteto-agent",
+    "explorer": "pstack-scout",
+    "reviewer": "pstack-reviewer",
+    "comments": "comment-sicko"
+  }
+}

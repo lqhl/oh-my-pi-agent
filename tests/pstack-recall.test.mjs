@@ -6,7 +6,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 
-const script = fileURLToPath(new URL("../skills/pstack/recall/scripts/find-sessions.py", import.meta.url));
+const script = fileURLToPath(new URL("../adapters/pstack/scripts/find-sessions.py", import.meta.url));
 
 function fixture(t) {
 	const dir = mkdtempSync(join(tmpdir(), "pstack-recall-test-"));

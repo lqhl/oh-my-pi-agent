@@ -6,12 +6,10 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import test from "node:test";
 
+import { sdk } from "./support/pi-sdk.mjs";
+
 const repo = fileURLToPath(new URL("../", import.meta.url));
-let sdkDir = dirname(realpathSync(execFileSync("which", ["pi"], { encoding: "utf8" }).trim()));
-while (!existsSync(join(sdkDir, "package.json"))) sdkDir = dirname(sdkDir);
-const metadata = JSON.parse(readFileSync(join(sdkDir, "package.json"), "utf8"));
-const { DefaultResourceLoader, ModelRuntime, SessionManager, SettingsManager, createAgentSession } =
-	await import(pathToFileURL(resolve(sdkDir, metadata.exports["."].import)).href);
+const { DefaultResourceLoader, ModelRuntime, SessionManager, SettingsManager, createAgentSession } = sdk;
 
 async function fixture(t) {
 	const dir = mkdtempSync(join(tmpdir(), "reload-runtime-test-"));

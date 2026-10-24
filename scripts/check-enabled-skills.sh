@@ -3,24 +3,35 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
+node adapters/pstack/check.mjs
 
 python3 - <<'PY'
-import json
-import re
+import json, re, subprocess
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 settings = json.loads(Path("settings.json").read_text())
 paths = settings.get("skills", [])
-missing = [p for p in paths if not (Path(p) / "SKILL.md").is_file()]
-if missing:
-    print("missing enabled skills:")
-    print("\n".join(f"  {p}" for p in missing))
+for path in paths:
+    if path.startswith(("-", "+")):
+        continue
+    directory = Path(path)
+    if not directory.exists() or not (directory.is_file() or any(directory.rglob("SKILL.md"))):
+        print(f"missing enabled skills: {path}")
+        raise SystemExit(1)
+for stale in (Path("skills/pstack"), Path("vendor/bro")):
+    if stale.exists():
+        print(f"legacy path still present: {stale}")
+        raise SystemExit(1)
+policy = json.loads(Path("adapters/pstack/policy.json").read_text())
+loaded = subprocess.run(["node", "scripts/check-skill-loading.mjs", str(Path.cwd())],
+                        text=True, capture_output=True, check=True)
+resources = json.loads(loaded.stdout)
+if resources["diagnostics"]:
+    print("skill loading diagnostics:")
+    print(json.dumps(resources["diagnostics"], indent=2))
     raise SystemExit(1)
-
-local_files = [p for root in (Path("skills"), Path(".pi/skills")) for p in sorted(root.rglob("SKILL.md"))
-               if not any(part.startswith(".") or part == "node_modules" for part in p.relative_to(root).parts)]
-files = list(dict.fromkeys(p.resolve() for p in local_files + [Path(p) / "SKILL.md" for p in paths]))
+files = [Path(p) for p in resources["files"]]
 names = {}
 for file in files:
     text = file.read_text()
@@ -33,23 +44,37 @@ for file in files:
     if not name or not fields.get("description", "").strip():
         print(f"missing frontmatter name or description: {file}")
         raise SystemExit(1)
-    if "pstack" in file.parts and (len(name) > 64 or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name)
-                                  or name != file.parent.name):
-        print(f"invalid pstack skill name or directory: {file}: {name}")
+    if len(name) > 64 or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name) or name != file.parent.name:
+        print(f"invalid skill name or directory: {file}: {name}")
         raise SystemExit(1)
     names.setdefault(name, []).append(str(file))
 
-link_files = sorted(Path("skills/pstack").rglob("*.md")) + sorted(Path(".pi/skills/verify-pstack").rglob("*.md"))
-for file in link_files:
-    text = re.sub(r"(?ms)^```[^\n]*\n.*?^```[ \t]*$", "", file.read_text())
-    for target in re.findall(r"\]\(([^)]+)\)", text):
-        target = target.strip().split()[0].strip("<>")
-        url = urlsplit(target)
-        if url.scheme or url.netloc or not url.path:
-            continue
-        if not (file.parent / unquote(url.path)).exists():
-            print(f"broken relative link: {file}: {target}")
-            raise SystemExit(1)
+for name in policy["disabledSkills"]:
+    if name in names:
+        print(f"disabled upstream skill is still loaded: {name}")
+        raise SystemExit(1)
+for name in ["bro", "poteto-mode", "how", "sharpen", "setup-pstack"] + policy["localSkills"]:
+    if name not in names:
+        print(f"required skill is not loaded: {name}")
+        raise SystemExit(1)
+
+for root in (Path("adapters/pstack"), Path("skills/pi-native"), Path(".pi/skills")):
+    for file in sorted(root.rglob("*.md")):
+        text = re.sub(r"(?ms)^```[^\n]*\n.*?^```[ \t]*$", "", file.read_text())
+        for target in re.findall(r"\]\(([^)]+)\)", text):
+            target = target.strip().split()[0].strip("<>")
+            url = urlsplit(target)
+            if url.scheme or url.netloc or not url.path:
+                continue
+            if not (file.parent / unquote(url.path)).exists():
+                print(f"broken relative link: {file}: {target}")
+                raise SystemExit(1)
+
+for file in sorted(Path("prompts").glob("*.md")):
+    text = file.read_text()
+    if re.search(r"chain parameter|\{previous\}|\"planner\"", text):
+        print(f"legacy workflow in prompts/{file.name}")
+        raise SystemExit(1)
 
 duplicates = {name: values for name, values in names.items() if len(values) > 1}
 if duplicates:
@@ -59,12 +84,6 @@ if duplicates:
     raise SystemExit(1)
 
 expected = [
-    "./vendor/bro/skills/bro",
-    "./vendor/bro/skills/readback",
-    "./vendor/bro/skills/facts",
-    "./vendor/bro/skills/recap",
-    "./vendor/bro/skills/status",
-    "./vendor/bro/skills/clean-room",
     "./vendor/baoyu-skills/skills/baoyu-post-to-wechat",
     "./vendor/baoyu-skills/skills/baoyu-markdown-to-html",
     "./vendor/baoyu-skills/skills/baoyu-format-markdown",
@@ -81,44 +100,7 @@ if missing_expected:
     print("\n".join(f"  {p}" for p in missing_expected))
     raise SystemExit(1)
 
-pstack_skills = {path.parent.name for path in Path("skills/pstack").glob("*/SKILL.md")}
-manifest = json.loads(Path("skills/pstack/upstream.json").read_text())
-records = manifest.get("skills", {})
-if set(records) != pstack_skills:
-    print(f"pstack source inventory mismatch: missing={sorted(pstack_skills - set(records))}, extra={sorted(set(records) - pstack_skills)}")
-    raise SystemExit(1)
-for name, record in records.items():
-    disposition = record.get("disposition")
-    local = disposition == "local"
-    valid_source = (record.get("sourcePath") is None and record.get("sourceCommit") is None) if local else (
-        isinstance(record.get("sourcePath"), str) and record["sourcePath"].endswith("/" + name)
-        and re.fullmatch(r"[0-9a-f]{40}", record.get("sourceCommit") or ""))
-    if disposition not in {"adopt", "adapt", "retain", "local"} or not valid_source or not record.get("notes"):
-        print(f"invalid pstack source record: {name}")
-        raise SystemExit(1)
-if not re.fullmatch(r"[0-9a-f]{40}", manifest.get("reviewedTarget", "")):
-    print("invalid pstack reviewed target")
-    raise SystemExit(1)
-
-documented_counts = [
-    (Path("README.md"), r"\| pstack \|[^\n]*\| (\d+) 个工程"),
-    (Path("skills/pstack/README.md"), r"本目录包含 (\d+) 个技能"),
-    (Path(".pi/skills/verify-pstack/features/resources.md"), r"(\d+) pstack skills"),
-]
-for file, pattern in documented_counts:
-    counts = re.findall(pattern, file.read_text())
-    if not counts or any(int(count) != len(pstack_skills) for count in counts):
-        print(f"pstack skill count mismatch: {file}, actual={len(pstack_skills)}")
-        raise SystemExit(1)
-for file in [Path("README.md"), Path("skills/pstack/README.md"), Path("skills/pstack/poteto-help/SKILL.md")]:
-    for name in re.findall(r"/skill:([a-z0-9]+(?:-[a-z0-9]+)*)", file.read_text()):
-        if name not in names:
-            print(f"unknown published skill command: {file}: {name}")
-            raise SystemExit(1)
-
-print(f"pstack source records and documented skills: {len(pstack_skills)}")
-print(f"explicitly enabled skills: {len(paths)}")
-print(f"auto-discovered local skills: {len(local_files)}")
-print(f"unique enabled skill names: {len(names)}")
-print("selected bro and baoyu skills, local names, and pstack links: OK")
+print(f"enabled skills: {len(names)} unique names")
+print(f"upstream skills mounted from vendor with {len(policy['disabledSkills'])} declared exclusions")
+print("Pi adapter, pristine upstream, links, local skills, and prompts: OK")
 PY

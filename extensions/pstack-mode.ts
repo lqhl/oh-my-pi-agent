@@ -1,8 +1,9 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
+import { bootstrapSection } from "../adapters/pstack/bootstrap.ts";
 
-const skillPath = fileURLToPath(new URL("../skills/pstack/poteto-mode/SKILL.md", import.meta.url));
+const skillPath = fileURLToPath(new URL("../vendor/pstack/skills/poteto-mode/SKILL.md", import.meta.url));
 const stateType = "pstack-mode";
 
 function readInstructions(): string {
@@ -53,10 +54,11 @@ export default function pstackMode(pi: ExtensionAPI): void {
 	pi.on("before_agent_start", async (event, ctx) => {
 		restore(ctx);
 		delete event.systemPromptOptions.sections.pstack_mode;
+		event.systemPromptOptions.sections.pstack_adapter = bootstrapSection(enabled || Boolean(event.prompt?.includes("vendor/pstack/skills/")));
 		if (enabled) {
 			event.systemPromptOptions.sections.pstack_mode = [
 				"[PSTACK MODE ACTIVE]",
-				`Skill directory: ${fileURLToPath(new URL("../skills/pstack/poteto-mode/", import.meta.url))}`,
+				`Skill directory: ${fileURLToPath(new URL("../vendor/pstack/skills/poteto-mode/", import.meta.url))}`,
 				"Apply the playbook to a new task. Continue the current task after compaction. Casual turns do not start a workflow.",
 				readInstructions(),
 			].join("\n\n");

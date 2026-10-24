@@ -7,11 +7,9 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import test from "node:test";
 import pstackMode from "../extensions/pstack-mode.ts";
 
+import { sdk } from "./support/pi-sdk.mjs";
+
 const repo = fileURLToPath(new URL("../", import.meta.url));
-let sdkDir = dirname(realpathSync(execFileSync("which", ["pi"], { encoding: "utf8" }).trim()));
-while (!existsSync(join(sdkDir, "package.json"))) sdkDir = dirname(sdkDir);
-const metadata = JSON.parse(readFileSync(join(sdkDir, "package.json"), "utf8"));
-const sdk = await import(pathToFileURL(resolve(sdkDir, metadata.exports["."].import)).href);
 const { DefaultResourceLoader, ModelRuntime, SessionManager, SettingsManager, createAgentSession } = sdk;
 
 function harness(manager = SessionManager.inMemory(repo)) {
@@ -36,7 +34,7 @@ function harness(manager = SessionManager.inMemory(repo)) {
 		command: (args) => commands.get("pstack").handler(args, ctx),
 		event: (name, event = {}) => handlers.get(name)(event, ctx),
 		async turn(sections = { ordinary: "keep the existing rules" }) {
-			await handlers.get("before_agent_start")({ systemPromptOptions: { sections } }, ctx);
+			await handlers.get("before_agent_start")({ messageType: "user", prompt: "test", systemPromptOptions: { sections } }, ctx);
 			return sections;
 		},
 	};
@@ -51,7 +49,7 @@ test("a new session stays off; status and invalid input do not change it", async
 	await h.event("session_start");
 	await h.command("");
 	await h.command("invalid");
-	assert.deepEqual(await h.turn(), { ordinary: "keep the existing rules" });
+	assert.equal((await h.turn()).pstack_mode, undefined);
 	assert.equal(h.statuses.get("pstack"), undefined);
 	assert.equal(modeEntries(h.manager).length, 0);
 	assert.deepEqual(h.notices, [
@@ -69,8 +67,8 @@ test("on injects the full workflow each turn without duplicating state or other 
 	assert.match(sections.pstack_mode, /\[PSTACK MODE ACTIVE\]/);
 	assert.match(sections.pstack_mode, /## Principles/);
 	assert.match(sections.pstack_mode, /## Playbooks/);
-	assert.match(sections.pstack_mode, /playbooks\/bug-fix\.md/);
-	assert.ok(sections.pstack_mode.includes(join(repo, "skills/pstack/poteto-mode/")));
+	assert.match(sections.pstack_mode, /playbooks\/prototype\.md/);
+	assert.ok(sections.pstack_mode.includes(join(repo, "vendor/pstack/skills/poteto-mode/")));
 	const original = sections.pstack_mode;
 	assert.equal((await h.turn(sections)).pstack_mode, original);
 	assert.equal(modeEntries(h.manager).length, 1);
@@ -83,10 +81,10 @@ test("off removes mode rules and remains off after reload", async () => {
 	const sections = await h.turn();
 	await h.command("off");
 	await h.command("off");
-	assert.deepEqual(await h.turn(sections), { ordinary: "keep the existing rules" });
+	assert.equal((await h.turn(sections)).pstack_mode, undefined);
 	const reloaded = harness(h.manager);
 	await reloaded.event("session_start");
-	assert.deepEqual(await reloaded.turn(), { ordinary: "keep the existing rules" });
+	assert.equal((await reloaded.turn()).pstack_mode, undefined);
 	assert.equal(modeEntries(h.manager).length, 2);
 });
 
@@ -101,7 +99,7 @@ test("branch navigation ignores an off switch on an abandoned branch", async () 
 	assert.match((await h.turn()).pstack_mode, /PSTACK MODE ACTIVE/);
 	assert.equal(h.statuses.get("pstack"), "pstack");
 	h.manager.resetLeaf();
-	assert.deepEqual(await h.turn(), { ordinary: "keep the existing rules" });
+	assert.equal((await h.turn()).pstack_mode, undefined);
 });
 
 test("compaction can omit mode from model context while the branch still restores it", async () => {
@@ -127,10 +125,10 @@ test("a persisted session resumes on, and a different new session starts off", a
 	assert.match((await reopened.turn()).pstack_mode, /PSTACK MODE ACTIVE/);
 	manager.newSession();
 	await h.event("session_start");
-	assert.deepEqual(await h.turn(), { ordinary: "keep the existing rules" });
+	assert.equal((await h.turn()).pstack_mode, undefined);
 });
 
-test("the installed Pi loader parses all 54 skills and loads the actual extension", async (t) => {
+test("the installed Pi loader parses all enabled upstream skills and loads the actual extension", async (t) => {
 	const dir = mkdtempSync(join(tmpdir(), "pstack-loader-test-"));
 	t.after(() => rmSync(dir, { recursive: true, force: true }));
 	const loader = new DefaultResourceLoader({
@@ -140,7 +138,7 @@ test("the installed Pi loader parses all 54 skills and loads the actual extensio
 		noExtensions: true,
 		additionalExtensionPaths: [join(repo, "extensions/pstack-mode.ts")],
 		noSkills: true,
-		additionalSkillPaths: [join(repo, "skills/pstack")],
+		additionalSkillPaths: [join(repo, "vendor/pstack/skills")],
 		noContextFiles: true,
 		noPromptTemplates: true,
 		noThemes: true,
@@ -148,14 +146,14 @@ test("the installed Pi loader parses all 54 skills and loads the actual extensio
 	await loader.reload();
 	assert.deepEqual(loader.getExtensions().errors, []);
 	assert.deepEqual(loader.getSkills().diagnostics, []);
-	assert.equal(loader.getSkills().skills.length, 54);
+	assert.equal(loader.getSkills().skills.length, 57);
 	assert.equal(loader.getExtensions().extensions.length, 1);
 	assert.ok(loader.getExtensions().extensions[0].commands.has("pstack"));
 	assert.ok(loader.getSkills().skills.some((skill) => skill.name === "poteto-mode"));
 	for (const name of ["ketchup", "recall", "sharpen", "in-your-own-words",
 		"create-formal-verification-skill", "maintain-formal-verification-skill"]) {
 		const skill = loader.getSkills().skills.find((entry) => entry.name === name);
-		assert.equal(skill?.filePath, join(repo, `skills/pstack/${name}/SKILL.md`));
+		assert.equal(skill?.filePath, join(repo, `vendor/pstack/skills/${name}/SKILL.md`));
 		assert.equal(skill.disableModelInvocation, true);
 	}
 });

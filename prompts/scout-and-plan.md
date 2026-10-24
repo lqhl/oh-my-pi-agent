@@ -1,9 +1,16 @@
 ---
-description: Scout gathers context, planner creates implementation plan (no implementation)
+description: Scout gathers context and the parent produces an implementation plan without editing code
 ---
-Use the subagent tool with the chain parameter to execute this workflow:
+Use one native async workflow. The scout child is read-only and fresh. Do not implement.
 
-1. First, use the "scout" agent to find all code relevant to: $@
-2. Then, use the "planner" agent to create an implementation plan for "$@" using the context from the previous step (use {previous} placeholder)
+```js workflow
+const scan = await runs.run("scan", {
+  label: "Map the code relevant to the request",
+  agent: "pstack-scout",
+  context: "fresh",
+  task: "Find the files, entry points, data flow, constraints, and risks relevant to this request. Do not edit files.\n\nRequest:\n" + args.request
+});
+return { context: scan.output };
+```
 
-Execute this as a chain, passing output between steps via {previous}. Do NOT implement - just return the plan.
+Call `subagent({ workflow: true, args: { request: $@ } })`. After the workflow returns, write the plan in the parent from the scout's cited context. Include the affected files, data shape, ordered steps, acceptance predicates, and verification commands.

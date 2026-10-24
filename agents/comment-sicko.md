@@ -7,6 +7,7 @@ systemPromptMode: append
 inheritProjectContext: true
 inheritGlobalContext: false
 inheritSkills: false
+subagentOnlyExtensions: ../adapters/pstack/bootstrap.ts
 defaultContext: fresh
 acceptanceRole: read-only
 async: true

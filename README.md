@@ -68,12 +68,11 @@ skills/<skill-name>/SKILL.md
 | --- | --- | --- |
 | `analyze-sessions` | 本仓库维护 | 分析 Pi 历史会话和使用成本 |
 | `pdf-reader` | 本仓库维护 | 结合文字提取与页面渲染阅读 PDF |
-| pstack | [本地 Pi 适配](skills/pstack/README.md) | 54 个工程流程、验证、写作与原则 Skill，已审查到上游 v0.15.28 |
+| pstack | [原样上游与 Pi 适配](adapters/pstack/pi.md) | 固定上游 v0.15.30，宿主差异集中在单一适配层 |
 | `guizang-ppt-skill` | [op7418/guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill) | 生成单文件、横向翻页的网页 PPT |
-| bro | [backnotprop/bro](https://github.com/backnotprop/bro) | 加载 6 个对齐、回顾、状态和独立判断 Skill |
 | 宝玉公众号及素材工作流 | [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills) | 加载 8 个公众号发布、排版、配图和素材抓取 Skill |
 
-小而需要自行修改的 Skill 直接保存在 `skills/`，随本仓库维护；较大的上游仓库使用 Git submodule 固定版本。`guizang-ppt-skill` 直接位于 `skills/`，由 Pi 自动发现；bro 和宝玉的仓库位于 `vendor/`，仅加载 `settings.json` 中明确列出的 Skill 目录。
+小而需要自行修改的 Skill 直接保存在 `skills/`，随本仓库维护；较大的上游仓库使用 Git submodule 固定版本。`guizang-ppt-skill` 直接位于 `skills/`，由 Pi 自动发现；宝玉的仓库位于 `vendor/`，仅加载 `settings.json` 中明确列出的 Skill 目录。
 
 宝玉当前启用 `baoyu-post-to-wechat`、`baoyu-markdown-to-html`、`baoyu-format-markdown`、`baoyu-cover-image`、`baoyu-article-illustrator`、`baoyu-image-gen`、`baoyu-youtube-transcript` 和 `baoyu-url-to-markdown`。YouTube 字幕统一使用宝玉版本。
 
@@ -95,7 +94,7 @@ git diff --submodule
 `check-vendor-updates.sh` 默认检查 `.gitmodules` 中的所有 submodule，也可以指定一个或多个路径：
 
 ```bash
-./scripts/check-vendor-updates.sh vendor/bro vendor/baoyu-skills
+./scripts/check-vendor-updates.sh vendor/baoyu-skills
 ```
 
 脚本只 fetch、比较并显示审查命令，不会自动切换 submodule。确认完整 Skill diff 后，再手动切换到目标 commit 并提交 submodule 指针。不要直接修改 submodule 内的上游文件；需要定制时，在本仓库中建立独立 Skill。
@@ -120,31 +119,32 @@ Skill 可以包含 `references/`、`scripts/` 和 `assets/` 等目录。`SKILL.m
 
 ## pstack 日常开发
 
-新增文件位于 `skills/pstack/`、`agents/` 和 `extensions/pstack-mode.ts`，没有新增 submodule。重启 Pi 或运行 `/reload-runtime` 后可以使用：
+pstack 上游以固定版本原样保存在 `vendor/pstack/`，由 `adapters/pstack/` 提供 Pi 适配。当前支持 Pi CLI 1.4.0 与 pi-web 内置 SDK 1.2.0。更新上游只运行同步工具并审查来源与适配合同：
 
-```text
-/skill:poteto-mode 修复这个 bug。先复现，再运行同一个触发路径验证修复。
+```bash
+node scripts/pstack-sync.mjs --from /tmp/pstack-upstream-research-20261019 --ref <commit>
+node adapters/pstack/check.mjs
 ```
 
-用 `/pstack on` 在当前会话持续启用，用 `/pstack off` 关闭，用 `/pstack status` 查看状态。开关随会话恢复、压缩和分支切换重建，新会话默认关闭。新建项目 skill 用 `/skill:create-skill`；生成真实项目验证流程用 `/skill:create-verification-skill`。
+开关随会话恢复、压缩和分支切换重建，新会话默认关闭。模式只影响当前会话，不启动任务、目标或后台循环。
 
-用 `/skill:ketchup` 汇总当前聊天中你上次发言后的进展，列全每个待决事项并展示已有证据。用 `/skill:recall <主题与时间范围>` 查询同一项目的历史会话，并核对 Git、PR 的现状。两者都是只读流程。
+```text
+/pstack on
+/pstack status
+/pstack off
+```
 
-用 `/skill:in-your-own-words` 复述目标和问题，用 `/skill:sharpen <任务>` 调整方法后执行已授权工作。形式化验证的生成与维护分别使用 `/skill:create-formal-verification-skill` 和 `/skill:maintain-formal-verification-skill`。它们记录验证边界、覆盖代码和同步版本，默认不修改产品代码。
+按需入口使用 `/skill:poteto-mode <task>`。父会话和 pstack 子代理都会取得 Pi 适配规则；原始上游 `SKILL.md` 不变。`policy.json` 明确记录未挂载的上游技能、playbook 状态和本地角色。`vendor/bro` 已移除，`bro` 命令由原样上游提供。`control-cli`、`control-ui`、`create-skill` 和 `deslop` 是 `skills/pi-native/` 中的本地能力。
 
-实现和审查复用 `pi-subagents` 原生能力。两个本地角色是 `poteto-agent` 和只读 `comment-sicko`。编码默认继承当前模型，判断角色通过 `subagents.agentOverrides` 配置。显式请求双模型审查或并行工作时，使用不同模型家族的独立上下文或隔离 worktree，并检查真实结果和证据。
-
-日常 playbook、委派边界、模型配置、验证要求与来源许可见 [pstack 使用说明](skills/pstack/README.md)。本版不包含 Slack、Linear、Sentry 或 cloud agent。
-
-检查本地技能与模式扩展：
+检查命令：
 
 ```bash
 ./scripts/check-enabled-skills.sh
 node --test tests/*.test.mjs
-python3 -B -m unittest discover -s tests -p test_pstack_checks.py -v
+python3 -B -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-`check-enabled-skills.sh` 同时检查全局 `skills/` 和本仓库 `.pi/skills/` 的自动发现内容。项目验证入口为 [.pi/skills/verify-pstack/SKILL.md](.pi/skills/verify-pstack/SKILL.md)，在本仓库启动 Pi 且信任项目资源时可用 `/skill:verify-pstack`。
+`PSTACK_TEST_SDK_ROOT` 可指定另一个 Pi SDK 安装，以验证 pi-web 的内置版本。项目验证入口为 [.pi/skills/verify-pstack/SKILL.md](.pi/skills/verify-pstack/SKILL.md)。
 
 ## 提示词工作流
 
@@ -178,7 +178,7 @@ python3 -B -m unittest discover -s tests -p test_pstack_checks.py -v
 ## 维护约定
 
 1. 新增 Skill 时，为它建立独立目录并提供完整 frontmatter。
-2. 需要独立维护的 Skill 直接纳入本仓库；外部仓库可以使用 submodule。pstack 是记录来源与许可的本地快照，按 `skills/pstack/upstream.json` 手工审查上游，不自动覆盖 Pi 改写。不要把带有嵌套 `.git` 的 clone 直接放入仓库。
+2. 需要独立维护的 Skill 直接纳入本仓库；外部仓库可以使用 submodule。pstack 是固定版本的原样上游快照，来源与完整性由 `adapters/pstack/upstream.lock.json` 记录，通过 `scripts/pstack-sync.mjs` 更新。不要把带有嵌套 `.git` 的 clone 直接放入仓库。
 3. `vendor/` 中的 Skill 必须通过 `settings.json` 白名单加载，不要直接扫描整个上游仓库。
 4. 更新 submodule 后运行 `scripts/check-vendor-updates.sh`、`scripts/check-enabled-skills.sh`，再检查 `git diff --submodule` 和 Skill 内容，确认变更来自预期上游。
 5. 修改扩展、Skill 或 package 配置后，运行 `scripts/check-enabled-skills.sh`，再重启 Pi 或使用 `/reload-runtime` 验证加载结果。本地自动发现的 Skill 同样参与名称和冲突检查。
