@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "1.1.0",
-  "defaultModel": "codex/gpt-6.1-sol",
-  "defaultThinkingLevel": "medium",
+  "defaultModel": "deepseek/deepseek-flash",
+  "defaultThinkingLevel": "max",
   "defaultTools": [
     "+codemode"
   ],
@@ -41,13 +41,22 @@
         "disabled": true
       },
       "reviewer": {
-        "model": "magpie/group/auto-claude-opus-5-5",
-        "thinking": "high"
+        "model": "magpie/codex/gpt-6.1-sol",
+        "thinking": "medium"
+      },
+      "poteto-agent": {
+        "model": "magpie/codex/gpt-6-luna",
+        "thinking": "max"
+      },
+      "delegate": {
+        "model": "magpie/codex/gpt-6.1-sol",
+        "thinking": "medium"
       },
       "comment-sicko": {
-        "model": "magpie/group/auto-claude-opus-5-5",
-        "thinking": "high"
+        "model": "magpie/codex/gpt-6.1-sol",
+        "thinking": "medium"
       }
     }
-  }
+  },
+  "showCacheMissNotices": true
 }

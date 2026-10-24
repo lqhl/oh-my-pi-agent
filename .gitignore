@@ -19,3 +19,5 @@ pi-web-session-state.json
 pi-subagents/
 models.json
 pi-web-run/
+/advisor.json
+/.artifacts/advisor/verification.json
