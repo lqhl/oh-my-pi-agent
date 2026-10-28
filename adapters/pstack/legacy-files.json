@@ -110,5 +110,85 @@
     "vendor/bro/skills/recap/agents/openai.yaml": "5642349a7d70663b665b61eb7a9ea2229cae3df2d8228a9f966bc3be74434af8",
     "vendor/bro/skills/status/SKILL.md": "3207068d9b5eb1f3cf4738d1b0386ab66fdb03096b61cbadb8e8e9f558d29a52",
     "vendor/bro/skills/status/agents/openai.yaml": "483a7ae2949358dc5fbc584817b7b176880355dfc9bff3711f20fdf93d0bb3f9"
+  },
+  "alternates": {
+    "skills/pstack/README.md": [
+      "5d31bcd03bbdda3789014f129d128b7bb71bc7057c1660e195c6ba0bfeec9fab"
+    ],
+    "skills/pstack/benchmark-checklist/SKILL.md": [
+      "6a767e788a60428fa14e645ee10fe2e49896e514ff654f668b1d824deb9038e8"
+    ],
+    "skills/pstack/create-verification-skill/SKILL.md": [
+      "dbc900163f31cf1ba328a38cbb52183c4ca7db81dd9953c748eecae981ddedff"
+    ],
+    "skills/pstack/how/references/explorer-prompt.md": [
+      "a3b44a6e5bb16a6d4d1cac19db8ed5322ffd5f5f5d45baca4e73990ca096f8be"
+    ],
+    "skills/pstack/interrogate/references/lead-judgment.md": [
+      "6e5bdf5670eb34017692e9b6c546f36ac7552e6bb9f3f2f3429164fcc46a9361"
+    ],
+    "skills/pstack/interrogate/references/reviewer-prompt.md": [
+      "e0598e254792b56de39bb16b1e6db559b03a522fdc54b98f942d254090920ae6"
+    ],
+    "skills/pstack/interrogate/references/rubric.md": [
+      "a85aa801abbaf14434f00579440abc0d8e2723227ba8bf57de7cca8d6e7d2f25"
+    ],
+    "skills/pstack/ketchup/SKILL.md": [
+      "861df6531ab28253299d918866d0e75fc9d6406863a36fd2076df7193d42d90c"
+    ],
+    "skills/pstack/poteto-help/SKILL.md": [
+      "81b29d167dfc4bfbb2c8fb69e43e05733112e3892bc574f6d0cf24142d2a4787"
+    ],
+    "skills/pstack/poteto-mode/SKILL.md": [
+      "363a0400c3e95e7452a3e978b2a0bba6a3a27f9cee55818fb0b9f1703290dec4"
+    ],
+    "skills/pstack/poteto-mode/references/pi-runtime.md": [
+      "6f2743ca67eafe4f2a18813210f0279689ef0465efdd2b1aea26b603bbf93e06"
+    ],
+    "skills/pstack/principle-attack-the-premise/SKILL.md": [
+      "c87bd7536f772f8a403ad8155535ee17a1bbec9a353156693eb3bb1520c87ae3"
+    ],
+    "skills/pstack/principle-build-the-lever/SKILL.md": [
+      "458b269eab8e95a1573276955312f7d2a13ae8599879a9efc748248f6bc34b56"
+    ],
+    "skills/pstack/principle-explain-the-number/SKILL.md": [
+      "5aac99e7ce0bb1b37e2579acf4fe88c32a1456d9d46afd4a57cfe1df9092e89c"
+    ],
+    "skills/pstack/principle-fix-root-causes/SKILL.md": [
+      "ba4cd38da1dcc8fe5432feb64457cba95594736a9b21b2ebf8f8c52aee068707"
+    ],
+    "skills/pstack/principle-make-operations-idempotent/SKILL.md": [
+      "540738217c3da7bf513b9886924ad6a2bc77e58be867f5bd2e1831c74bf2ce70"
+    ],
+    "skills/pstack/principle-model-the-domain/SKILL.md": [
+      "bbadbb9a723fac3f76e782ae45665eb94058ec10993e4bae36d4dc6b0e4eac07"
+    ],
+    "skills/pstack/principle-subtract-before-you-add/SKILL.md": [
+      "a983a50e732c1ed315eba7aaf47a61329e31c4794eb1ab9d25d9945265b31e03"
+    ],
+    "skills/pstack/principle-test-behavior-not-implementation/SKILL.md": [
+      "87e40efe4e486f7ea639d2ed1fc0abe6c93b8fd0e89a81218086909d2470a52e"
+    ],
+    "skills/pstack/principle-type-system-discipline/SKILL.md": [
+      "c83da8031ffb4c86410030d3e261f659598fca2b7d8158fd9dc269d70a3a025e"
+    ],
+    "skills/pstack/setup-pstack/SKILL.md": [
+      "8045e5010a8c3e3ddf26b35363d2de78f665a7f74c64f85dec4bd8bbcfe08bc8"
+    ],
+    "skills/pstack/technical-writing/SKILL.md": [
+      "124e60944b054c840679598745b578ddd40953916964312ab19c03113e0bfe48"
+    ],
+    "skills/pstack/typescript-best-practices/SKILL.md": [
+      "28f9e61710e205f6f3c5476f333483cff0e988f6a5b639e2faad536344b40c5e"
+    ],
+    "skills/pstack/typescript-best-practices/references/patterns.md": [
+      "faa1362055374452efccac1b629677c61acfb0bcc6c4e3311836b5715638ee18"
+    ],
+    "skills/pstack/unslop/SKILL.md": [
+      "195411d320b5b328f9f642baf59757ed19aaf0931c0838740e0aca273d538dc1"
+    ],
+    "skills/pstack/why/references/epistemics.md": [
+      "fcc0f559c072832c869a5ada72434b4849320a637ae63c09e8ee14f7ad787059"
+    ]
   }
 }

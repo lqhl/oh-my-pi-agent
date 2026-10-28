@@ -77,11 +77,11 @@ const { join, resolve, sep } = require('node:path');
 const manifest = JSON.parse(readFileSync(process.argv[2], 'utf8'));
 const target = process.argv[3];
 const conflicts = [];
-for (const [name, expected] of Object.entries(manifest.files)) {
+for (const name of Object.keys(manifest.files)) {
   const path = join(target, name);
   if (!existsSync(path)) continue;
   const actual = createHash('sha256').update(readFileSync(path)).digest('hex');
-  if (actual !== expected) conflicts.push(name);
+  if (![manifest.files[name], ...(manifest.alternates?.[name] ?? [])].includes(actual)) conflicts.push(name);
 }
 if (conflicts.length) {
   console.error('Refusing to upgrade: locally changed managed files: ' + conflicts.join(', '));

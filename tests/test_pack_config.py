@@ -110,6 +110,34 @@ class PackConfigTest(unittest.TestCase):
             self.assertFalse(set(policy["disabledSkills"]) & names)
         self.assertFalse((self.target / "skills/pstack").exists())
 
+    def test_upgrade_accepts_earlier_pi_adapted_release(self):
+        repo = Path(__file__).resolve().parents[1]
+        self.target.mkdir()
+        settings_path = self.target / "settings.json"
+        settings_path.write_text(json.dumps({
+            "defaultProvider": "corp",
+            "defaultModel": "corp/main",
+            "packages": ["npm:corp-tools"],
+            "skills": ["./skills/pstack", "./vendor/bro/skills/bro", "./skills/corp-workflow"],
+        }))
+        for name, fixture in {
+            "skills/pstack/README.md": "pstack-released-readme.md",
+            "skills/pstack/how/SKILL.md": "pstack-legacy-how.md",
+        }.items():
+            path = self.target / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes((repo / "tests/fixtures" / fixture).read_bytes())
+        result = self.install()
+        self.assertEqual(result.returncode, 0, result.stderr.decode())
+        self.assertFalse((self.target / "skills/pstack").exists())
+        actual = json.loads(settings_path.read_text())
+        self.assertEqual(actual["defaultProvider"], "corp")
+        self.assertEqual(actual["defaultModel"], "corp/main")
+        self.assertEqual(actual["packages"], ["npm:corp-tools"])
+        self.assertIn("./vendor/pstack/skills", actual["skills"])
+        self.assertIn("./skills/corp-workflow", actual["skills"])
+        self.assertFalse(any("vendor/bro" in p or "skills/pstack" in p for p in actual["skills"]))
+
     def test_upgrade_migrates_auto_discovered_skills_without_explicit_paths(self):
         repo = Path(__file__).resolve().parents[1]
         path = self.target / "skills/pstack/how/SKILL.md"
