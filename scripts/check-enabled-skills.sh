@@ -5,15 +5,16 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 node adapters/pstack/check.mjs
 
-python3 - <<'PY'
-import json, re, subprocess
+python3 - "${1:-$HOME/.agents/skills}" <<'PY'
+import json, re, subprocess, sys
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 settings = json.loads(Path("settings.json").read_text())
 paths = settings.get("skills", [])
+shared_root = Path(sys.argv[1]).expanduser().resolve()
 for path in paths:
-    if path.startswith(("-", "+")):
+    if path.startswith(("-", "+", "!")):
         continue
     directory = Path(path)
     if not directory.exists() or not (directory.is_file() or any(directory.rglob("SKILL.md"))):
@@ -24,7 +25,7 @@ for stale in (Path("skills/pstack"), Path("vendor/bro")):
         print(f"legacy path still present: {stale}")
         raise SystemExit(1)
 policy = json.loads(Path("adapters/pstack/policy.json").read_text())
-loaded = subprocess.run(["node", "scripts/check-skill-loading.mjs", str(Path.cwd())],
+loaded = subprocess.run(["node", "scripts/check-skill-loading.mjs", str(Path.cwd()), str(shared_root)],
                         text=True, capture_output=True, check=True)
 resources = json.loads(loaded.stdout)
 if resources["diagnostics"]:
@@ -84,22 +85,21 @@ if duplicates:
     raise SystemExit(1)
 
 expected = [
-    "./vendor/baoyu-skills/skills/baoyu-post-to-wechat",
-    "./vendor/baoyu-skills/skills/baoyu-markdown-to-html",
-    "./vendor/baoyu-skills/skills/baoyu-format-markdown",
-    "./vendor/baoyu-skills/skills/baoyu-cover-image",
-    "./vendor/baoyu-skills/skills/baoyu-article-illustrator",
-    "./vendor/baoyu-skills/skills/baoyu-image-gen",
-    "./vendor/baoyu-skills/skills/baoyu-youtube-transcript",
-    "./vendor/baoyu-skills/skills/baoyu-url-to-markdown",
+    "guizang-ppt-skill",
+    "baoyu-post-to-wechat", "baoyu-markdown-to-html", "baoyu-format-markdown",
+    "baoyu-cover-image", "baoyu-article-illustrator", "baoyu-image-gen",
+    "baoyu-youtube-transcript", "baoyu-url-to-markdown",
+    "claude-design", "claude-slides", "claude-design-system", "claude-dashboard", "dataviz",
 ]
-configured = {p.rstrip("/") for p in paths}
-missing_expected = [p for p in expected if p not in configured]
-if missing_expected:
-    print("expected selected skills are not enabled:")
-    print("\n".join(f"  {p}" for p in missing_expected))
-    raise SystemExit(1)
+for name in expected:
+    if name not in names:
+        print(f"required shared skill is not loaded: {name}")
+        raise SystemExit(1)
+    if Path(names[name][0]).resolve() != (shared_root / name / "SKILL.md").resolve():
+        print(f"shared skill is not loaded from the shared directory: {name}")
+        raise SystemExit(1)
 
+print(f"shared skills: {len(expected)} required names")
 print(f"enabled skills: {len(names)} unique names")
 print(f"upstream skills mounted from vendor with {len(policy['disabledSkills'])} declared exclusions")
 print("Pi adapter, pristine upstream, links, local skills, and prompts: OK")

@@ -13,15 +13,7 @@
     "-./vendor/pstack/skills/ketchup-video/SKILL.md",
     "-./vendor/pstack/skills/make-bot-ui/SKILL.md",
     "-./vendor/pstack/skills/reflect/SKILL.md",
-    "-./vendor/pstack/skills/statechart/SKILL.md",
-    "./vendor/baoyu-skills/skills/baoyu-post-to-wechat",
-    "./vendor/baoyu-skills/skills/baoyu-markdown-to-html",
-    "./vendor/baoyu-skills/skills/baoyu-format-markdown",
-    "./vendor/baoyu-skills/skills/baoyu-cover-image",
-    "./vendor/baoyu-skills/skills/baoyu-article-illustrator",
-    "./vendor/baoyu-skills/skills/baoyu-image-gen",
-    "./vendor/baoyu-skills/skills/baoyu-youtube-transcript",
-    "./vendor/baoyu-skills/skills/baoyu-url-to-markdown"
+    "-./vendor/pstack/skills/statechart/SKILL.md"
   ],
   "packages": [
     "npm:pi-intercom",

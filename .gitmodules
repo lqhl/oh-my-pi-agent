@@ -1,6 +1,0 @@
-[submodule "skills/guizang-ppt-skill"]
-	path = skills/guizang-ppt-skill
-	url = https://github.com/op7418/guizang-ppt-skill.git
-[submodule "vendor/baoyu-skills"]
-	path = vendor/baoyu-skills
-	url = https://github.com/JimLiu/baoyu-skills.git
