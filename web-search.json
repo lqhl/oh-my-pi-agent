@@ -1,0 +1,10 @@
+{
+  "workflow": "none",
+  "searchProvider": "deepseek",
+  "deepseekBaseUrl": "http://127.0.0.1:3425/v1/magpie/native/deepseek",
+  "deepseekApiKey": "magpie",
+  "fetchRouting": {
+    "providers": ["deepseek", "http"],
+    "allowRemoteHostedProviders": true
+  }
+}

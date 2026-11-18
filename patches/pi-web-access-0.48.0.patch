@@ -1,0 +1,68 @@
+--- a/npm/node_modules/pi-web-access/extract.ts
++++ b/npm/node_modules/pi-web-access/extract.ts
+@@ -881,16 +881,19 @@
+ 	let deepseekError: string | null = null;
+ 	let exaError: string | null = null;
+ 
++	const preferDeepSeek = providerOrder[0] === "deepseek";
+ 	if (remoteUrl && providerOrder[0] !== "http") {
+ 		const httpGateResult = await runHttpProvider();
+-		if (httpGateResult) return httpGateResult;
++		if (httpGateResult && (!preferDeepSeek || httpGateResult.error)) return httpGateResult;
+ 	}
+ 
+ 	for (const provider of providerOrder) {
+ 		if (signal?.aborted) return abortedResult(url);
+ 
+ 		if (provider === "http") {
+-			const result = await runHttpProvider();
++			const result = preferDeepSeek && httpResult
++			  ? (httpResult.error ? null : httpResult)
++			  : await runHttpProvider();
+ 			if (result) return result;
+ 			continue;
+ 		}
+--- a/npm/node_modules/pi-web-access/dist/index.js
++++ b/npm/node_modules/pi-web-access/dist/index.js
+@@ -11704,14 +11704,17 @@
+   let brightdataError = null;
+   let deepseekError = null;
+   let exaError = null;
++  const preferDeepSeek = providerOrder[0] === "deepseek";
+   if (remoteUrl && providerOrder[0] !== "http") {
+     const httpGateResult = await runHttpProvider();
+-    if (httpGateResult) return httpGateResult;
++    if (httpGateResult && (!preferDeepSeek || httpGateResult.error)) return httpGateResult;
+   }
+   for (const provider of providerOrder) {
+     if (signal?.aborted) return abortedResult(url);
+     if (provider === "http") {
+-      const result = await runHttpProvider();
++      const result = preferDeepSeek && httpResult
++        ? (httpResult.error ? null : httpResult)
++        : await runHttpProvider();
+       if (result) return result;
+       continue;
+     }
+--- a/npm/node_modules/pi-web-access/dist/mcp-cli.js
++++ b/npm/node_modules/pi-web-access/dist/mcp-cli.js
+@@ -11559,14 +11559,17 @@
+   let brightdataError = null;
+   let deepseekError = null;
+   let exaError = null;
++  const preferDeepSeek = providerOrder[0] === "deepseek";
+   if (remoteUrl && providerOrder[0] !== "http") {
+     const httpGateResult = await runHttpProvider();
+-    if (httpGateResult) return httpGateResult;
++    if (httpGateResult && (!preferDeepSeek || httpGateResult.error)) return httpGateResult;
+   }
+   for (const provider of providerOrder) {
+     if (signal?.aborted) return abortedResult(url);
+     if (provider === "http") {
+-      const result = await runHttpProvider();
++      const result = preferDeepSeek && httpResult
++        ? (httpResult.error ? null : httpResult)
++        : await runHttpProvider();
+       if (result) return result;
+       continue;
+     }

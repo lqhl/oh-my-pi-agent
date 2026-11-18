@@ -184,6 +184,12 @@ python3 -B -m unittest discover -s tests -p 'test_*.py' -v
 }
 ```
 
+网页搜索和正文抓取通过本机 Magpie 使用 DeepSeek，路由配置在 `web-search.json`。抓取补丁适用于 `pi-web-access` 0.48.0，安装或重装该版本后，在仓库根目录执行以下命令，再运行 `/reload-runtime`。
+
+```bash
+git apply patches/pi-web-access-0.48.0.patch
+```
+
 快捷键配置位于 `keybindings.json`：
 
 - `Ctrl+J`：在输入框中换行
