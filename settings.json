@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "1.4.0",
-  "defaultModel": "deepseek/deepseek-flash",
-  "defaultThinkingLevel": "max",
+  "defaultModel": "codex/gpt-6.2-sol",
+  "defaultThinkingLevel": "medium",
   "defaultTools": [
     "+codemode"
   ],

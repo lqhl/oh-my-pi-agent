@@ -1,18 +1,17 @@
 # AGENTS.md
 
-General rules:
+- Understand the desired outcome before implementing. If ambiguous, state assumptions and ask before making broad changes.
+- Keep changes strictly scoped. Only modify the minimum code required. Do not rewrite or clean up unrelated code.
+- Surface tradeoffs and risks instead of silently deciding.
+- Stop using jargon and speak coherently. State it more simply and concisely, like one human talking to another.
 
-- Understand the user’s desired outcome before choosing an implementation; don’t blindly execute the proposed approach.
-- When requirements are ambiguous, state assumptions and ask for clarification before making broad changes.
-- Write or update tests before changing behavior, then make the tests pass.
-- Keep changes scoped to the task. Do not rewrite, remove, or "clean up" unrelated code or comments.
-- Surface tradeoffs, inconsistencies, and risks instead of silently choosing for the user.
-- After each meaningful change, review your own diff for conceptual errors, hidden assumptions, and unintended side effects.
-- Be terse, don't restate context.
+Validate unknown values once at the boundary that owns them. Pass trusted values inward. Do not revalidate values already guaranteed by types, schemas, or prior steps. Avoid try/except and defensive checks unless explicitly requested. Inline one-off logic; do not extract single-use helpers.
 
-Design and maintain complex systems using the worst-is-better style:
+Prefer existing tests. Only add or update tests when explicitly requested or when new public behavior cannot be covered by the current suite. Verification must be proportional to the change.
 
-- Simplicity: The design must be simple, both in implementation and interface. It is more important for the implementation to be simple than the interface. Simplicity is the most important consideration in a design.
-- Correctness: The design should be correct in all observable aspects. It is slightly better to be simple than correct.
-- Consistency: The design must not be overly inconsistent. Consistency can be sacrificed for simplicity in some cases, but it is better to drop those parts of the design that deal with less common circumstances than to introduce either complexity or inconsistency in the implementation.
-- Completeness: The design must cover as many important situations as is practical. All reasonably expected cases should be covered. Completeness can be sacrificed in favor of any other quality. In fact, completeness must be sacrificed whenever implementation simplicity is jeopardized. Consistency can be sacrificed to achieve completeness if simplicity is retained; especially worthless is consistency of interface.
+Design and maintain systems using the worst-is-better style:
+
+- Simplicity is the most important consideration, especially in implementation.
+- Correctness in observable behavior matters, but simplicity can outweigh perfect correctness on rare paths.
+- Consistency can be sacrificed for simplicity. It is better to drop uncommon cases than to add complexity.
+- Completeness can and should be sacrificed whenever it threatens implementation simplicity.

@@ -19,5 +19,7 @@ pi-web-session-state.json
 pi-subagents/
 models.json
 pi-web-run/
+pi-web-access/
+extensions/magpie.ts
 /advisor.json
 /.artifacts/advisor/verification.json
