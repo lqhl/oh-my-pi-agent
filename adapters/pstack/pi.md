@@ -10,7 +10,7 @@ The support inventory is [policy.json](policy.json). Read a disabled skill as so
 
 | Cursor | Pi |
 | --- | --- |
-| `Task` | Native `subagent`. Confirm the installed API before use. One bounded child uses agent and task. Dependent or parallel children launch inside one top-level async workflow. |
+| `Task` | Pi's `Agent` tool from `@tintinweb/pi-subagents`. Use the registered tool schema. Do not start a multi-agent workflow without explicit operator opt-in. |
 | `AskQuestion` | `questionnaire` when available, otherwise a direct question. Ask only for missing preferences or authority that the existing request does not settle. |
 | Open a todolist | `todo`. Put the playbook steps before task-specific items. Keep skipped steps with their reason. |
 | `generalPurpose` | The native role appropriate to the assignment. Use pstack-scout for read-only source exploration and poteto-agent for a bounded implementation. |
@@ -21,7 +21,7 @@ The support inventory is [policy.json](policy.json). Read a disabled skill as so
 
 Delegation is permitted only by the operator's request or applicable instructions. Enabling `/pstack on`, task size, a matched playbook, or an available specialist alone does not grant it. Without delegation authority, perform the steps directly and label independent review unperformed. A read-only investigation stays read-only except for its requested reports and isolated experiments.
 
-Call native subagent tools directly. They are model-only and cannot run inside codemode. Check the installed guide and executable agents before a delegated workflow. Use stable child keys, short labels, fresh review contexts, and run-bound output paths. Every launched promise must be awaited or returned. Ordinary async completion wakes the parent, so return control when only children remain. Do not sleep or poll.
+Call `Agent` directly. Include `Read <absolute poteto-mode directory>/worker.md before anything else.` as the first line of each pstack assignment, then give the absolute path of this adapter. For `poteto-agent`, also supply the absolute path to `poteto-mode/SKILL.md`. Profiles in the active agent directory's `agents/` use built-in tools only and do not load child extensions or skills. Use stable child names and short labels. A background run reports completion to the parent. Do not sleep or poll.
 
 ## Subagent fields
 
@@ -29,11 +29,11 @@ Call native subagent tools directly. They are model-only and cannot run inside c
 | --- | --- |
 | `readonly: true` | Use pstack-scout or pstack-reviewer with a verified final tool allowlist. They have no bash, write, edit, or delegation tool. Output is saved by native output routing. |
 | `readonly: false` | A scoped writer profile and explicit allowed files. |
-| `environment: "cloud"` | Managed `worktree: true` from a clean intended source. One writer per checkout. Do not stash or discard unrelated changes. |
-| `environment: "local"` | The explicitly assigned cwd, with one writer. |
-| `cloud_base_branch` | Native baseRef using HEAD or a supported named ref. Do not pass arbitrary revision expressions. |
-| `run_in_background: true` | `async: true`. Multi-step delegation uses one native async workflow. |
-| `resume` | Inspect the exact run with status, then use native resume if eligible. A fresh same-role fallback is labeled and carries prior findings. It is not equivalent to resuming. |
+| `environment: "cloud"` | `isolation: "worktree"` creates a local managed worktree. Use a clean intended source and one writer per checkout. Do not stash or discard unrelated changes. |
+| `environment: "local"` | Use the current project checkout with one writer, or stop if the assigned checkout is unavailable. |
+| `cloud_base_branch` | No corresponding `Agent` field. Verify the source ref before spawning. |
+| `run_in_background: true` | `run_in_background: true`. |
+| `resume` | Use `Agent` with the exact eligible ID in `resume`. Label a fresh same-role fallback and carry over prior findings. |
 | `file_attachments` | Readable absolute file pointers in the assignment. |
 
 A start receipt is not completion. Consume native terminal state, errors, evidence, actual outputReference/outputPathMapping/artifactPaths and the resulting diff at each dependency barrier. Ordinary child completion does not prove the assignment was fulfilled. Use an explicit structured verdict or a host verification gate where later work depends on it.
@@ -47,17 +47,17 @@ A child, extension, workflow, or tool-runtime failure stops dependent work. Pres
 | Upstream name | Pi selection |
 | --- | --- |
 | `grok-`, `composer-`, `cursor-grok-`, `deepseek-` code slugs | The current effective poteto-agent route, or the current session when no override exists. |
-| `claude-`, `gpt-` judgment and prose slugs | The effective native reviewer route. |
+| `claude-`, `gpt-` judgment and prose slugs | A confirmed judgment route on `pstack-reviewer`, or the current session when no override exists. |
 | `inherit-parent`, `auto` | Inherit the actual parent model. Never store these as invented provider/model IDs. |
-| `pstack-models.mdc`, `~/.cursor/rules/pstack-models.mdc` | Native `settings.json` under subagents.agentOverrides. There is no separate pstack model registry. |
+| `pstack-models.mdc`, `~/.cursor/rules/pstack-models.mdc` | Optional `model:` and `thinking:` in the active agent directory's `agents/<role>.md`, or explicit values on an `Agent` call. There is no separate pstack model registry. |
 
 A family prefix is a role hint, never a runnable model ID. Discover exact provider/id routes and their supported reasoning levels. Use native thinking in configuration and a supported model suffix on a per-run model. Preserve user budgets. Cursor `-fast` is not a Pi suffix. Native fast is opt-in and only works for supported openai-codex children.
 
 For `interrogate`, map its `generalPurpose` adversaries to scoped poteto-agent executions in separate worktrees, with explicit delegation authority. They may create and run repros only inside their assigned worktree. The parent reruns every finding command before keeping it. pstack-reviewer remains a read-only evidence reviewer and cannot stand in for an adversary that must execute code. If execution or model diversity is unavailable, report that part blocked instead of substituting a read-only panel.
 
-Panels requiring diversity use two confirmed, different model families with explicit per-run routes. Two GPT variants are one family. If the current coding and reviewer routes share a family, select another confirmed route only within the requested scope and budget, or report the panel blocked. Never claim cross-model review from same-family runs. pstack-reviewer is a restricted execution profile, not a second model configuration. Resolve its judgment route from the native reviewer configuration before dispatch.
+Panels requiring diversity use two confirmed, different model families with explicit per-run routes. Two GPT variants are one family. If the current coding and reviewer routes share a family, select another confirmed route within the requested scope and budget or report the panel blocked. Resolve the effective model for each seat before dispatch and check the actual models after completion.
 
-For setup-pstack, inspect native agent capabilities and effective models. Merge only requested settings fields in the active agent or trusted project's settings. Preserve unrelated values and existing choices. Do not write `.mdc`, reset every role, or ask again for a budget already established by the user. Only request an unresolved preference. Do not automatically offer unrelated setup, run reviews, install verifiers or start goals.
+For setup-pstack, inspect the loaded profiles and confirm available `provider/modelId` routes and supported thinking levels. By default the pstack profiles inherit the parent model and thinking level, with both fields available for per-run selection. An explicit frontmatter value takes precedence over the caller's value. Pin a profile only when the operator wants that choice for every run of the role. Panel seats and cross-judges use confirmed per-run routes on unpinned profiles. Preserve existing choices and ask only for unresolved preferences. Do not write `.mdc` or `subagents.agentOverrides`.
 
 ## Paths and history
 

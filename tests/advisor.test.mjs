@@ -1,22 +1,18 @@
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { dirname, join } from "node:path";
+import { join } from "node:path";
 import { execFileSync } from "node:child_process";
-import { pathToFileURL } from "node:url";
 import test from "node:test";
 import { renderEvidence, captureEvidence } from "../extensions/advisor/evidence.ts";
 
-const piPath = realpathSync(execFileSync("which", ["pi"], { encoding: "utf8" }).trim());
-let sdkDir = dirname(piPath);
-while (!existsSync(join(sdkDir, "package.json"))) sdkDir = dirname(sdkDir);
-const { createJiti } = createRequire(piPath)("jiti");
+import { sdk, sdkDir } from "./support/pi-sdk.mjs";
+
+const { createJiti } = createRequire(join(sdkDir, "package.json"))("jiti");
 const tempDir = mkdtempSync(join(tmpdir(), "advisor-test-"));
 process.env.PI_CODING_AGENT_DIR = tempDir;
 const jiti = createJiti(join(process.cwd(), "tests/advisor.test.mjs"));
-const metadata = JSON.parse(readFileSync(join(sdkDir, "package.json"), "utf8"));
-const sdk = await import(pathToFileURL(join(sdkDir, metadata.exports["."].import)).href);
 const { DefaultResourceLoader, ModelRuntime, SessionManager, SettingsManager, createAgentSession } = sdk;
 const { parseAdvisorResult, parseConfig, supportedThinking, consult, defaultConfig } = await jiti.import(join(process.cwd(), "extensions/advisor/advisor.ts"));
 mkdirSync(tempDir, { recursive: true });

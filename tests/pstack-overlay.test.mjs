@@ -1,11 +1,12 @@
 import assert from "node:assert/strict";
 import { execFileSync, spawnSync } from "node:child_process";
+import { createRequire } from "node:module";
 import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
-import { sdk } from "./support/pi-sdk.mjs";
+import { sdk, sdkDir, metadata } from "./support/pi-sdk.mjs";
 
 const repo = fileURLToPath(new URL("../", import.meta.url));
 const policyPath = join(repo, "adapters/pstack/policy.json");
@@ -30,10 +31,31 @@ test("the selected upstream skills load unchanged and supply bro without the rem
 	for (const skill of result.skills) assert.ok(existsSync(join(skill.baseDir, "SKILL.md")));
 });
 
-test("pstack child roles load the adapter without ambient extensions", () => {
+test("the installed subagent plugin discovers the project override and scoped pstack profiles", async (t) => {
+	const previous = process.env.PI_CODING_AGENT_DIR;
+	process.env.PI_CODING_AGENT_DIR = repo;
+	t.after(() => {
+		if (previous === undefined) delete process.env.PI_CODING_AGENT_DIR;
+		else process.env.PI_CODING_AGENT_DIR = previous;
+	});
+	const { createJiti } = createRequire(join(sdkDir, "package.json"))("jiti");
+	const jiti = createJiti(import.meta.url, { alias: { [metadata.name]: join(sdkDir, metadata.exports["."].import) } });
+	const { loadCustomAgents } = await jiti.import(join(repo, "npm/node_modules/@tintinweb/pi-subagents/dist/custom-agents.js"));
+	const profiles = loadCustomAgents(repo, true, { packageDirs: [], packageFiles: [] });
+	assert.equal(profiles.get("general-purpose")?.source, "project");
+	const readTools = ["read", "grep", "find", "ls"];
 	for (const name of ["poteto-agent", "comment-sicko", "pstack-scout", "pstack-reviewer"]) {
-		const text = readFileSync(join(repo, `agents/${name}.md`), "utf8");
-		assert.match(text, /subagentOnlyExtensions: \.\.\/adapters\/pstack\/bootstrap\.ts/);
+		const profile = profiles.get(name);
+		assert.ok(profile?.enabled, `${name} must be available`);
+		assert.equal(profile.sourcePath, join(repo, `agents/${name}.md`));
+		assert.deepEqual(profile.builtinToolNames, name === "poteto-agent" ? [...readTools, "bash", "edit", "write"] : readTools);
+		assert.equal(profile.isolated, true);
+		assert.equal(profile.promptMode, "append");
+		assert.equal(profile.inheritContext, false);
+		assert.equal(profile.allowedSubagents, undefined);
+		assert.equal(profile.model, undefined);
+		assert.equal(profile.thinking, undefined);
+		assert.match(profile.systemPrompt, /Pi adapter and (?:pstack )?worker instructions/);
 	}
 });
 

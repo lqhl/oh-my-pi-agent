@@ -63,7 +63,7 @@ skills/<skill-name>/SKILL.md
 | --- | --- | --- |
 | `analyze-sessions`、`pdf-reader` | 本仓库维护 | 保留在 `skills/` |
 | Pi 专用能力与验证技能 | 本仓库维护 | 保留 Pi 原生工具和加载方式 |
-| pstack | [原样上游与 Pi 适配](adapters/pstack/pi.md) | 本仓库固定 v0.15.36，独立维护 |
+| pstack | [原样上游与 Pi 适配](adapters/pstack/pi.md) | 本仓库固定 v0.15.48，独立维护 |
 | `guizang-ppt-skill` | [op7418/guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill) | `npx skills`，共享目录 |
 | 八个宝玉工作流技能 | [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills) | `npx skills`，共享目录 |
 | 五个 baoyu-design 技能 | [JimLiu/baoyu-design](https://github.com/JimLiu/baoyu-design) | `npx skills`，共享目录 |
@@ -131,7 +131,7 @@ pstack 上游以固定版本原样保存在 `vendor/pstack/`，由 `adapters/pst
 
 ```bash
 git clone --filter=blob:none https://github.com/cursor/plugins /tmp/pstack-upstream
-node scripts/pstack-sync.mjs --from /tmp/pstack-upstream --ref ae5650febf4320793844c12c4adaa937f417f8da
+node scripts/pstack-sync.mjs --from /tmp/pstack-upstream --ref 41e400932eca14f289e7db717a70455256b6d388
 node adapters/pstack/check.mjs
 ```
 

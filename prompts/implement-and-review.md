@@ -1,35 +1,41 @@
 ---
 description: One writer implements, a fresh reviewer checks, then the writer addresses accepted feedback
 ---
-Use one native async workflow with a writer, a fresh read-only reviewer, and a retained writer follow-up. Review findings are evidence; the parent decides what to accept.
+Use one `SubagentWorkflow` with a writer, a fresh read-only reviewer, and a retained writer follow-up. Review findings are evidence. The parent decides what to accept.
 
-Before launching, inspect `subagent({ action: "models" })` for the effective native `reviewer` route in this session. Pass that exact provider/model as `reviewerModel`, with its effective thinking level as a supported model suffix (for example, `provider/model:high`). If reviewer inherits the parent, resolve the actual parent model and effort. Do not substitute the writer route or invent a model ID. A missing or unavailable route blocks this workflow before implementation.
+Confirm the effective judgment model and thinking level before starting. Pass the exact `provider/modelId` as `reviewerModel` and the thinking level separately as `reviewerEffort`. If the reviewer inherits the parent, resolve the actual parent model and effort. Pass the absolute paths from the active pstack adapter as `adapterPath` and `potetoPath`, where `potetoPath` is the directory containing `worker.md` and `SKILL.md`.
 
 ```js workflow
+export const meta = {
+  name: "implement-and-review",
+  description: "Implement a scoped task, review its evidence, and resume the writer for follow-up"
+};
 if (typeof args.reviewerModel !== "string" || !args.reviewerModel.trim()) {
-  throw new Error("Resolve the effective native reviewer model and thinking into reviewerModel before launching");
+  throw new Error("Resolve reviewerModel before launching");
 }
-const implementation = await runs.run("implement", {
-  label: "Implement the scoped task",
-  agent: "poteto-agent",
-  context: "fresh",
-  task: "Implement this task within the supplied scope. Verify real behavior and report changed files, tests, evidence, and residual risks.\n\nTask:\n" + args.task
-});
-const review = await runs.run("review", {
-  label: "Review implementation and evidence",
-  agent: "pstack-reviewer",
-  model: args.reviewerModel,
-  context: "fresh",
-  task: "Review the implementation against the task, its tests, edge cases, and the supplied evidence. Report confirmed findings with file and symbol. Do not edit files.\n\nTask:\n" + args.task + "\n\nImplementation report:\n" + implementation.output
-});
-if (!implementation.runId) return { implementation: implementation.output, review: review.output, followUp: "writer was not retained" };
-const followUp = await runs.run("followup", {
-  label: "Address accepted review findings",
-  resume: implementation.runId,
-  context: "fresh",
-  task: "Review this independent report. Address findings you can confirm within the original scope, rerun verification, and report anything rejected or still blocked.\n\nReview:\n" + review.output
-});
-return { implementation: implementation.output, review: review.output, followUp: followUp.output };
+if (!["minimal", "low", "medium", "high", "xhigh", "max"].includes(args.reviewerEffort)) {
+  throw new Error("Resolve reviewerEffort before launching");
+}
+if (![args.adapterPath, args.potetoPath].every(path => typeof path === "string" && path.startsWith("/"))) {
+  throw new Error("Supply absolute adapterPath and potetoPath before launching");
+}
+const kickoff = `Read ${args.potetoPath}/worker.md before anything else.\nRead the Pi adapter at ${args.adapterPath}.\n\n`;
+const implementation = await agent(
+  kickoff + `Read ${args.potetoPath}/SKILL.md in full.\n\nImplement this task within the supplied scope. Verify real behavior and report changed files, tests, evidence, and residual risks.\n\nTask:\n${args.task}`,
+  { label: "implement", agentType: "poteto-agent" }
+);
+if (implementation === null) throw new Error("Implementation failed: " + agentError("implement"));
+const review = await agent(
+  kickoff + `Review the implementation against the task, its tests, edge cases, and the supplied evidence. Report confirmed findings with file and symbol. Do not edit files.\n\nTask:\n${args.task}\n\nImplementation report:\n${implementation}`,
+  { label: "review", agentType: "pstack-reviewer", model: args.reviewerModel, effort: args.reviewerEffort }
+);
+if (review === null) throw new Error("Review failed: " + agentError("review"));
+const followUp = await agent(
+  kickoff + `Review this independent report. Address findings you can confirm within the original scope, rerun verification, and report anything rejected or still blocked.\n\nReview:\n${review}`,
+  { label: "follow-up", resume: "implement" }
+);
+if (followUp === null) throw new Error("Writer follow-up failed: " + agentError("follow-up"));
+return { implementation, review, followUp };
 ```
 
-Call `subagent({ workflow: true, args: { task: $@, reviewerModel: "<resolved reviewer provider/model:thinking>" } })` after replacing the route with the actual resolved value. The parent checks the final integrated diff and evidence.
+Run the script with `SubagentWorkflow` and pass `task` (the operator's `$@` assignment), `reviewerModel`, `reviewerEffort`, `adapterPath`, and `potetoPath` in `args`. The parent checks the final integrated diff and evidence.

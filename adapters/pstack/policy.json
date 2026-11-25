@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "supportedSdkVersions": ["1.2.0", "1.4.0"],
-  "acceptedSkills": [],
+  "acceptedSkills": ["reframe"],
   "disabledSkills": {
     "automate-me": "External automation is not mounted in this Pi configuration.",
     "correct": "Automatic correction and external delivery are not enabled.",
