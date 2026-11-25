@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.6.0",
   "defaultModel": "codex/gpt-6.2-sol",
   "defaultThinkingLevel": "medium",
   "defaultTools": [
@@ -50,5 +50,10 @@
       }
     }
   },
-  "showCacheMissNotices": true
+  "showCacheMissNotices": true,
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-subagents@0.79.2\",\"scope\":\"user\"}": "0.79.2",
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.48.0",
+    "{\"source\":\"npm:@sting8k/pi-vcc\",\"scope\":\"user\"}": "0.12.1"
+  }
 }

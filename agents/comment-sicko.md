@@ -1,8 +1,18 @@
 ---
-name: comment-sicko
 description: Fresh read-only review of redundant comments, hidden constraints, and unjustified suppressions. Report proposed deletions and exact refactor targets; never edit files.
+display_name: comment-sicko
+tools: read, grep, find, ls
+load_skills: false
+load_extensions: false
+codemode: 'off'
+enabled: true
+inherit_context: false
+run_in_background: false
+prompt_mode: append
+skills: false
+extensions: false
+name: comment-sicko
 advertise: true
-tools: read, grep, find, ls, contact_supervisor
 systemPromptMode: append
 inheritProjectContext: true
 inheritGlobalContext: false
