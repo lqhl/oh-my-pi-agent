@@ -3,7 +3,10 @@
   "defaultModel": "codex/gpt-6.2-sol",
   "defaultThinkingLevel": "medium",
   "defaultTools": [
-    "+codemode"
+    "+codemode",
+    "+grep",
+    "+find",
+    "+ls"
   ],
   "skills": [
     "./vendor/pstack/skills",
